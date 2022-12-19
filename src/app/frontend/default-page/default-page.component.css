@@ -1,0 +1,13 @@
+.CustomHeader{
+    margin-top: 95px; 
+}
+@media (max-width: 949px) and (max-width: 991px) {
+  .CustomHeader{
+    margin-top: 70px !important;
+  }
+}
+@media screen and (min-width: 100px) and (max-width: 768px) {
+  .mob-view-none {
+    display: none !important;
+  }
+}

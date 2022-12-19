@@ -1,0 +1,48 @@
+private SettingService: SettingService
+
+ this.SettingService.Success('You have logged in successfully!')
+
+ this.SettingService.Error('You have logged in successfully!')
+
+ this.SettingService.Info('You have logged in successfully!')
+
+beejan
+beejan@786
+
+this._notification.create
+
+
+
+.product .product-labels-sold { position: absolute;width: 60px;right: 0px;top: 10px;z-index: 2;}
+
+
+ /// POSITION = topLeft , topRight , bottomLeft, bottomRight
+  public Success(message: string): void {
+    this.nzConfigService.set("notification", {
+      nzPlacement: "bottomRight",
+    });
+    this.notification.create("success", "Success", message);
+  }
+
+  public Error(message: string): void {
+    this.nzConfigService.set("notification", {
+      nzPlacement: "bottomRight",
+    });
+    this.notification.create("error", "Error", message);
+  }
+
+  public Info(message: string): void {
+    this.nzConfigService.set("notification", {
+      nzPlacement: "bottomRight",
+    });
+    this.notification.create("info", "Information", message);
+  }
+
+
+
+    private notification: NzNotificationService,
+    private nzConfigService: NzConfigService
+
+
+
+product-labels-sold

@@ -1,0 +1,696 @@
+<style>
+  ::ng-deep .selectize-input {
+    border: solid 2px #aebecd !important;
+  }
+</style>
+<div *ngIf="sender" class="main-div-sender">
+  <div class="progress md-progress">
+    <div class="progress-bar" role="progressbar" style="
+        width: 20%;
+        background: linear-gradient(
+          94deg,
+          rgba(231, 218, 218, 1) 0%,
+          rgba(221, 39, 33, 1) 49%,
+          rgb(251 45 45) 86%
+        );
+      " aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="container w-500 mt-10 edit-mx">
+
+    <h1 class="new-head-ui">Package Info</h1>
+    <div class="container addImg">
+      <div class="row image-row">
+        <div class="container addImg">
+          <div class="row image-row" *ngIf="!showImages.length">
+            <div style="cursor: pointer" (click)="croperModal(CropperModal)" class="col image-col bgcolor-4">
+              <span *ngIf="images.length <= 0" style="cursor: pointer" (click)="croperModal(CropperModal)"><svg
+                  style="margin-bottom: 20% !important" width="50" height="40" viewBox="0 0 50 40" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M45 0H5C2.2425 0 0 2.2425 0 5V35C0 37.7575 2.2425 40 5 40H45C47.7575 40 50 37.7575 50 35V5C50 2.2425 47.7575 0 45 0ZM11.25 7.5C12.2446 7.5 13.1984 7.89509 13.9016 8.59835C14.6049 9.30161 15 10.2554 15 11.25C15 12.2446 14.6049 13.1984 13.9016 13.9017C13.1984 14.6049 12.2446 15 11.25 15C10.2554 15 9.30161 14.6049 8.59835 13.9017C7.89509 13.1984 7.5 12.2446 7.5 11.25C7.5 10.2554 7.89509 9.30161 8.59835 8.59835C9.30161 7.89509 10.2554 7.5 11.25 7.5ZM25 32.5H7.5L17.5 20L21.25 25L28.75 15L42.5 32.5H25Z"
+                    fill="#AEBECD" />
+                </svg>
+
+                <br />
+                <span class="color-figma font-500 font-weight-bold">Add image</span></span>
+              <div class="text-center" *ngIf="showImages.length > 0">
+                <div (click)="showImages = []; images = []">
+                  <i class="fa fa-times-circle cros-image"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row image-row" *ngIf="showImages.length">
+            <div class="col image-col bgcolor-4">
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <!-- adImageBaseUrl +  -->
+                  <div class="carousel-item" style="border-bottom: none;padding-bottom: 0px;"
+                    *ngFor="let image of showImages; let i = index"
+                    [ngClass]="{ 'carousel-item': true, active: i === imageIndex }">
+                    <img [src]="image" (click)="croperModal(CropperModal)" style="
+                    border-radius: 20px;
+                    cursor: pointer;
+                    width: 100%;
+                    height: 196px;" class="" />
+
+                    <a class="carousel-control-prev" role="button" (click)="previousSlide(i)" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" (click)="nextSlide(i)" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="SenderForm">
+      <div class="row form-group m-t-20">
+        <div class="col-sm-12 col-lg-10 col-md-12 text-left">
+          <input style="border: solid 2px #aebecd; border-radius: 4px; color: #929fb1" #title class="form-control"
+            autocomplete="off" name="title" [(ngModel)]="senderAd.title" type="text" placeholder="Title (eg. Book)"
+            formControlName="title" />
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-sm-12 col-lg-10 col-md-12 text-left ngSelect">
+      
+        <!-- <ng-selectize [config]="category_config" [options]="categories"
+           [(ngModel)]="category_idsList" ngDefaultControl
+        [ngModelOptions]="{standalone: true}"></ng-selectize> -->
+        <ng-multiselect-dropdown class="font-14" 
+          [placeholder]="'Select Categories'" 
+          [(ngModel)]="selectedTag"
+          [data]="categories"
+          (onSelect)="selectCategory($event)" 
+          (onDeSelect)="deSelectCategory($event)"
+          [settings]="categoryDropdownSettings">
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="col-lg-2 col-md-12 col-sm-12 text-right custome-category-btn">
+        <button type="button" class="btn btn-primary custome-cat-btn" data-toggle="tooltip" data-placement="top"
+          title="Add custome" (click)="openCustomeCategoryField()">
+          <i class="bi bi-plus-circle"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-12 col-lg-10 col-md-12 form-group" *ngIf="isCutomeCategory">
+        <input type="text" class="form-control" (keyup.enter)="addCustomeCategory()" [(ngModel)]="customeCategory"
+          placeholder="Add Custom Categories" style="color: black; border: 1px solid #aebecd; border-radius: 4px">
+      </div>
+      <div class="col-lg-2 col-md-12 col-sm-12 form-group" *ngIf="isCutomeCategory">
+        <button type="button" class="btn btn-primary custome-cat-btn" data-toggle="tooltip" data-placement="top"
+          title="save">
+          <i class="bi bi-check2" (click)="addCustomeCategory()" *ngIf="customeCategory !==''"></i>
+          <i class="bi bi-x" *ngIf="customeCategory ==''"></i>
+          <!--/*(click)="closeCustomeCategoryField()"*/-->
+        </button>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-12 col-lg-10 col-md-12 text-left">
+        <input #weightkg style="border: solid 2px #aebecd; border-radius: 4px; color: #929fb1" class="form-control"
+          type="text" name="weight" [(ngModel)]="senderAd.weight" appNumberOnly placeholder="Weight (in KG)" />
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template class="bttest" #CropperModal let-modal>
+    <div class="crop-modal">
+      <div class="modal-header d-flex justify-content-between">
+        <h4 class="modal-title font-20" id="modal-basic-title">
+          Upload Images
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="
+            croperModalDismis(CropperModal);
+            modal.dismiss('Cross click')
+          ">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-3 border-top border-bottom">
+        <div class="row m-b-20 mx-0">
+          <div class="col-12 col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group" *ngIf="showImages.length < 5">
+              <label for="file">File</label>
+              <input id="file" type="file" name="file" [(ngModel)]="senderAd.image" multiple="multiple"
+                (change)="onFileChange($event)" accept="image/x-png,image/gif,image/jpeg" />
+            </div>
+            <div class="image-area col-md-12 px-0">
+              <div class="image-list">
+                <!-- adImageBaseUrl +  -->
+                <div *ngFor="let url of showImages; let i = index">
+                  <div (click)="removeSelectedImage(i, url)" class="cros-image-black">
+                    <i class="fa fa-times-circle remove-images"></i>
+                  </div>
+                  <img [src]="url" class="img-responsive" />
+                </div>
+              </div>                        
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer p-3 bg-light text-right">
+        <button class="btn btn-primary px-4 py-2 btn-sm" [disabled]="showImages.length > 5"
+          (click)="sendImages(); modal.dismiss('Cross click')">
+          Submit
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="modal-body pt-0 pb-0 p-l-r-10px mt-5">
+    <div class="container w-500">
+      <h1 class="new-head-ui">What is the size of package</h1>
+
+      <div class="col-12 m-b-10" *ngFor="let travellingType of travellingTypes; let i = index"
+        (click)="travelTypeSelect(i); getTravellingType(travellingType.id)"
+        style="padding: 8px 0px; border-radius: 5px !important" [ngStyle]="{
+          border: travelType[i] ? '2px solid #da2926' : '2px solid #E1E7EC'
+        }">
+        <div class="row">
+          <div class="col-3 text-center col-md-2 p-r-0 p-l-21">
+            <img src="http://pacsend.uk/public/uploads/traveling/{{
+                travellingType.image
+              }}" class="width-100" />
+          </div>
+          <div class="col-9 col-md-10 text-left">
+            <a style="color: #202833 !important" class="mb-0 font-16 font-700 mob-font-txt-color">{{
+              travellingType.title }}</a>
+            <p style="
+                font-size: 14px;
+                font-weight: 500 !important;
+                line-height: 23.5px;
+                color: #929fb1 !important;
+              " class="mb-0 font-14 font-500">
+              {{
+              travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }},
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body pt-0 pb-0 p-l-r-10px mt-5">
+    <div class="container w-500">
+      <h1 class="new-head-ui">Pickup Location</h1>
+      <div class="form-group has-search mb-0 position-relative ">
+        <span style="color: #929fb1 !important; position: absolute; left: 10px;" class="
+            fas
+            fa-map-marker-alt
+            form-control-feedback
+            font-12
+            location-logo
+            pos-mob-v"></span>
+
+        <input style="
+          margin-bottom: 20px;
+          border: 2px solid #aebecd;
+          border-radius: 4px;
+        " id="searchmap" (keyup.enter)="onEnter('sender', false)" #searchmap [(ngModel)]="senderAd.pickup_location"
+          (input)="findSenderPicupAddress(searchmap)" autocorrect="off" autocapitalize="off" spellcheck="off"
+          type="text" class="form-control" placeholder="Enter Location" />
+      </div>
+      <div id="map1" [hidden]="true">
+        <agm-map> </agm-map>
+      </div>
+      <div>
+        <agm-map [latitude]="latitude2" [longitude]="longitude2" [zoom]="zoom_adsender_from">
+          <agm-marker [latitude]="latitude2" [longitude]="longitude2">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body pt-0 pb-0 p-l-r-10px mt-5">
+    <div class="container w-500">
+      <h1 class="new-head-ui">Receiver Location</h1>
+      <div class="form-group has-search position-relative">
+        <span style="color: #929fb1 !important; position: absolute; left: 10px;" class="
+            fas
+            fa-map-marker-alt
+            form-control-feedback
+            font-12
+            location-logo pos-mob-v
+          "></span>
+        <input style="
+          margin-bottom: 20px;
+          border: 2px solid #aebecd;
+          border-radius: 4px;
+        " (keyup.enter)="onEnter('sender', true)" placeholder="Enter Location" [(ngModel)]="senderAd.delivery_location"
+          id="searchmaps" #searchmaps (input)="findAdress(searchmaps)" autocorrect="off" autocapitalize="off"
+          spellcheck="off" type="text" class="form-control mb-1" />
+      </div>
+      <div id="map" [hidden]="true">
+        <agm-map> </agm-map>
+      </div>
+      <div>
+        <agm-map [latitude]="latitude1" [longitude]="longitude1" [zoom]="zoom_adsener_to">
+          <agm-marker [latitude]="latitude1" [longitude]="longitude1">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body pt-0 pb-0 p-l-r-10px mt-5">
+    <div class="container w-500">
+      <h1 class="new-head-ui">Delivery Priority</h1>
+      <div *ngIf="!selectedHigh">
+        <div class="col-12 m-b-10" *ngFor="let priority of deliverypriority; let i = index"
+          style="padding: 12px 0px; border: 1px solid #d9d6d6; border-radius: 5px" [ngStyle]="{
+          border: deliveryPty[i] ? '2px solid #da2926' : '2px solid #E1E7EC'
+        }">
+          <div class="row" (click)="getPriorityid(priority.id); onClickPriority(i)">
+            <div class="col-6 text-left col-md-6">
+              <a style="color: #202833 !important" class="font-16 font-700 mb-0 p-l-r-10">{{ priority.title }}</a>
+            </div>
+            <div class="col-6 col-md-6 text-right">
+              <p class="font-14 font-500 mb-0 p-l-r-10 color-new-figma">
+                {{ priority.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="selectedHigh">
+        <div class="col-12 m-b-10" *ngFor="let priority of deliverypriority; let i = index"
+          style="padding: 12px 0px; border: 1px solid #d9d6d6; border-radius: 5px" [ngStyle]="{
+        border: i==0 ? '2px solid #da2926' : '2px solid #E1E7EC'
+      }">
+          <div class="row" (click)="getPriorityid(priority.id); onClickPriority(i)">
+            <div class="col-6 text-left col-md-6">
+
+              <a style="color: #202833 !important" class="font-16 font-700 mb-0 p-l-r-10">{{ priority.title }}</a>
+            </div>
+            <div class="col-6 col-md-6 text-right">
+              <p class="font-14 font-500 mb-0 p-l-r-10 color-new-figma">
+                {{ priority.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 m-b-10" (click)="onSelectCustame_DT()" [ngStyle]="{
+          border: customDT ? '2px solid #da2926' : '2px solid #E1E7EC'
+        }" style="padding: 12px 0px; border-radius: 5px">
+        <div class="row">
+          <div class="col-12 text-left">
+            <h5 style="color: #202833 !important" class="mb-0 p-l-r-10 font-16 font-700">
+              Custom
+            </h5>
+          </div>
+          <div class="col-6 col-md-6 text-left">
+            <div class="form-group m-t-10 m-b-0 p-l-r-10">
+              <input #customdate (click)="onSelectCustame_DT()" [(ngModel)]="senderAd.custom_date_to"
+                class="form-control" name="" [min]="todayDate" type="date" placeholder="Date" />
+            </div>
+          </div>
+          <div class="col-6 col-md-6 text-left">
+            <div class="form-group m-t-10 m-b-0 p-l-r-10">
+              <input #customtime (click)="onSelectCustame_DT()" [(ngModel)]="senderAd.custom_time_to"
+                class="form-control" name="" type="time" placeholder="Time" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body pt-0 pb-0 p-l-r-16 mt-5">
+    <div class="container w-500">
+      <h1 class="new-head-ui">Point Of Contact</h1>
+      <p class="font-14 color-new-figma">
+        Enter details of the receiver to whom traveller will submit the package
+        upon reaching the destination.
+      </p>
+
+      <div class="form-group m-t-20">
+        <input #name class="form-control form-custom-control" [(ngModel)]="senderAd.point_of_contact_name"
+          name="receiverName" type="text" placeholder="Receiver Name" />
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12 w-100">
+            <input class="form-control w-100 form-custom-control" type="text" #phone="ngModel" ng2TelInput appNumberOnly
+              [(ngModel)]="senderAd.point_of_contact_number" [ng2TelInputOptions]="{ initialCountry: countryShortName }"
+              maxlength="13" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid bg-clr pb-50">
+    <div class="container w-500 mt-5">
+      <h1 class="new-head-ui">Payment</h1>
+      <p class="color-new-figma">
+        Enter details of the receiver to whom traveller will submit the package
+        upon reaching the destination.
+      </p>
+      <div class="form-group">
+        <input style="border: solid 2px #e1e7ec !important" [(ngModel)]="senderAd.payment" #paymentCarrier
+          class="form-control form-custom-control" name="MobileNumber" type="number" placeholder="Amount in Aed" />
+      </div>
+
+      <div class="modal-footer text-center p-0">
+        <div class="row m-0 p-0" style="width: 100%; padding-right: 25px; padding-left: 0">
+          <div class="col-12">
+            <button *ngIf="SendUpdatebtnDisable" type="button" style="height: 53px; border-radius: 9px" class="
+                    btn btn-primary
+                    font-bold
+                    width-100
+                    m-t-10 m-b-10
+                    point-next-mob-responive
+                  " (click)="openIwantToSendSuccess(paymentCarrier.value)" disabled>
+              Update
+            </button>
+            <button *ngIf="!SendUpdatebtnDisable" type="button" style="height: 53px; border-radius: 9px" class="
+                btn btn-primary
+                font-bold
+                width-100
+                m-t-10 m-b-10
+                point-next-mob-responive
+              " (click)="openIwantToSendSuccess(paymentCarrier.value)">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="carier" class="main-div-carier">
+  <div class="container w-750 pt-1">
+    <div class="w-100 w-500 mt-10">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-500 headd" id="modal-basic-title">
+          Title
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 mob-v-card-padding">
+        <div class="form-group mb-0">
+          <input [(ngModel)]="carriarAd.title" type="text" class="form-control form-custom-control m-b-20"
+            placeholder="Title (eg. Book)" />
+        </div>
+      </div>
+    </div>
+    <div class="w-100 w-500 mt-3">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-500 headd" id="modal-basic-title">
+          Pick Up Location
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 mob-v-card-padding">
+        <div class="form-group has-search mb-0">
+          <span style="color: #929fb1 !important" class="
+              fas
+              fa-map-marker-alt
+              form-control-feedback
+              font-12
+              carry-icon-mob-responsive
+            "></span>
+          <input (keyup.enter)="onEnter('carry', false)" name="searchmap12" #searchmap12 id="searchmap12"
+            (input)="getTravellingFrom(searchmap12)" [(ngModel)]="carriarAd.carrier_from_location" autocorrect="off"
+            autocomplete="off" autocapitalize="off" spellcheck="off" type="text"
+            class="form-control form-custom-control m-b-20" placeholder="Enter a location" />
+        </div>
+        <div id="map" [hidden]="true">
+          <agm-map></agm-map>
+        </div>
+        <div>
+          <agm-map [latitude]="latitude1" [longitude]="longitude1" [zoom]="zoom_adcarry_from">
+            <agm-marker [latitude]="latitude1" [longitude]="longitude1">
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 w-500 mt-3">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-400 headd" id="modal-basic-title">
+          Travel Destination
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 mob-v-card-padding">
+        <div class="form-group has-search mb-0">
+          <span style="color: #929fb1 !important" class="
+              fas
+              fa-map-marker-alt
+              form-control-feedback
+              font-12
+              carry-icon-mob-responsive
+            "></span>
+
+          <input id="searchmapsss" (keyup.enter)="onEnter('carry', true)" #searchmapsss
+            (input)="getTravellingto(searchmapsss)" [(ngModel)]="carriarAd.carrier_to_location" autocomplete="off"
+            autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            class="form-control form-custom-control m-b-20" placeholder="Enter a location" />
+
+
+        </div>
+
+        <div id="map" [hidden]="true">
+          <agm-map></agm-map>
+        </div>
+        <div>
+          <agm-map [latitude]="latitude2" [longitude]="longitude2" [zoom]="zoom_adcarry_to">
+            <agm-marker [latitude]="latitude2" [longitude]="longitude2">
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 w-500 mt-3">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-500 headd" id="modal-basic-title">
+          Travelling Frequency
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 TF-mob-v">
+        <div class="row">
+          <div class="col-12 m-b-10">
+            <div class="row" (click)="changeFreq(0)">
+              <div [ngClass]="
+                  travellingFreq[0].check
+                    ? travellingFreq[0].class
+                    : 'col-12 text-left borderTravelling'
+                ">
+                <h3 style="color: #202833 !important" class="font-16 font-700">
+                  Daily
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 m-b-10">
+            <div class="row" (click)="changeFreq(1)">
+              <div [ngClass]="
+                  travellingFreq[1].check
+                    ? travellingFreq[1].class
+                    : 'col-12 text-left borderTravelling'
+                ">
+                <label style="color: #202833 !important" class="display-block font-16 font-700">
+                  Some Days
+                </label>
+                <div class="row" style="padding-left: 5px">
+                  <div #travelling *ngFor="let travellingType of DaysArray">
+                    <input style="border: solid 2px #aebecd !important" type="checkbox" name="checkbox-option"
+                      [ngClass]="'hc'" [id]="travellingType.class" [id]="travellingType.class" />
+                    <label (click)="PushDays(travellingType.full_name)" [for]="travellingType.class">{{
+                      travellingType.day_name }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 m-b-10">
+            <div class="row" (click)="changeFreq(2)">
+              <div [ngClass]="
+                  travellingFreq[2].check
+                    ? travellingFreq[2].class
+                    : 'col-12 text-left borderTravelling'
+                ">
+                <label style="color: #202833 !important" class="display-block font-700 font-16">
+                  On A Specific Date
+                </label>
+                <input #Specificdate style="border: solid 2px #aebecd !important" class="form-control mb-3" name=""
+                  type="date" [(ngModel)]="todayDate" [min]="todayDate" placeholder="Daily" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 w-500 mt-3">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-500 headd" id="modal-basic-title">
+          Package Info
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 package-info-mob-v">
+        <div class="row">
+          <div class="col-12 m-b-10">
+            <div class="row">
+              <div class="col-12 text-left m-b-20">
+                <input #categorykg type="number" [(ngModel)]="carriarAd.weight"
+                  style="border: solid 2px #aebecd !important" class="form-control" name=""
+                  placeholder="Capacity (in Kg)" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 text-left m-b-10">
+                <p class="color-new-figma mt-4">
+                  I can carry following types of Packages
+                </p>
+              </div>
+              <div class="col-sm-12 col-lg-10 col-md-12 text-left">
+                <ng-multiselect-dropdown class="font-14" 
+                [placeholder]="'Select Categories'" 
+                [(ngModel)]="selectedTag"
+                [data]="categories"
+                (onSelect)="selectCategory($event)" 
+                (onDeSelect)="deSelectCategory($event)"
+                [settings]="categoryDropdownSettings">
+              </ng-multiselect-dropdown>
+                <!-- <ng-selectize 
+                  [config]="category_config" 
+                  [options]="categories" 
+                  [(ngModel)]="category_idsList"
+                  ngDefaultControl 
+                  [ngModelOptions]="{standalone: true}">
+                </ng-selectize> -->
+              </div>
+              <div class="col-lg-2 col-md-12 col-sm-12 text-right custome-category-btn">
+                <button type="button" class="btn btn-primary custome-cat-btn" data-toggle="tooltip" data-placement="top"
+                  title="Add custome" (click)="openCustomeCategoryField()">
+                  <i class="bi bi-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-12 col-lg-10 col-md-12 form-group" *ngIf="isCutomeCategory">
+                <input type="text" class="form-control" (keyup.enter)="addCustomeCategory()"
+                  [(ngModel)]="customeCategory" placeholder="Add Custom Categories"
+                  style="color: black; border: 1px solid #aebecd; border-radius: 4px">
+              </div>
+              <div class="col-lg-2 col-md-12 col-sm-12 text-right form-group" *ngIf="isCutomeCategory">
+                <button type="button" class="btn btn-primary custome-cat-btn" data-toggle="tooltip" data-placement="top"
+                  title="save" (click)="addCustomeCategory()">
+                  <i class="bi bi-check2"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 w-500 mt-3">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 font-21 font-500 headd mob-head-22" id="modal-basic-title">
+          How will you travel ?
+        </h4>
+      </div>
+      <div class="modal-body pt-0 pb-0 traveling-type-mob-v">
+        <div class="row">
+
+          <div style="border: solid 2px #e1e7ec; border-radius: 5px !important"
+            *ngFor="let travellingType of travellingTypes2; let i = index" [ngClass]="
+              travellingType.clicked
+                ? 'col-12 m-b-10 carrier-travellingType'
+                : 'col-12 m-b-10 carrier-travellingType1'
+            " (click)="getcarrygetTravellingType(travellingType.id)">
+            <div class="row">
+              <div class="col-3 text-center col-md-2 p-r-0 p-l-21">
+                <img src="http://pacsend.uk/public/uploads/travelingBy/{{
+                    travellingType.image
+                  }}" class="width-100" />
+              </div>
+              <div class="col-9 col-md-10 text-left">
+                <a #travelling class="mb-0 font-16 font-700 colorBlack">{{
+                  travellingType.title
+                  }}</a>
+                <p class="mb-0 font-14 color-new-figma">
+
+                  {{
+                  travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }},
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pb-50">
+      <div class="w-100 w-500 mt-3">
+        <div class="modal-header">
+          <h4 class="modal-title w-100 font-21 font-500 headd" id="modal-basic-title">
+            Payment Carrier
+          </h4>
+        </div>
+        <div class="modal-body pt-0 pb-0 payment-mob-v">
+          <p class="color-new-figma">
+            Enter details of the receiver to whom traveller will submit the
+            package upon reaching the destination.
+          </p>
+          <div class="form-group">
+            <input #amount [(ngModel)]="carriarAd.payment" class="form-control form-custom-control" name="MobileNumber"
+              type="number" placeholder="Amount Per Kg" />
+          </div>
+
+          <div class="modal-footer text-center p-0">
+            <div class="row m-0 p-0 w-100 p-l-0 p-r-25"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer text-center p-0">
+          <div class="row m-0 w-100">
+            <div class="col-12 p-0">
+              <button *ngIf="CarUpdatebtnDisable" type="button" class="
+                  btn btn-primary
+                  font-bold
+                  width-80
+                  m-b-20
+                  mob-view-btn
+                  border-rad-10
+                  h-53
+                " (click)="opencarrierSuccess(amount.value)" disabled>
+                UpdateDisabled
+              </button>
+              <button *ngIf="!CarUpdatebtnDisable" type="button" class="
+              btn btn-primary
+              font-bold
+              width-80
+              m-b-20
+              mob-view-btn
+              border-rad-10
+              h-53
+            " (click)="opencarrierSuccess(amount.value)">
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

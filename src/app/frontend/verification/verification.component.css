@@ -1,0 +1,135 @@
+.form-material .form-control,
+.form-material .form-control.focus,
+.form-material .form-control:focus {
+  background-image: -o-linear-gradient(#e32025, #e32025),
+    -o-linear-gradient(#e32025, #e32025);
+  background-image: linear-gradient(#e32025, #e32025),
+    linear-gradient(#e32025, #e32025);
+}
+body {
+  background-color: #ecf0f3 !important;
+}
+::placeholder {
+  color: #929fb1;
+}
+.border-radiuss {
+  border-radius: 8px;
+}
+.nxt-btn-cs {
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 46px;
+  border-radius: 10px;
+}
+.verification-color {
+  color: #929fb1;
+}
+
+.btn-primary {
+  background: linear-gradient(271.19deg, #e31d26 0%, #e3351d 100%);
+  /* background: #e31d26 ; */
+  padding: 10px;
+  border: 1px solid #e32025;
+  box-shadow: 0px 4px 24px rgba(227, 48, 31, 0.32);
+  transition: all 0.3s ease 0s;
+}
+
+.verfiation-email21 {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26.44px;
+  color: #929fb1;
+}
+
+.verfiation-email22 {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #000;
+}
+
+.form-custom-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.form-custom-control:focus {
+  border-color: #e32025 !important;
+  box-shadow: 0 0 8px 0 #e32025 !important;
+}
+
+.login-box {
+  width: 100% !important;
+  max-width: 450px !important;
+}
+
+.btn-primary {
+  background: linear-gradient(271.19deg, #e31d26 0%, #e3351d 100%);
+  /* background: #e31d26 ; */
+  padding: 10px;
+  border: 1px solid #e32025;
+  box-shadow: 0px 4px 24px rgba(227, 48, 31, 0.32);
+  transition: all 0.3s ease 0s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(271.19deg, #cc050b 0%, #e31d26 100%);
+  /* background: #cc050b; */
+  padding: 10px;
+  border: 1px solid #cc050b;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
+}
+
+.btn-secondary {
+  padding: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.card-body {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-box {
+  width: 450px;
+  margin: 0 auto;
+}
+
+.line-height-20 {
+  line-height: 20px !important;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.float-left {
+  float: left !important;
+}
+.placeholder-opt::placeholder {
+  color: #929fb1 !important;
+}
+::ng-deep .ngx-foreground-spinner {
+  height: 60px !important;
+  width: 60px !important;
+  color: rgb(227, 32, 37) !important;
+}

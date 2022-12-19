@@ -1,0 +1,44 @@
+<style>
+  .NotifItemBar {
+    border: 1px solid #efefef;
+    padding: 15px;
+    margin-bottom: -1px;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background: rgb(251, 58, 41) !important;
+  }
+</style>
+<div class="container-fluid p-t-b-20 desktop-margin-top bgcolor-1">
+  <div class="container" infinite-scroll [infiniteScrollDisabled]="scrollDisable"
+    [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+    [infiniteScrollThrottle]="throttle" (scrolled)="onScroll()">
+    <div class="row">
+      <div class="col-md-12 col-12 text-center padding-zero-mobile">
+        <div class="card width-100 m-t-b-10">
+          <div class="card-header text-left">
+            <h4 class="my-2">Notifications</h4>
+          </div>
+          <div class="card-body">
+            <!-- users.slice().reverse() -->
+            <div *ngFor="let item of NotificationsArray let i = index">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-md-flex justify-content-md-between align-items-md-center NotifItemBar">
+                    <span class="font-14">{{item.notificationText}}</span>
+                    <button (click)="Route(item)" id="button" class="btn btn-primary font-500 font-11 viewdetail-btn"
+                      type="submit">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

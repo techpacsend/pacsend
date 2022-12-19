@@ -1,0 +1,88 @@
+.bannerHead {
+    z-index: 1000;
+    margin-bottom: -100px;
+    bottom: -150px;
+}
+
+.bannerHeading {
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px 2px #000;
+}
+
+.custom-caption {
+    font-size: 28px;
+    color: #d7d1d0;
+    text-shadow: 2px 2px #000;
+}
+
+.mob-v-p-37 {
+    margin-top: -25px;
+}
+
+@media screen and (max-width: 992px) {
+    .bannerHead {
+        z-index: 1000;
+        margin-bottom: -100px;
+        bottom: -50px;
+    }
+    .bannerHeading {
+        font-size: 1.5rem !important;
+    }
+    .heading-custom-caption {
+        font-size: 1rem !important;
+    }
+    .custom-caption {
+        font-size: 12px;
+        color: #d7d1d0;
+        text-shadow: 2px 2px #000;
+    }
+}
+
+agm-map {
+    height: 500px;
+}
+
+.dayCircleRed {
+    border-radius: 50%;
+    width: 50px;
+    font-weight: 500;
+    height: 50px;
+    padding: 11px 5px;
+    display: inline-block;
+    background: #E32025;
+    border: 2px solid #E32025;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media screen and (max-width:550px) {
+    .bannerHead {
+        bottom: -95px;
+    }
+}
+
+.hover-image:hover {
+    cursor: pointer;
+    transition: .5s ease;
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 200px) and (max-width: 601px) {
+    .colorRed-2 {
+        font-size: 25px !important;
+    }
+    .mob-v-p-37 {
+        padding-right: 37px !important;
+        padding-left: 37px !important;
+        padding-top: 1rem !important;
+    }
+    .p-t-b-40 {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-right: 15px;
+        margin-top: -60px !important;
+    }
+}

@@ -1,0 +1,93 @@
+<div class="container-fluid mt-4" #scrollMe>
+  <div class=" p-t-b-40">
+    <div class="col-md-12 text-center pt-4 mt-5">
+      <h3 class="colorRed-2 font-37 font-600">Privacy and Policy</h3>
+    </div>
+
+    <br>
+    <div *ngIf="dataPrivacy" class="container">
+      <div>
+
+        <div class="col-8">
+          <h3 class="row justify-content-center align-items-center font-weight-bold font-600">Pacsend Privacy Policy
+          </h3>
+
+          <br>
+          <br>
+
+
+          <h4 class="row justify-content-center align-items-center text-justify font-400">
+            "At Pacsend we care about your personal data. When you use Pacsend, you give Pacsend and its subsidiaries
+            access to information about you for the exclusive purpose of providing you with services you requested and
+            nothing more. Below is information on how we manage your data and how we use it.
+          </h4>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+
+      <div>
+        <br>
+        <div class="col-2"></div>
+
+
+
+        <div class="col-8">
+          <p class="row justify-content-center align-items-center font-weight-bold ">What is personal information?</p>
+
+          <br>
+          <br>
+
+
+          <p class="row justify-content-center align-items-center text-justify">
+            Personal information is information that can be associated with a person, such as name, place of residence,
+            telephone number, e-mail address, IP address, banking information, comments/posts.</p>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+
+
+      <div class="row justify-content-center align-items-center">
+        <br>
+        <div class="col-2"></div>
+
+
+
+        <div class="col-8">
+          <p class="row justify-content-center align-items-center font-weight-bold ">What information does Pacsend
+            collect?</p>
+
+          <br>
+          <br>
+
+
+          <p class="row justify-content-center align-items-center text-justify">
+            Information you give us</p>
+
+          <br>
+
+          <p class="row justify-content-center align-items-center text-justify">
+            Information you provide us upon signing up to our service, information you provide us when creating your
+            profile: these include first and last name, legal documents, photos, travel type, saved routes, company
+            information etc.</p>
+
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <div *ngIf="!dataPrivacy" class="col-md-8 offset-md-2 mob-v-p-37">
+      <div [innerHTML]="dataPrivacyPolicy"
+        class="">
+      </div>
+    </div>
+
+  </div>
+</div>

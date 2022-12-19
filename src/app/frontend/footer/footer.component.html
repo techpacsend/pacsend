@@ -1,0 +1,84 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" async/>
+</head>
+
+<footer
+  class="container-fluid backgroundRed p-t-b-20 mob-view-none position-absolute">
+  <div class="container p-t-b-20">
+    <div class="row">
+      <div class="col-md-6 col-xs-12 text-left">
+
+        <img [src]="'../../../assets/Pacsend-logo-white11.webp'" class="" width="160" height="112"/>
+
+        <p class="m-t-10 color-white font-14"
+          [innerHTML]="footer_description"
+        ></p>
+      </div>
+      <div class="col-md-6 col-xs-12 desktop-align-right">
+        <ul class="footerul">
+          <li>
+            <a
+              class="footer-maan colorWhite font-16 font-500"
+              [routerLink]="['/about']"
+              routerLinkActive="router-link-active"
+              >ABOUT</a
+            >
+          </li>
+          <li>
+            <a
+              class="footer-maan colorWhite font-16 font-500"
+              [routerLink]="['/faqs']"
+              routerLinkActive="router-link-active"
+              >FAQS</a
+            >
+          </li>
+          <li>
+            <a
+              class="footer-maan colorWhite font-16 font-500"
+              [routerLink]="['/terms-and-condition']"
+              routerLinkActive="router-link-active"
+              >TERMS AND CONDITION</a
+            >
+          </li>
+          <li>
+            <a
+              class="footer-maan colorWhite font-16 font-500"
+              [routerLink]="['/privacy-policy']"
+              routerLinkActive="router-link-active"
+              >PRIVACY POLICY</a
+            >
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="backgroundDark mr-0 ml-0" />
+      </div>
+      <div class="col-md-6 col-xs-12 text-left">
+        <p
+          class="m-t-10 color-white font-12"
+          [innerHTML]="footer_copy_right"
+        ></p>
+      </div>
+
+      <div class="col-md-6 col-xs-12 text-right">
+        <a href="{{ fb_link }}" target="_blank" class="colorDark">
+          <i class="fab fa-facebook-f fam"></i>
+        </a>
+        <a href="{{ twitter_link }}" target="_blank" class="colorDark">
+          <i class="fab fa-twitter fam"></i>
+        </a>
+        <a href="{{ linkden_link }}" target="_blank" class="colorDark">
+          <i class="fab fa-instagram fam"></i>
+        </a>
+        <a href="{{ youtube_link }}" target="_blank" class="colorDark">
+          <i class="fab fa-youtube fam"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

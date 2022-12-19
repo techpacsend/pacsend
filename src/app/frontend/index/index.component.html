@@ -1,0 +1,1062 @@
+<ngx-spinner></ngx-spinner>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" loadingText="Loading..."
+  type="ball-scale-multiple">
+</ngx-spinner>
+<style>
+  a:hover {
+    color: red !important;
+  }
+
+
+  ::ng-deep .modal-backdrop {
+    display: block;
+  }
+
+
+
+</style>
+<div class="container-fluid content-body">
+
+  <div class="row">
+    <div class="mx-auto my-auto">
+      <img
+        *ngIf="googleAdsImageHomeTop != undefined"
+        class="w-100 index-ads-banner"
+        data-sizes="auto"
+        data-src="'http://pacsend.uk/public/uploads/slots/' + {{googleAdsImageHomeTop | byPassSecurityUrl}} "
+      />
+      <div
+        *ngIf="googleAdsScript != undefined"
+        [innerHTML]="googleAdsScript | byPassSecurityScript"
+      ></div>
+    </div>
+  </div>
+
+
+<ng-template #dashboardPopupBanner let-modal>
+    <div *ngIf="googleAdsImagePopupSlot != undefined" style="width: 100%;" [@zoomIn]="zoomIn">
+        <button *ngIf="googleAdsImagePopupSlot != undefined" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span style="margin-right: 11px;" aria-hidden="true">&times;</span>
+      </button>
+        <img 
+        *ngIf="googleAdsImagePopupSlot != undefined"
+        data-sizes="auto"
+        data-src="'http://pacsend.uk/public/uploads/slots/'+{{ googleAdsImagePopupSlot | byPassSecurityUrl}}"
+        class="lazyload w-100"/>
+        <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
+    </div>
+</ng-template>
+
+  <div class="row responsive-height">
+    <div class="container">
+      <div class="col-12 text-center bannerHead">
+        <h1 class="bannerHeading md-3 mob-hide">Who are you today ?</h1>
+        <h1 class="mobile-heading desktop-hide">Who are you today ?</h1>
+      </div>
+    </div>
+    <div class="
+        col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+        padding-zero
+        banner-hover
+        d-flex
+        justify-content-center
+        align-items-center
+        responsive-height-second
+      ">
+      <div class="banner-hover-left" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_1 + ')'}">
+        <div class="carousel-caption text-center">
+          <!-- <h6 class="
+              heading-custom-caption
+              colorWhite
+              cursor-pointer
+              mob-v-h6
+              text-shadow000
+            " (click)="
+              adTypeId = '2';
+              openPackageInfo(packageInfo, whereAreYouTravellingFrom)
+            "> -->
+            <h6 class="
+            heading-custom-caption
+            colorWhite
+            cursor-pointer
+            mob-v-h6
+            text-shadow000
+          ">
+            CARRIER
+          </h6>
+          <p class="custom-caption-desc custom-caption">
+            I want to carry a package.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="
+        col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+        padding-zero
+        banner-hover
+        align-items-center
+        d-flex
+        justify-content-center
+        responsive-height-second
+      ">
+      <div class="banner-hover-right" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_2 + ')'}">
+        <div class="carousel-caption text-center">
+            <h6 class="heading-custom-caption colorWhite cursor-pointer mob-v-h6">
+            SENDER
+          </h6>
+          <p class="custom-caption custom-caption-desc">
+            I want to send a package.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid bgWhite">
+  <div class="container p-t-40 getMaxWidth">
+    <div class="row about-pacsend-900-1252 mob-bgWhite">
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+          p-b-10
+          mob-v-margin
+        ">
+
+
+        <h6 id="aboutpacsend" #aboutpacsend class="colorRed-2 font-37 font-600 aboutpacsend-mob-v">
+          About Pacsend
+        </h6>
+
+        <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'575px'" [height]="'120px'">
+        </ngx-shimmer-loading>
+        <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'575px'" [height]="'90px'">
+        </ngx-shimmer-loading>
+        <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'575px'"></ngx-shimmer-loading>
+
+        <div *ngIf="!aboutPacsendLCP" [innerHTML]="dataAbout" class="
+            mt-3
+            normalGrayStyle2
+            text-justify text-justify-2 text-margin-l-r
+          "></div>
+        <div class="col-12 mx-0 px-0 col-md-12 text-center">
+          <!-- <img src="../../../assets/Facebook-Cover-min.webp" class="mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" /> -->
+          <img
+          data-sizes="auto"
+	        data-src="http://pacsend.uk/public/uploads/about/{{aboutimage}}"
+           class="lazyload mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" />
+
+          <img  
+          data-sizes="auto"
+	        data-src="http://pacsend.uk/public/uploads/about/{{aboutimage}}"
+          class="lazyload mt-5 width-100 mob-view-strech-img-show"/>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-12 col-md-4">
+
+        <!-- <img class="w-100 mt-5" width="370" height="530" src="../../../assets/giphy.webp" /> -->
+        <img 
+        class="lazyload w-100 mt-5" 
+        loading="lazy"
+        width="370" 
+        height="530"
+        data-sizes="auto"
+        data-src="../../../assets/Pacsend-7.gif"
+        src="../../../assets/Pacsend-7.gif" />
+
+        <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid"  importance="high" style="background-color: #e1e7ec" id="whypacsend" #whypacsend>
+  <div class="container p-t-40">
+    <div class="row" style="scroll-margin: 100px;">
+      <div class="col-12 text-center">
+        <h6 style="scroll-margin: 100px;" class="colorRed-2 font-37 font-600 whypacsend-mob-v">
+          Why Pacsend ?
+        </h6>
+      </div>
+      <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 m-t-20 display-none">
+        <owl-carousel-o [options]="aboutPacsendOptions">
+          <ng-template carouselSlide>
+
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title1" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="
+                        normalGrayStyle2
+                        text-justify text-justify
+                        m-l-41-mob
+                      " [innerHTML]="desc_1"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title2" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="
+                        normalGrayStyle2
+                        text-justify text-justify
+                        m-l-41-mob
+                      " [innerHTML]="desc_2"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title3" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_3"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title4" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_4"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title5" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_5"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="card home-card-mob">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="circle circle-900-1252"></div>
+                  </div>
+                  <div class="
+                      col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                      padding-desktop-zero
+                    ">
+                    <p [innerHTML]="title6" class="
+                        font-700 font-20
+                        line-height-50-mob
+                        span-900-1252
+                        font-mob-16
+                      "></p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_6"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide
+        custom-mt-0-mob-view">
+
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+
+        <div class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title1" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify text-justify m-l-41-mob" [innerHTML]="desc_1"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide
+          custom-mt-0-mob-view">
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+        <div  class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title2" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify text-justify m-l-41-mob" [innerHTML]="desc_2"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide custom-mt-0-mob-view
+        ">
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+        <div  class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title3" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_3"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide custom-mt-0-mob-view
+        ">
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+        <div  class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title4" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_4"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide custom-mt-0-mob-view
+        ">
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+        <div  class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title5" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_5"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="
+          col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4
+          m-t-20
+          desktop-show-mob-hide custom-mt-0-mob-view
+        ">
+        <!-- <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'420px'" [height]="'220px'">
+        </ngx-shimmer-loading> -->
+        <div  class="card home-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="circle circle-900-1252"></div>
+              </div>
+              <div class="
+                  col-10 col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10
+                  padding-desktop-zero flex-items-center
+                ">
+                <span [innerHTML]="title6" class="
+                    font-700 font-20
+                    line-height-50
+                    span-900-1252
+                    font-mob-16
+                  "></span>
+              </div>
+              <div class="col-12 mt-1">
+                <p class="normalGrayStyle2 text-justify m-l-41-mob" [innerHTML]="desc_6"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid padding-zero parent-map">
+  <div class="row">
+    <div class="col-md-12 mx-auto position-relative d-flex justify-content-center">
+      <div id="mapButtons" class="card width-100 card-map-color position-absolute z-indx-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <a class="
+                  btn btn-secondary btn-sm
+                  width-100
+                  myBullet
+                  line-height-0
+                  font-16 font-500
+                " [ngClass]="clickSenderMap ? 'myBulletactive' : ''" (click)="
+                  getCarrierData();"  id="btnSender">Send</a>
+            </div>
+            <div class="col-4">
+              <a class="
+                  btn btn-secondary btn-sm
+                  width-100
+                  myBullet
+                  line-height-0
+                  font-16 font-500
+                " [ngClass]="clickCarrierMap ? 'myBulletactive' : ''" (click)="getSenderData();
+                  " id="btnCarrier">Carry</a>
+            </div>
+            <div class="col-4">
+              <a class="
+                  btn btn-secondary btn-sm
+                  width-100
+                  line-height-0
+                  myBullet
+                  font-16 font-500
+                " [ngClass]="clickAllMap ? 'myBulletactive' : ''" (click)="getAllData();
+                  " id="btnCarrier">All</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="11.5">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <div *ngIf="!alladsData">
+      <!-- url: 'http://pacsend.uk/public/uploads/users/' + item.creater.image, -->
+    <agm-marker *ngFor="let item of filteredMarkers"
+    [latitude]="item.from_latitude" [longitude]="item.from_longitude" class="image1" [iconUrl]="{
+      url: item.creater.custom_profile_photo? baseImageUrl + item.creater.custom_profile_photo: item.creater.image? baseImageUrl + item.creater.image:'../../../assets/default.jpg',
+      scaledSize: { height: 40, width: 40 },
+      labelOrigin: { x: 70, y: 20 }
+    }">
+  </agm-marker>
+  </div>
+  <!-- allads data -->
+  <div *ngIf="alladsData">
+  <agm-marker  *ngFor="let item of AllSenderAds"
+    [latitude]="item.from_latitude" [longitude]="item.from_longitude" class="image1" [iconUrl]="{
+      url: item.creater.custom_profile_photo? baseImageUrl + item.creater.custom_profile_photo: item.creater.image? baseImageUrl + item.creater.image:'../../../assets/default.jpg',
+      scaledSize: { height: 40, width: 40 },
+      labelOrigin: { x: 70, y: 20 }
+    }">
+  </agm-marker>
+</div>
+<div *ngIf="alladsData">
+  <agm-marker  *ngFor="let item of AllCarrierAds"
+    [latitude]="item.from_latitude" [longitude]="item.from_longitude" class="image1" [iconUrl]="{
+      url: item.creater.custom_profile_photo? baseImageUrl + item.creater.custom_profile_photo: item.creater.image? baseImageUrl + item.creater.image:'../../../assets/default.jpg',
+      scaledSize: { height: 40, width: 40 },
+      labelOrigin: { x: 70, y: 20 }
+    }">
+  </agm-marker>
+  </div>
+  <!-- end -->
+  </agm-map>
+</div>
+<div class="container-fluid" importance="high" id="howtouse" #howtouse>
+  <div class="container p-t-b-40">
+    <div class="row">
+      <div class="col-12 text-center howtouse-m-div pr-0 pl-0">
+        <h3 style="scroll-margin: 100px;" class="colorRed-2 font-37 font-600 howtouse-mob-v">
+          How To Use Pacsend ?
+        </h3>
+      </div>
+      <div class="col-md-12 text-center m-b-20 mob-p-l-r-0">
+        <div class="row">
+          <div class="col-12 col-xs-12 col-sm-12 col-md-4 mx-auto d-flex justify-content-center mob-p-l-r-0">
+            <div class="
+                card
+                width-100
+                card-map-color-second
+                how-to-use-pacsend-btns-1252
+              ">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6 pl-0">
+                    <a class="
+                        btn btn-secondary btn-sm
+                        width-100
+                        line-height-0
+                        myBulletsecond
+                        font-16 font-500
+                      " [ngClass]="clickSender ? 'myBulletactivedown' : ''" (click)="clickSenderHow()" id="btnSender">I
+                      am a Sender</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="
+                        btn btn-secondary btn-sm
+                        width-100
+                        line-height-0
+                        myBulletsecond
+                        font-16 font-500
+                      " [ngClass]="clickCarrier ? 'myBulletactivedown' : ''" (click)="clickCarrierHow()"
+                      id="btnCarrier">I am a Carrier</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-12 p-t-20 m-t-16-mob" *ngIf="asSender">
+        <div class="row">
+          <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tab1 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21 mob-v-font-24">
+                  1
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+                <a>
+
+                  <span (click)="changeTab('tab1')" [ngClass]="{ activeTabText: tab1 }"
+                    class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l" (click)="setVideo('sender', 0)"
+                    [innerHTML]="sendertitle1"></span>
+                </a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="senderdesc_1"></p>
+              </div>
+            </div>
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tab2 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21 mob-v-font-24">
+                  2
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+                <a>
+
+                  <span (click)="changeTab('tab2')" [ngClass]="{ activeTabText: tab2 }"
+                    class="font-800 font-24 mob-font-21  ml-4 pointer howToHomeText font-m-l" (click)="setVideo('sender', 1)"
+                    [innerHTML]="sendertitle2"></span>
+                </a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="senderdesc_2"></p>
+              </div>
+            </div>
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tab3 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21 mob-v-font-24">
+                  3
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+
+                <a>
+                  <span (click)="changeTab('tab3')" [ngClass]="{ activeTabText: tab3 }"
+                    class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l" (click)="setVideo('sender', 2)"
+                    [innerHTML]="sendertitle3"></span></a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="senderdesc_3"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <iframe 
+            height="480"
+            frameborder="0"
+            [src]="senderVideoLink | safe"
+            data-src="{{senderVideoLink | safe}}"
+            class="lazyload border-rad-8 w-100 youtube-video-900-1252 mob-hide">
+            </iframe>
+            <iframe 
+            frameborder="0"
+            [src]="senderVideoLink | safe"
+            data-src="{{senderVideoLink | safe}}"
+            class="lazyload border-rad-8 w-100 youtube-video-900-1252 mt-4 desktop-hide">
+            </iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-12 p-t-20" *ngIf="asCarrier">
+        <div class="row">
+          <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tabCarrier1 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21">
+                  1
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+                <a>
+                  <span (click)="changeCarrierTab('tab1')" [ngClass]="{ activeTabText: tabCarrier1 }"
+                    class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l" (click)="setVideo('carrier', 0)"
+                    [innerHTML]="carriertitle1"></span></a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="carrierdesc_1"></p>
+              </div>
+            </div>
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tabCarrier2 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21">
+                  2
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+                <a>
+                  <span (click)="changeCarrierTab('tab2')" [ngClass]="{ activeTabText: tabCarrier2 }"
+                    class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l" (click)="setVideo('carrier', 1)"
+                    [innerHTML]="carriertitle2"></span></a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="carrierdesc_2"></p>
+              </div>
+            </div>
+            <div class="row how-to-text-hover">
+              <div class="col-1 padding-desktop-zero">
+                <div [ngClass]="{ activeRedTab: tabCarrier3 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21">
+                  3
+                </div>
+              </div>
+              <div class="col-10 padding-desktop-zero mt-1">
+                <a>
+                  <span (click)="changeCarrierTab('tab3')" [ngClass]="{ activeTabText: tabCarrier3 }"
+                    class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l" (click)="setVideo('carrier', 2)"
+                    [innerHTML]="carriertitle3"></span></a>
+              </div>
+              <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+                <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="carrierdesc_3"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <iframe 
+            height="430" 
+            [src]="carrierVideoLink | safe" 
+            frameborder="0"
+            data-src="{{carrierVideoLink | safe}}"
+            class="lazyload border-rad-8 w-100 youtube-video-900-1252 mob-hide">
+            </iframe>
+            <iframe 
+            [src]="carrierVideoLink | safe" 
+            frameborder="0"
+            data-src="{{carrierVideoLink | safe}}" 
+            class="lazyload border-rad-8 w-100 youtube-video-900-1252 desktop-hide mt-4">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /////////////////////////////////////////////////////// CREATE AD HTML //////////////////////////////////////////////////////////////// -->
+
+<div style="width: 100%">
+  <div style="width: 100%">
+    <ng-template #verifyProfileStepOne let-modal>
+      <div style="width: 100%" [@zoomIn]="zoomIn">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Verify Yourself</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="numberCircleRed">1</div>
+          <div class="numberCircleWhite">2</div>
+          <div class="numberCircleWhite">3</div>
+
+          <div style="margin-top: 26px" class="custom-dropzone" ngx-dropzone [accept]="'image/*'"
+            (change)="onSelect($event)">
+            <ngx-dropzone-label>Upload a selfie</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of uploadfile" [file]="f"
+              [removable]="true" (removed)="onRemove(f)">
+            </ngx-dropzone-image-preview>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <ngx-ui-loader [bgsColor]="'#fff'" [bgsSize]="40" [bgsType]="'three-bounce'" [loaderId]="'saveButton'">
+          </ngx-ui-loader>
+          <button style="height: 65px" type="button" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+            (click)="verificationstepTwo(verifyProfileStepTwo)">
+            Next
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Verification Step 2 -->
+    <ng-template #verifyProfileStepTwo let-modal>
+      <div style="width: 100%" [@zoomIn]="zoomIn">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Verify Yourself</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="numberCircleRed">1</div>
+          <div class="numberCircleRed">2</div>
+          <div class="numberCircleWhite">3</div>
+          <p class="m-b-20 m-t-20">
+            Upload both sides of your national ID card.
+          </p>
+          <div class="row">
+            <div class="col-12 m-b-20">
+              <button [disabled]="disablefrontbtn" style="margin-right: 45px; border-radius: 15px"
+                class="btn btn-primary" (click)="frontImage()">
+                Front
+              </button>
+              <button [disabled]="disabledbackbtn" style="border-radius: 15px" class="btn btn-primary"
+                (click)="backImage()">
+                Back
+              </button>
+            </div>
+          </div>
+          <div [hidden]="frontSelfie">
+            <div style="margin-top: 26px" class="custom-dropzone" ngx-dropzone [accept]="'image/*'"
+              (change)="onSelectFront($event)">
+              <ngx-dropzone-label>Front Image Of ID Card</ngx-dropzone-label>
+              <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of frontselfiearray"
+                [file]="f" [removable]="true" (removed)="onRemovefront(f)">
+              </ngx-dropzone-image-preview>
+            </div>
+          </div>
+          <div [hidden]="backSelfie">
+            <div style="margin-top: 26px" class="custom-dropzone" ngx-dropzone [accept]="'image/*'"
+              (change)="onSelectBack($event)">
+              <ngx-dropzone-label>Back Image Of ID Card</ngx-dropzone-label>
+              <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of backselfiearray"
+                [file]="f" [removable]="true" (removed)="onRemoveback(f)">
+              </ngx-dropzone-image-preview>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <ngx-ui-loader [bgsColor]="'#fff'" [bgsSize]="40" [bgsType]="'three-bounce'" [loaderId]="'saveButton'">
+          </ngx-ui-loader>
+          <button type="button" style="height: 65px" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+            (click)="verificationstepThree(verifyProfileStepThree)">
+            Next
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Verification Step 3 -->
+    <ng-template #verifyProfileStepThree let-modal>
+      <div style="width: 100%" [@zoomIn]="zoomIn">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Verify Yourself</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div [formGroup]="form" class="modal-body text-center">
+          <h3 class="modal-title m-b-20">Verify Yourself</h3>
+          <div class="numberCircleRed">1</div>
+          <div class="numberCircleRed">2</div>
+          <div class="numberCircleRed">3</div>
+          <p class="m-b-20 m-t-20">Please Enter your National Id Number.</p>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="nicNo" formControlName="CNIC" maxlength="13" type="text"
+              pattern="\d*" placeholder="ID Card" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <ngx-ui-loader [bgsColor]="'#fff'" [bgsSize]="40" [bgsType]="'three-bounce'" [loaderId]="'saveButton'">
+          </ngx-ui-loader>
+          <button type="button" style="height: 65px" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+            (click)="verificationsuccessfull(verificationSuccessful)">
+            Next
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Verification Successfull -->
+    <ng-template #verificationSuccessful let-modal>
+      <div style="width: 100%" [@zoomIn]="zoomIn">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            <!-- Verification Successfull -->
+            Documents Upload Successful
+          </h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <img 
+          data-sizes="auto"
+          data-src="../../../assets/verificationSuccessful.png"
+          class="lazyload width-100" />
+          <p class="m-b-10 m-t-20">
+            <!-- Your data has been sent successfully for verification. -->
+            Your documents will be checked and account will be verified shortly.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button style="height: 65px" type="button" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+            (click)="modal.close('Save click'); hidebutton()">
+            OK
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template class="bttest" #CropperModal let-modal>
+  <div class="container card crop-modal">
+    <div class="card-body">
+      <h4 class="modal-title" id="modal-basic-title">
+        Croping Area
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h4>
+
+      <div [className]="classes.actions">
+        <button ly-button color="primary" (click)="_fileInput.click()">
+          <ly-icon>image</ly-icon>
+          <span>Select File</span>
+        </button>
+        <span [className]="classes.flex"></span>
+        <!-- Hidden input -->
+        <input #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden />
+      </div>
+
+      <div *ngIf="cropping.isLoaded">
+        <button (click)="cropping.zoomIn()" ly-button appearance="icon">
+          <ly-icon>zoom_in</ly-icon>
+        </button>
+        <button (click)="cropping.zoomOut()" ly-button appearance="icon">
+          <ly-icon>zoom_out</ly-icon>
+        </button>
+        <button (click)="cropping.center()" ly-button appearance="icon">
+          <ly-icon>filter_center_focus</ly-icon>
+        </button>
+        <button (click)="cropping.rotate(-90)" ly-button appearance="icon">
+          <ly-icon>rotate_90_degrees_ccw</ly-icon>
+        </button>
+        <button (click)="cropping.fit()" ly-button>Fit</button>
+        <button (click)="cropping.fitToScreen()" ly-button>
+          Fit to screen
+        </button>
+        <button (click)="cropping.setScale(1)" ly-button>1:1</button>
+        <button (click)="cropping.clean()" ly-button>Clean</button>
+      </div>
+      <div class="container">
+        <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig" [(scale)]="scale"
+          (cropped)="onCropped($event)" (loaded)="onloaded($event)" (error)="onerror($event)">
+          <span>Drag and drop image</span>
+        </ly-img-cropper>
+      </div>
+
+      <div *ngIf="cropping.isLoaded" [className]="classes.range">
+        <ly-slider [thumbVisible]="false" [min]="cropping.minScale" [max]="1" [(ngModel)]="scale"
+          (input)="scale = $event.value" step="0.000001"></ly-slider>
+      </div>
+
+      <button style="
+          position: absolute;
+          right: 100px;
+          background: #cc0202;
+          color: white;
+          width: 17%;
+          font-size: 25px;
+          bottom: 18px;
+        " *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop(); modal.dismiss('Cross click')" ly-button>
+        <ly-icon>crop</ly-icon>crop
+      </button>
+    </div>
+  </div>
+</ng-template>

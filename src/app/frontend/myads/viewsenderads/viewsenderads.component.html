@@ -1,0 +1,142 @@
+<div class="bgcolor-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 m-t-b-10">
+        <div class="card m-b-10">
+          <div class="card-body">
+            <div class="row backgroundWhite">
+              <div class="col-12 col-md-12 text-center">
+                <div class="imgcontainer backgroundBlack">
+                  <img
+                    src="http://pacsend.uk/public/uploads/adds/{{
+                      adData['ad_image']
+                    }}"
+                    class="
+                      img-responsive
+                      border-radius-25
+                      width-100
+                      opacity-zero-point-8
+                    "
+                  />
+                  <div class="bottom-right roundIcons">
+                    <i class="fa fa-share"></i>
+                    <i class="fa fa-heart colorRed"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row p-t-b-20 backgroundWhite m-b-15">
+              <div class="col-md-6 col-12">
+                <h3>{{ adData["ad_title"] }}</h3>
+              </div>
+              <div class="col-md-6 col-12 text-left">
+                <h5 class="line-height-30 font-400">
+                  Need it delivered within <strong>23rd January</strong>
+                </h5>
+              </div>
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">Type</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["traveling_type_id"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">Weight</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["weight"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">Destination</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc">
+                  {{ adData["carriertolocation"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">Willing To</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["payment"] }} PKR
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">Size</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  <img class="max-width-40"
+                    src="http://pacsend.uk/public/uploads/traveling/{{
+                      travellingTypes['image']
+                    }}"
+                  />
+                  {{ travellingTypes["title"] }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 m-t-b-10">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <h6 class="colorBlack line-height-30">
+                  <strong
+                    >{{ userData["fname"] }} {{ userData["lname"] }}</strong
+                  >
+                </h6>
+                <h6
+                  class="colorBlack line-height-30 font-14 font-400"
+
+                >
+                  Sender
+                </h6>
+                <h6
+                  class="colorBlack line-height-30 font-14 font-400"
+
+                >
+                  Joined since <strong>{{ userData["created_at"] }}</strong>
+                </h6>
+                <h6
+                  class="colorBlack line-height-30 font-14 font-400">
+                  23 packages sent
+                </h6>
+              </div>
+              <div class="col-4">
+                <img
+                  src="http://pacsend.uk/public/uploads/users/{{
+                    userData['image']
+                  }}"
+                  class="width-100"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 m-t-20">
+            <button
+              [disabled]="disbaled"
+              (click)="postSenderConnect()"
+              class="btn btn-primary font-bold width-100"
+              type="submit">
+              {{ btntext }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

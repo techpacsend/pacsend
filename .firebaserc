@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pacsend-7aa17": {
+      "hosting": {
+        "Pacsend": [
+          "pacsend-7aa17"
+        ]
+      }
+    }
+  }
+}

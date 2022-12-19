@@ -1,0 +1,63 @@
+
+.btn-primary {
+  background: linear-gradient(271.19deg, #E31D26 0%, #E3351D 100%);
+    /* background: #e31d26 ; */
+    padding: 10px;
+    border: 1px solid #E32025;
+    box-shadow: 0px 4px 24px rgba(227, 48, 31, 0.32);
+    transition: all 0.3s ease 0s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(271.19deg, #cc050b 0%, #e31d26 100%);
+    /* background: #cc050b; */
+    padding: 10px;
+    border: 1px solid #cc050b;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !important;
+  }
+
+.imgcontainer {
+position: relative;
+text-align: center;
+color: white;
+}
+.bottom-right {
+position: absolute;
+bottom: 16px;
+right: 16px;
+}
+.roundIcons i.fa {
+display: inline-block;
+border-radius: 60px;
+background-color: white;
+color: black;
+box-shadow: 0px 0px 2px #888;
+padding: 15px 15px;
+
+}
+.numberCircleWhite {
+border-radius: 50%;
+width: 50px;
+height: 50px;
+padding: 9px;
+display: inline-block;
+background: #fff;
+border: 2px solid #666;
+color: #666;
+text-align: center;
+font-size: 18px;
+}
+.numberCircleRed {
+box-shadow: 0px 0px 10px #E32025;
+border-radius: 50%;
+width: 50px;
+height: 50px;
+padding: 9px;
+display: inline-block;
+background: #E32025;
+border: 2px solid #E32025;
+color: #fff;
+text-align: center;
+font-size: 18px;
+}
+

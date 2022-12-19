@@ -1,0 +1,896 @@
+<div class="container-fluid col-6-btn-mob">
+  <div class="row">
+    <div
+      (click)="showCarrierMobile = true"
+      class="col-6 col-xs-6 col-sm-6"
+      [ngClass]="{
+        'mob-v-maindiv-btn': showCarrierMobile,
+        'mob-v-maindiv-btn-2nd': !showCarrierMobile
+      }"
+    >
+      <p  class="d-flex align-items-center justify-content-center m-0 py-3 px-0 w-100 h-100"
+        [ngClass]="{
+          'mob-v-maindiv-btn-p': showCarrierMobile,
+          'mob-v-maindiv-btn-2nd-p': !showCarrierMobile
+        }"
+      >
+        Carrier
+      </p>
+    </div>
+    <div
+      (click)="showCarrierMobile = false"
+      class="col-6 col-xs-6 col-sm-6"
+      [ngClass]="{
+        'mob-v-maindiv-btn': !showCarrierMobile,
+        'mob-v-maindiv-btn-2nd': showCarrierMobile
+      }"
+    >
+      <p class="d-flex align-items-center justify-content-center m-0 py-3 px-0 w-100 h-100"
+        [ngClass]="{
+          'mob-v-maindiv-btn-p': !showCarrierMobile,
+          'mob-v-maindiv-btn-2nd-p': showCarrierMobile
+        }"
+      >
+        Sender
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid bg-light-gray">
+  <div class="container bg-light-gray">
+    <div class="row bg-light-gray mob-v-display-block m-t-80">
+      <div class="col-6 text-center bg-light-gray myadds-button-mob-v">
+        <div class="row">
+          <div class="col-12">
+            <span
+              class="
+                myadds-button-mob-v-span
+                line-height-45
+                font-18
+                cursor-default
+                color-figma-gray
+              "
+              id="sender"
+            >
+              Here are your <span class="font-700">Carriers</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="
+          col-6
+          text-center
+          bg-light-gray bg-box-shadowv
+          myadds-button-mob-v
+        "
+      >
+        <div class="row">
+          <div class="col-12">
+            <span
+              class="
+                myadds-button-mob-v-span
+                line-height-45
+                font-18
+                cursor-default
+                color-figma-gray
+              "
+              id="carriers"
+            >
+              Here are your <span class="font-700">Senders</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div *ngIf="nodatafound" class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text-center">
+    <img style="margin-top:10px; height:70px; width:90px"
+       [src]="'http://pacsend.uk/public/uploads/setting/logo%20resize-01.png'"
+       alt="Logo"
+       class="img-responsive filter-greey-img-1"
+       id="change-image"
+     />
+   <h1 class="color-h1">No Record Found</h1>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div class="container-fluid p-t-b-20 bgcolor-1">
+    <div class="container max-width-1370">
+      <div class="row">
+        <!-- ///////////////// CARRIER /////////////////////// -->
+        <div
+          *ngIf="!showCarrierMobile || showCarrierMobile == undefined"
+          class="col-md-6 col-12 text-center padding-zero-mobile"
+        >
+          <div
+            *ngFor="let item of CarriersArray"
+            class="card width-100 m-t-b-10"
+            data-aos="zoom-in"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div
+                  class="
+                    col-2 col-xs-2 col-sm-2 col-md-1 col-lg-1 col-xl-1
+                    text-left
+                  "
+                >
+                  <img
+                    class="rounded-circle mt-2"
+                    src="{{ mrcURL }}/public/uploads/users/{{
+                      item.user_image
+                    }}"
+                  />
+                </div>
+                <div class="col-md-8 col-6 text-left top-5 left-8">
+                  <h5
+                    (click)="getCarrierId(item.id)"
+                    class="m-b-0 font-16 font-600 ml-2 getcolor mt-2 cursor"
+                  >
+                    {{ item.fname }} {{ item.lname }}
+                  </h5>  <div class="star-container">
+                    <ngx-stars
+                      color="#fdcc0d"
+                      [size]="1"
+                      [readonly]="true"
+                      [size]="4"
+                      [maxStars]="5"
+                      [initialStars]="item.avgFeedBack"
+                    ></ngx-stars>
+                  </div>
+                </div>
+                <div class="col-md-3 p-t-10 col-4 text-right mob-vw-request">
+                  <a
+                    href="javascript:;"
+                    class="colorRed font-700 font-15 mob-vw-request-anchor"
+                    ><i
+                      *ngIf="item.requested_is_connect != 1"
+                      class="fa fa-plus colorRed mr-1"
+                    ></i>
+                    <span class="colorRed font-700 font-15 mob-vw-request-span">
+                      {{
+                        item.requested_is_connect == "1"
+                          ? "Requested"
+                          : "Connect"
+                      }}</span
+                    ></a
+                  >
+                </div>
+                <div class="col-md-12">
+                  <hr class="width-100 m-t-b-5 bgcolor-2" />
+                </div>
+              </div>
+              <!-- carier card -->
+              <div class="row mb-2 cursor" (click)="getCarrierId(item.id)">
+                <div class="col-12 col-xs-12 col-sm-12 desktop-hide-2 mb-4">
+                  <div class="row">
+                    <div class="col-6 col-xs-6 col-sm-6">
+                      <div class="row">
+                        <div class="col-7 col-xs-7 col-sm-7">
+                          <div class="row">
+                            <div class="col-12 col-xs-12 col-sm-12 d-flex">
+                              <i
+                                class="
+                                  fas
+                                  fa-circle
+                                  font-12
+                                  color-green-get
+                                  mt-3
+                                  mr-3
+                                "
+                              ></i>
+                              <span class="small-city-font-mob">
+                                {{
+                                  item.from_city
+                                    ? (item.from_city | slice: 0:3)
+                                    : ("N/A" | uppercase)
+                                }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-xs-5 col-sm-5">
+                          <span
+                            class="
+                              font-16 font-weight-bold
+                              city-name
+                              mob-vw-sml-cityname
+                              city-name-1
+                            "
+                            >{{
+                              item.from_city
+                                ? (item.from_city | slice: 0:9)
+                                : "N/A"
+                            }}</span
+                          >
+                          <span
+                            class="
+                              font-14 font-500
+                              color-figma-gray
+                              position-abs
+                              text-left
+                              city-name-time
+                            "
+                            >{{ item.from_time }}</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 col-xs-6 col-sm-6">
+                      <div class="row">
+                        <div class="col-7 col-xs-7 col-sm-7">
+                          <div class="row">
+                            <div class="col-12 col-xs-12 col-sm-12 d-flex">
+                              <i
+                                class="
+                                  fas
+                                  fa-circle
+                                  font-12
+                                  color-gray-get
+                                  mt-3
+                                  mr-3
+                                "
+                              ></i>
+                              <span class="small-city-font-mob">
+                                {{
+                                  item.to_city
+                                    ? (item.to_city | slice: 0:3)
+                                    : ("N/A" | uppercase)
+                                }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-xs-5 col-sm-5">
+                          <span
+                            class="
+                              font-16 font-weight-bold
+                              city-name
+                              mob-vw-sml-cityname
+                              city-name-1
+                            "
+                            >{{
+                              item.to_city ? (item.to_city | slice: 0:9) : "N/A"
+                            }}</span
+                          >
+
+                          <span
+                            class="
+                              font-14 font-500
+                              color-figma-gray
+                              position-abs
+                              text-left
+                              city-name-time
+                            "
+                            >{{ item.from_time }}</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="
+                    col-7 col-xs-7 col-sm- col-md-4 col-lg-4 col-xl-4
+                    border-right-gray
+                    desktop-show-mob-hide
+                  "
+                >
+                  <div class="row">
+                    <div
+                      class="
+                        col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+                        position-relative
+                      "
+                    >
+                      <div
+                        class="
+                          row
+                          justify-content-center
+                          align-items-center
+                          m-top
+                        "
+                      >
+                        <div
+                          class="
+                            col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1
+                            top-6
+                          "
+                        >
+                          <i class="fas fa-circle font-12 color-green-get"></i>
+                          <div class="border-gray-line"></div>
+                          <i class="fas fa-circle font-11 color-gray-get"></i>
+                        </div>
+                        <div
+                          class="
+                            col-9 col-xs-9 col-ms-9 col-md-9 col-lg-9 col-xl-9
+                            text-left
+                            pr-0
+                            pl-1
+                          "
+                        >
+                          <p
+                            class="
+                              small-city-font
+                              position-relative
+                              mt-4
+                              text-uppercase
+                            "
+                          >
+                            {{
+                              item.from_city
+                                ? (item.from_city | slice: 0:3)
+                                : ("N/A" | uppercase)
+                            }}
+                            <span
+                              class="
+                                font-16 font-weight-bold
+                                ml-6 1
+                                city-name
+                                mob-vw-sml-cityname
+                                city-name-1
+                                text-capitalize
+                              "
+                            >
+                              {{
+                                item.from_city
+                                  ? (item.from_city | slice: 0:6)
+                                  : "N/A"
+                              }}</span
+                            >
+                            <span
+                              class="
+                                font-14 font-500
+                                color-figma-gray
+                                position-abs
+                                text-left
+                                city-name-time
+                              "
+                              >{{ item.from_time }}</span
+                            >
+                          </p>
+
+                          <p
+                            class="
+                              small-city-font
+                              position-relative
+                              mt-4
+                              text-uppercase
+                            "
+                          >
+                            {{
+                              item.to_city
+                                ? (item.to_city | slice: 0:3)
+                                : ("N/A" | uppercase)
+                            }}
+                            <span
+                              class="
+                                font-16 font-weight-bold
+                                ml-6 2
+                                city-name
+                                mob-vw-sml-cityname
+                                city-name-1
+                                text-capitalize
+                              "
+                            >
+                              {{
+                                item.to_city
+                                  ? (item.to_city | slice: 0:7)
+                                  : "N/A"
+                              }}</span
+                            >
+
+                            <span
+                              class="
+                                font-14 font-500
+                                color-figma-gray
+                                position-abs
+                                text-left
+                                city-name-time
+                              "
+                              >{{ item.from_time }}</span
+                            >
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="
+                    col-6 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4
+                    border-right-gray
+                    text-left
+                  "
+                >
+                  <div class="row">
+                    <div class="col-md-12 mb-2">
+                      <h5 class="font-12 color-figma-gray">
+                        Date of Departure
+                      </h5>
+                      <h5 class="font-14 font-700">
+                        {{ item.travelling_frequency }}
+                      </h5>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                      <h5 class="font-12 color-figma-gray">Capacity</h5>
+                      <h5 class="font-14 font-700">{{ item.weight }} Kgs</h5>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                      <h5 class="font-12 color-figma-gray">Travelling by</h5>
+                      <div class="row">
+                        <div
+                          class="
+                            col-12
+                            d-flex
+                            justify-content-start
+                            align-items-center
+                          "
+                        >
+                          <img
+                            src="http://pacsend.uk/public/uploads/travelingBy/{{
+                              item.traveling_by_image
+                            }}"
+                            height="20"
+                            width="15"
+                          />
+                          <h5 class="font-14 font-700 ml-1 mb-0">
+                            {{ item.traveling_by_shortname }}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="
+                    col-6 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4
+                    text-left
+                  "
+                >
+                  <div class="row"></div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="font-12 color-figma-gray">Type</h5>
+                      <div class="row">
+                        <div class="col-12">
+                          <a
+                            *ngFor="let tags of item['types']"
+                            class="btn btn-info btn-tag mr-1 mb-1 font-13"
+                            >{{ tags.type_name }}</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col text-left"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ///////////////// SENDER /////////////////////// -->
+        <div
+          *ngIf="!showCarrierMobile || showCarrierMobile == undefined"
+          class="col-md-6 col-12 text-center padding-zero-mobile"
+        >
+          <div *ngFor="let item of SenderArray" class="container">
+            <div class="card width-100 m-t-b-10">
+              <div class="card-body">
+                <div class="row">
+                  <div
+                    class="
+                      col-2 col-xs-2 col-sm-2 col-md-1 col-lg-1 col-xl-1
+                      text-left
+                    "
+                  >
+                    <img
+                      class="rounded-circle mt-2"
+                      src="http://pacsend.uk/public/uploads/users/{{
+                        item.user_image
+                      }}"
+                    />
+                  </div>
+                  <div
+                    class="
+                      col-6 col-xs-6 col-sm-6 col-md-7 col-lg-7 col-xl-7
+                      text-left
+                      left-8
+                      top-5
+                    "
+                  >
+                  <!-- click)="getSenderId(item.id)" -->
+                    <h5
+                      (click)="getSenderId(item)"
+                      class="font-16 font-600 getcolor mt-2 cursor ml-2 m-b-0"
+                    >
+                      {{ item.fname }} {{ item.lname }}
+                    </h5>  <div class="star-container">
+                      <ngx-stars
+                        color="#fdcc0d"
+                        [size]="1"
+                        [readonly]="true"
+                        [size]="4"
+                        [maxStars]="5"
+                        [initialStars]="item.avgFeedBack"
+                      ></ngx-stars>
+                    </div>
+                  </div>
+                  <div
+                    class="
+                      col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4
+                      p-t-10
+                      text-right
+                      mob-vw-request
+                    "
+                  >
+                    <a
+                      href="javascript:;"
+                      class="colorRed font-700 font-14 mob-vw-request-anchor"
+                    >
+                      <i
+                        *ngIf="
+                          item.requested_is_connect != 1 && item.offeror == null
+                        "
+                        class="fa fa-plus colorRed mr-1"
+                      ></i>
+                      <span
+                        *ngIf="
+                          (item.requested_is_accept == '' ||
+                            item.requested_is_accept == 0) &&
+                          item.offeror == null
+                        "
+                        class="colorRed font-700 mob-vw-request-span"
+                        disabled="disabled"
+                      >
+                        {{
+                          item.requested_is_connect == 1
+                            ? "Requested"
+                            : "Connect"
+                        }}
+                      </span>
+                    </a>
+                  </div>
+                  <div class="col-md-12">
+                    <hr class="width-100 m-t-b-5 bgcolor-2" />
+                  </div>
+                </div>
+                <div class="row mb-2 cursor" (click)="getSenderId(item)">
+                  <div class="col-12 col-xs-12 col-sm-12 desktop-hide-2 mb-4">
+                    <div class="row">
+                      <div class="col-6 col-xs-6 col-sm-6">
+                        <div class="row">
+                          <div class="col-7 col-xs-7 col-sm-7">
+                            <div class="row">
+                              <div class="col-12 col-xs-12 col-sm-12 d-flex">
+                                <i
+                                  class="
+                                    fas
+                                    fa-circle
+                                    font-12
+                                    color-green-get
+                                    mt-3
+                                    mr-3
+                                  "
+                                ></i>
+                                <span class="small-city-font-mob">
+                                  {{
+                                    item.from_city
+                                      ? (item.from_city | slice: 0:3)
+                                      : ("N/A" | uppercase)
+                                  }}</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-xs-5 col-sm-5">
+                            <span
+                              class="
+                                font-16 font-weight-bold
+                                city-name
+                                mob-vw-sml-cityname
+                                city-name-1
+                              "
+                              >{{
+                                item.to_city
+                                  ? (item.to_city | slice: 0:9)
+                                  : "N/A"
+                              }}</span
+                            >
+                            <span
+                              class="
+                                font-14 font-500
+                                color-figma-gray
+                                position-abs
+                                text-left
+                                city-name-time
+                              "
+                              >{{ item.showTime }}</span
+                            >
+                          </div>
+                        </div>
+                        <!-- sender till show time -->
+                      </div>
+                      <div class="col-6 col-xs-6 col-sm-6">
+                        <div class="row">
+                          <div class="col-7 col-xs-7 col-sm-7">
+                            <div class="row">
+                              <div class="col-12 col-xs-12 col-sm-12 d-flex">
+                                <i
+                                  class="
+                                    fas
+                                    fa-circle
+                                    font-12
+                                    color-gray-get
+                                    mt-3
+                                    mr-3
+                                  "
+                                ></i>
+                                <span class="small-city-font-mob">
+                                  {{
+                                    item.from_city
+                                      ? (item.from_city | slice: 0:3)
+                                      : ("N/A" | uppercase)
+                                  }}</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-xs-5 col-sm-5">
+                            <span
+                              class="
+                                font-16 font-weight-bold
+                                city-name
+                                mob-vw-sml-cityname
+                                city-name-1
+                              "
+                              >{{
+                                item.to_city
+                                  ? (item.to_city | slice: 0:9)
+                                  : "N/A"
+                              }}</span
+                            >
+
+                            <span
+                              class="
+                                font-14 font-500
+                                color-figma-gray
+                                position-abs
+                                text-left
+                                city-name-time
+                              "
+                              >{{ item.showTime }}11</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="
+                      col-7 col-xs-7 col-sm-7 col-md-4 col-lg-4 col-xl-4
+                      border-right-gray
+                      desktop-show-mob-hide
+                    "
+                  >
+                    <div class="row">
+                      <div
+                        class="
+                          col-12
+                          col-xs-12
+                          col-sm-12
+                          col-md-12
+                          col-lg-12
+                          col-xl-12
+                          position-relative
+                        "
+                      >
+                        <div
+                          class="
+                            row
+                            justify-content-center
+                            align-items-center
+                            m-top
+                          "
+                        >
+                          <div
+                            class="
+                              mt-3
+                              col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1
+                            "
+                          >
+                            <i
+                              class="fas fa-circle font-12 color-green-get"
+                            ></i>
+                            <div class="border-gray-line"></div>
+                            <i class="fas fa-circle font-11 color-gray-get"></i>
+                          </div>
+                          <div
+                            class="
+                              col-9 col-xs-9 col-ms-9 col-md-9 col-lg-9 col-xl-9
+                              text-left
+                              pr-0
+                              pl-1
+                            "
+                          >
+                            <p
+                              class="
+                                small-city-font
+                                position-relative
+                                mt-4
+                                text-uppercase
+                              "
+                            >
+                              {{
+                                item.from_city
+                                  ? (item.from_city | slice: 0:3)
+                                  : ("N/A" | uppercase)
+                              }}
+                              <span
+                                class="
+                                  font-16 font-weight-bold
+                                  ml-6 3
+                                  city-name
+                                  mob-vw-sml-cityname
+                                  city-name-1
+                                  text-capitalize
+                                "
+                              >
+                                {{
+                                  item.from_city ? (item.from_city | slice: 0:6) : "N/A"
+                                }}</span
+                              >
+                            </p>
+
+                            <p
+                              class="
+                                small-city-font
+                                position-relative
+                                mt-4
+                                text-uppercase
+                              "
+                            >
+                              {{
+                                item.to_city
+                                  ? (item.to_city | slice: 0:3)
+                                  : ("N/A" | uppercase)
+                              }}
+                              <span
+                                class="
+                                  font-16 font-weight-bold
+                                  ml-6 4
+                                  city-name
+                                  mob-vw-sml-cityname
+                                  city-name-1
+                                  text-capitalize
+                                "
+                              >
+                                {{ item.to_city ? (item.to_city | slice: 0:6 ) : "N/A" }}</span
+                              >
+                            </p>
+                            <span
+                              class="
+                                font-14 font-500
+                                color-figma-gray
+                                position-abs
+                                text-left
+                                city-name-time
+                                bottom-10
+                                top-10
+                              "
+                              >{{ item.custom_time_to }}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="
+                      col-6 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4
+                      border-right-gray
+                      text-left
+                    "
+                  >
+                    <div class="row">
+                      <div class="col-md-12 mb-2">
+                        <h5 class="font-12 font-600 color-figma-gray">
+                          Needs to be delivered by
+                        </h5>
+                        <h5 class="font-14 font-700">
+                          {{ item.custom_date_to }}
+                        </h5>
+                      </div>
+                      <div class="col-md-12 mb-2">
+                        <h5 class="font-12 color-figma-gray">Capacity</h5>
+                        <h5 class="font-14 font-700">{{ item.weight }} Kgs</h5>
+                      </div>
+                      <div class="col-md-12">
+                        <h5 class="font-12 font-600 color-figma-gray">
+                          Willing to pay
+                        </h5>
+                        <h5 class="font-14 font-700">{{ item.payment }} AED</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="
+                      col-6 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4
+                      text-left
+                    "
+                  >
+                    <div class="row">
+                      <div class="col-md-12 mb-2">
+                        <h5 class="font-12 font-600 color-figma-gray">Size</h5>
+                        <div class="row">
+                          <div
+                            class="
+                              col-12
+                              d-flex
+                              justify-content-start
+                              align-items-center
+                            "
+                          >
+                            <img
+                              src="http://pacsend.uk/public/uploads/traveling/{{
+                                item.traveling_by_image
+                              }}"
+                              height="20"
+                              width="15"
+                            />
+                            <h5 class="font-14 font-700 ml-1 mb-0">
+                              {{ item.traveling_by_fullname }}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h5 class="font-12 font-600 color-figma-gray">Type</h5>
+                        <div class="row">
+                          <div class="col-12">
+                            <a
+                              *ngFor="let tags of item['types']"
+                              class="btn btn-info btn-tag mr-1 mb-1 font-13"
+                              >{{ tags.type_name }}</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="
+                      col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+                      sender-card-ad-img
+                    "
+                    [ngStyle]="{
+                      'background-image':
+                        'url(http://pacsend.uk/public/uploads/adds/' +
+                        item.image +
+                        ')'
+                    }"
+                  >
+                    <p class="sender-card-ad-img-name" _ngcontent-ebm-c11="">
+                      {{ item.title }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

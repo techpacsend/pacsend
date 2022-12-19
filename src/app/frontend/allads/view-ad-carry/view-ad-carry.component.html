@@ -1,0 +1,751 @@
+<style>
+  ::ng-deep share-buttons .sb-material-dark .sb-wrapper {
+    background-color: white !important;
+    border-radius: 50% !important;
+    padding: 5px;
+    font-size: 13px !important;
+    width: 30px;
+    height: 54px !important;
+    transition: 0.3s;
+    text-align: center;
+    margin: 5px 2px;
+    box-shadow: 0px 1px 6px 1px #cac7c7 !important;
+  }
+
+  ::ng-deep share-buttons .sb-material-dark .sb-wrapper:hover {
+    background-color: red !important;
+    border-radius: 50% !important;
+    padding: 5px;
+    font-size: 13px !important;
+    width: 30px;
+    height: 54px !important;
+    transition: 0.3s;
+    text-align: center;
+    margin: 5px 2px;
+    color: white !important;
+    box-shadow: 0px 1px 6px 1px #cac7c7 !important;
+  }
+
+  ::ng-deep share-buttons .sb-wrapper .sb-inner .sb-content {
+    color: red;
+    border-radius: 50% !important;
+  }
+
+  ::ng-deep share-buttons .sb-wrapper .sb-inner .sb-content:hover {
+    color: white;
+    border-radius: 50% !important;
+  }
+</style>
+<div class="" style="background-color: #ecf0f3; margin-top: 5%">
+  <div class="container">
+    <div class="row">
+      <div
+      *ngIf="!hideLCP" class="
+      mx-2
+      mt-2
+      col-12
+      d-flex
+      justify-content-center
+      align-items-center
+    ">
+      <ngx-shimmer-loading *ngIf="googleAdsImage != undefined" [shape]="'rect'" [width]="'1200px'" [height]="'130px'">
+      </ngx-shimmer-loading>
+      </div>
+      <div *ngIf="hideLCP" class="
+          mx-2
+          mt-2
+          col-12
+          d-flex
+          justify-content-center
+          align-items-center
+        ">
+        <img *ngIf="googleAdsImageCarrierTop != undefined" class="w-100" [src]="
+            'http://pacsend.uk/public/uploads/slots/' +
+              googleAdsImageCarrierTop | byPassSecurityUrl
+          " />
+        <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
+      </div>
+
+      <div class="col-md-8 m-t-b-10">
+        <div class="card m-b-10">
+          <div class="card-body">
+            <!-- ////////////////  TRIP INFO //////////// -->
+            <div class="row">
+              <div class="col-md-6 col-12">
+                <h4>
+                  <!-- <strong>Trip Info</strong> -->
+                  <strong>{{adData?.title}}</strong>
+                </h4>
+              </div>
+              <div class="col-md-6 col-12 text-right">
+                <div class="row">
+                  <div class="col-md-12">
+                    <i class=""></i>
+                    <div class="
+                        d-flex
+                        justify-content-end
+                        w-100
+                        align-items-center
+                        mob-v-margin
+                      ">
+                      <div class="CardIcons mx-2" (click)="toggleShareButton()">
+                        <a> <i class="fa fa-share-alt"></i></a>
+                      </div>
+                      
+                      <div *ngIf="loginuser && (adData && adData?.creater.id != userId && !alreadyReported)" (click)="GetaddRepot()" class="CardIcons mr-2 dropdown show">
+                        <a>
+                          <i class="fas fa-flag colorBlack"></i></a>
+                      </div>
+                  
+
+                      <div class="mr-2 CardIcons" *ngIf="loginuser && (adData && adData?.creater.id != userId && !myStatus)"
+                        (click)="updateWishlist()">
+                        <i class="fa fa-heart text-dark cursor-pointer"></i>
+                      </div>
+
+                      <div class="mr-2 CardIcons"  *ngIf="loginuser && (adData && adData?.creater.id != userId && myStatus)"
+                        (click)="updateWishlist()">
+                        <i class="fa fa-heart colorRed cursor-pointer"></i>
+                      </div>
+
+                  
+
+                    </div>
+                    <div *ngIf="hideShareButtons" class="share-area">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="mt-2 mb-1 color-figma-gray text-center">
+                            Share on Social Media
+                          </p>
+                          <share-buttons [theme]="'material-dark'" [include]="[
+                              'facebook',
+                              'twitter',
+                              'linkedin',
+                              'whatsapp',
+                              'email',
+                              'copy'
+                            ]" [size]="1" (click)="check('open')">
+                          </share-buttons>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="hideReport" class="share-area flag-popup">
+                      <div class="row">
+                        <div class="col-12">
+                          <h4 class="modal-title w-100 font-21 font-500 modal-basic-title" id="modal-basic-title">
+                            Add Report
+                          </h4>
+                          <div class="col-12 m-b-10" *ngFor="let report of reports; let i = index"
+                          (click)="travelTypeSelect(report.id);" style="padding: 8px 0px; border-radius: 5px !important"
+                          [ngStyle]="{
+                          border: travelType[report.id] ? '2px solid #da2926' : '2px solid #E1E7EC'
+                        }">
+                          <div class="row">
+                            <div class="col-12 text-center">
+                              <a style="color: #202833 !important" class="mb-0 font-16 font-700 mob-font-txt-color">{{
+                                report.title }}</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer pb-1" *ngIf="loginuser">
+                          <button type="button"
+                            class="btn btn-primary font-bold width-100 m-t-10 m-b-10 h-53 border-rad-10" (click)="
+                            adReport(selectedId)">
+                            SUBMIT
+                          </button>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row p-t-b-20 backgroundWhite m-b-15">
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">From</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc locations">
+                  <!-- (click)="openLocation(carrierfromlocation)" -->
+                  <!-- , '_blank' -->
+                  <a href="https://www.google.com/maps/search/?api=1&query={{carrierfromlocation}}" target="_blank">{{ carrierfromlocation }}</a>
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">To</h6>
+              </div>
+
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc locations">
+                  <!-- (click)="openLocation(carriertolocation)" -->
+                  <a href="https://www.google.com/maps/search/?api=1&query={{carriertolocation}}" target="_blank">{{ carriertolocation }}</a></h6>
+              </div>
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Travels on</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc">
+                  {{ adData?.travelling_frequency | formatdates }}
+                </h6>
+              </div>
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Trip Time</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc">
+                  {{ fromtime }} - {{ totime }}
+                </h6>
+              </div>
+            </div>
+
+            <!-- /////////////////// OTHER INFO //////////////////// -->
+
+            <div class="col-md-6 col-12 pl-0">
+              <h4>
+                <strong>Other Info</strong>
+              </h4>
+            </div>
+            <div class="row p-t-b-20 backgroundWhite m-b-15">
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Capacity</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc">{{ weight }} KGs</h6>
+              </div>
+
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Categories</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <span *ngFor="let item of travellingTypes" class="sender-inner-ad-desc">{{ item.type_name }} ,
+                </span>
+              </div>
+
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Travelling By</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  <img style="max-width: 25px" src="http://pacsend.uk/public/uploads/travelingBy/{{
+                      adData?.traveling_by_image
+                    }}" alt="" />
+                  <span class="sender-inner-ad-desc ml-1">{{
+                    adData?.traveling_by
+                    }}</span>
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-2 text-left m-t-10">
+                <h6 class="sender-inner-ad-title">Cost Per Kg</h6>
+              </div>
+              <div class="col-8 col-md-10 text-left m-t-10">
+                <h6 class="sender-inner-ad-desc">
+                  {{ (+adData?.payment).toFixed(0) }} AED
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 m-t-b-10">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- ////////////////////// USER CARD /////////////////////// -->
+            <div class="card" *ngIf="!interestedcard && initerestedlist.length > 0">
+              <div class="card-body">
+                <h2 class="
+                    mb-3
+                    color-black
+                    font-weight-bold
+                    intrested-user-heading
+                  ">
+                  Interested Senders
+                </h2>
+                <div class="row">
+                  <div *ngFor="let item of initerestedlist  let i=index" class="col-12">
+                    <div *ngIf="item?.is_offer == 1" class="row no-gutters">
+                      <div class="col-2 mb-2">
+                        <div class="row">
+                          <div class="col-7">                           
+                            <img (click)="ClickDelieveryUser(item, item.user_id,i)"
+                             [src]="item.image? imageBaseUrl +item.image:'../../../../assets/default.jpg'" class="rounded-circle mb-1" />
+                          </div>
+                          <div class="col-5"></div>
+                        </div>
+                      </div>
+                      <div class="col-10 mt-2">
+                        <div class="row">
+                          <div class="col-10">
+                            <a (click)="ClickDelieveryUser(item, item.user_id,i)" class="sender-inner-ad-desc">{{item.fname }} {{ item.lname }}</a>
+                          </div>
+                          <div *ngIf="clicked==i" class="col-2">
+                            <i class="intrested-user-icon-red far fa-check-circle m-0"></i>
+                          </div>
+                          <div *ngIf="clicked!=i" class="col-2">
+
+                            <i class="intrested-user-icon far fa-check-circle m-0"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="card" *ngIf="adData">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-8 pr-0">
+                    <h6 class="sender-inner-ad-title-1 mt-1">
+                      <strong>{{ adData?.first_name}}&nbsp;{{adData?.last_name}}</strong>
+                    </h6>
+
+                    <div class="star-container">
+                      <ngx-stars color="#fdcc0d" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                        [initialStars]='adData?.avgFeedBack'></ngx-stars>
+                    </div>
+
+                    <h6 class="line-height-30 font-14 mt-1">
+                      <span class="sender-inner-ad-desc-1">Active since</span>&nbsp;<span
+                        class="sender-inner-ad-desc"><strong>{{adData?.created_at | date}}</strong></span>
+                    </h6>
+                    <h6 class="sender-inner-ad-desc-1">
+                      Packages Sent -
+                      <strong class="sender-inner-ad-desc">{{packagesSent}}</strong>
+                    </h6>
+                    <h6 class="sender-inner-ad-desc-1">
+                      Packages Carried -
+                      <strong class="sender-inner-ad-desc">{{packagesCarried}}</strong>
+                    </h6>
+                        </div>
+                  <div class="col-4 pl-0">
+                    <img [src]="adData?.creater?.custom_profile_photo? imageBaseUrl + adData?.creater?.custom_profile_photo: adData['user_image']? imageBaseUrl + adData['user_image']:'../../../../assets/default.jpg'" style="
+                        max-width: 104%;
+                        width: 102%;
+                        height: 114px;
+                        border-radius: 13%;
+                        box-shadow: 0px 0px 9px 0px #c3c6ca;
+                      " />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-3">
+              <ngx-shimmer-loading *ngIf="googleAdsImage != undefined && !hideLCP"  [shape]="'rect'" [width]="'400px'" [height]="'300px'">
+              </ngx-shimmer-loading>
+              <img *ngIf="googleAdsImage != undefined && hideLCP" class="w-100" [src]="
+                  'http://pacsend.uk/public/uploads/slots/' + googleAdsImage
+                    | byPassSecurityUrl
+                " />
+              <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
+            </div>
+
+            <div class="card" *ngIf="showpointofContact">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-8">
+                    <h6 class="sender-inner-ad-desc">
+                      <strong>Point of contact</strong>
+                    </h6>
+                    <a><i class="fa fa-user"></i><span style="font-size: 14px; margin-left: 10px">{{pointofcontactname}}</span></a><br />
+                    <a><i class="fa fa-mobile"></i><span style="font-size: 14px; margin-left: 12px">+92 &nbsp;{{pointofcontactnumber }}</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- adData.carrier_feedbacks!=null -->
+            <div class="card" id="targetdiv" *ngIf="
+                adData?.user_id == userId &&
+                senderDetail != undefined &&
+                senderDetail
+              ">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-8">
+                    <h6 class="sender-inner-ad-desc">
+                      <strong>Feedback</strong>
+                    </h6>
+                    <div>
+                      <ngx-stars [readonly]="true" [maxStars]="5" color="#fdcc0d"
+                        [initialStars]="senderDetail.rating" [size]="1"></ngx-stars>
+                    </div>
+                    <h6 class="sender-inner-ad-desc">
+                      <strong>Comment</strong>
+                    </h6>
+                    <div>
+                      <span>{{senderDetail?.title | slice: 0:30}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" *ngIf="showCancelCard">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-xs-12 col-sm-12 col-md-12">
+                    <h6 class="color-figma-black font-15 font-500 line-height-30">
+                      <strong>Cancellation request</strong>
+                    </h6>
+                    <span class="font-14 color-figma-new-gray font-500">
+                      You have requested for deal cancellation. Deal is
+                      temporarily stopped untill {{ cancelDealWith }} responds
+                      to the request.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="(!hideconenct && btntextcarry != '') && this.adData?.is_cancel_status !=1" class="row">
+              <div class="col-12 m-t-20" *ngIf="loginuser">
+                <button id="button" [disabled]="disbaled" style="background: #e32025; border-color: cf1d25"
+                  (click)="postCarryConnect()" class="btn btn-primary font-bold width-100" type="submit">
+                  {{ btntextcarry }}
+                </button>
+              </div>
+            </div>
+            <div *ngIf="!hideconenct && (this.adData?.is_accepted == null || this.adData?.is_connected == 0 || this.adData?.is_cancel_status ==1)" class="row">
+              <div class="col-12 m-t-20" *ngIf="loginuser">
+                <button id="button" [disabled]="disbaled" style="background: #e32025; border-color: cf1d25"
+                  (click)="postCarryConnect()" class="btn btn-primary font-bold width-100" type="submit">
+                  {{connectBtn}}
+                </button>
+              </div>
+            </div>
+            <div *ngIf="loginuser && !hideyes" class="card mb-1">
+              <div class="card-body">
+                <div class="row">
+                  <h6 class="colorBlack line-height-30 ml-3 mt-1">
+                    <strong>Is your package picked by carrier?</strong>
+                  </h6>
+                  <div class="col-6 m-t-20">
+                    <button (click)="PostDealProcessYes()" class="btn btn-primary font-bold width-100" type="submit">
+                      Yes
+                    </button>
+                  </div>
+                  <div class="col-6 m-t-20">
+                    <button (click)="
+                        PostDealProcessNo()" class="btn btn-primary font-bold width-100" type="submit">
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="loginuser && cancelRequested" class="card mb-1">
+              <div class="card-body">
+                <div class="row">
+                  <h6 class="colorBlack line-height-30 ml-3 mt-1">
+                    <strong>Do you want to cancel this deal?</strong>
+                  </h6>
+                  <div class="col-6 m-t-20">
+                    <button (click)="openConfirmationCancelModal(confirmCancel)"
+                      class="btn btn-primary font-bold width-100" type="submit">
+                      Yes
+                    </button>
+                  </div>
+                  <div class="col-6 m-t-20">
+                    <button class="btn btn-primary font-bold width-100" (click)="CancelRequestAccept('0')"
+                      type="submit">
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="loginuser && showCancelBtn" class="row">
+              <div class="col-12 m-t-20">
+                <button id="button2" [disabled]="disableCancelBtn" style="background: #e32025; border-color: cf1d25"
+                  (click)="openCancelModal(verifyCancel)" class="btn btn-primary font-bold width-100" type="submit">
+                  Cancel deal?
+                </button>
+              </div>
+            </div>
+            <p *ngIf="pickUpAlert" class="alert-text">Wait for pickup confirmation.</p>
+            <p *ngIf="deliveryAlert" class="alert-text">Wait for delivery confirmation.</p>
+            <div *ngIf="loginuser && !hidestatus" class="row">
+              <div class="col-12 m-t-20">
+                <button [disabled]="disbaledstatusbtn" style="background: #e32025; border-color: #e32025" id="button1"
+                  (click)="PostDealProcess(verificationmodal)" class="btn btn-primary font-bold width-100"
+                  type="submit">
+                  {{ btnStatus }}
+
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="loginuser && !hidedileverybtn" class="row">
+              <div class="col-12 m-t-20">
+                <button style="background: #e32025; border-color: #e32025" id="button1"
+                  (click)="PostDealProcessDel(verificationmodal)" class="btn btn-primary font-bold width-100"
+                  type="submit">
+                  Confirm Delivery
+                </button>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="loginuser &&  !hidefeedback">
+              <div class="col-12 m-t-20">
+                <button (click)="OpenFeedback(feedback)" class="btn btn-primary font-bold width-100" type="submit">
+                  Feedback
+                </button>
+              </div>
+            </div>
+            <div *ngIf="!hidetrack" class="col-md-12 p-0">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <h6 class="sender-inner-ad-desc">Track your Order</h6>
+                    </div>
+                    <div class="col-12">
+                      <ul class="list-ic vertical">
+                        <li>
+                          <span [ngClass]="
+                              hidewaitingtoaccept ? 'active' : 'deactive'
+                            ">&nbsp;</span>
+                          <a *ngIf="adData?.user_id == userId" class="sender-inner-ad-desc">Waiting for you to accept a
+                            sender.</a>
+                          <a *ngIf="adData?.user_id != userId" class="sender-inner-ad-desc">Your request is
+                            accepted.</a>
+                        </li>
+                        <li>
+                          <span [ngClass]="hidepickedupli ? 'active' : 'deactive'">&nbsp;</span>
+                          <a *ngIf="adData?.user_id == userId" class="sender-inner-ad-desc">You picked up the package
+                            from sender.</a>
+                          <a *ngIf="adData?.user_id != userId" class="sender-inner-ad-desc">Your package is picked
+                            up.</a>
+                        </li>
+                        <li>
+                          <span [ngClass]="hidereachedli ? 'active' : 'deactive'">&nbsp;</span>
+                          <a *ngIf="adData?.user_id == userId" class="sender-inner-ad-desc">You reached the
+                            destination.</a>
+                          <a *ngIf="adData?.user_id != userId" class="sender-inner-ad-desc">Carrier reached the
+                            destination.</a>
+                        </li>
+                        <li>
+                          <span [ngClass]="hideverifypinli ? 'active' : 'deactive'">&nbsp;</span>
+                          <a class="sender-inner-ad-desc">Pin verify successfully.</a>
+                        </li>
+                        <li>
+                          <span [ngClass]="hidedelieveredli ? 'active' : 'deactive'">&nbsp;</span>
+                          <a class="sender-inner-ad-desc">Package handed off to Point of Contact.</a>
+                        </li>
+                        <li>
+                          <span [ngClass]="hidedelieveredli ? 'active' : 'deactive'">&nbsp;</span>
+                          <a class="sender-inner-ad-desc">Deal completed.</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Style>
+
+      ::ng-deep .modal-dialog .modal-content{
+        width:500px !important;
+
+      }
+      </Style>
+
+    <div [formGroup]="VerificationForem">
+      <ng-template #verificationmodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title w-100 font-21 font-500 mt-4" id="modal-basic-title">Verification PIN</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input id="number" formControlName="verification" autocorrect="off" autocapitalize="off" spellcheck="off"
+            type="text" class="form-control" placeholder="Enter a Verify PIN" />
+        </div>
+        <div class="modal-footer" *ngIf="loginuser">
+          <button style="
+              background: #e32025;
+              border-color: #e32025;
+              height: 53px;
+              border-radius: 9px;
+            " type="button" class="btn btn-primary font-bold width-100 m-t-10 m-b-10" (click)="
+              postVerify()">
+            Verify
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template #verifyCancel let-modal>
+        <div class="w-100 h-300 w-500">
+          <div class="modal-header">
+            <h4 class="modal-title w-100 font-21 font-500" id="modal-basic-title">
+              Attention Requiraed
+            </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body text-center verify-card-mob-responsive" style="padding-top: 0px !important">
+            <p style="font-size: 16px !important" class="color-figma-photo text-center mb-2 color-figma-photo-mob">
+              Are you sure you want to cancel the deal with {{ cancelDealWith }}?
+            </p>
+            <div *ngIf="loginuser">
+            <button style="height: 53px; border-radius: 9px" type="button"
+              class="btn btn-primary font-bold w-100 m-t-10 m-b-10" (click)="
+                SendCancelRequest(cancelRequestSent);
+                modal.dismiss('Cross click')
+              ">
+              Yes, cancel the deal
+            </button>
+            <button style="height: 53px; border-radius: 9px" type="button"
+              class="btn btn-primary font-bold w-100 m-t-10 m-b-10" (click)="modal.dismiss('Cross click')">
+              No, don't cancel
+            </button>
+          </div>
+        </div>
+        </div>
+      </ng-template>
+
+      <ng-template #confirmCancel let-modal>
+        <div class="w-100 h-300 w-500">
+          <div class="modal-header">
+            <h4 class="modal-title w-100 font-21 font-500" id="modal-basic-title">
+              Attention Required
+            </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body text-center verify-card-mob-responsive" style="padding-top: 0px !important">
+            <p style="font-size: 16px !important" class="
+                color-figma-photo
+                text-center
+                mt-2
+                mb-2
+                color-figma-photo-mob
+              ">
+              Are you sure you want to cancel the deal with {{ cancelDealWith }}?
+            </p>
+            <div *ngIf="loginuser">
+            <button style="height: 53px; border-radius: 9px" type="button"
+              class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+              (click)="CancelRequestAccept('1'); modal.dismiss('Cross click')">
+              Yes, cancel the deal
+            </button>
+            <button style="height: 53px; border-radius: 9px" type="button"
+              class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+              (click)="CancelRequestAccept('0'); modal.dismiss('Cross click')">
+              No, don't cancel
+            </button>
+          </div>
+        </div>
+        </div>
+      </ng-template>
+
+      <ng-template #cancelRequestSent let-modal>
+        <div class="w-100 h-auto w-500">
+          <div class="modal-header">
+            <h4 class="modal-title font-21 font-500 w-100" id="modal-basic-title">
+              Cancellation request sent
+            </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center verify-card-mob-responsive">
+            <img src="../../../assets/verificationSuccessful.png" class="w-50" />
+            <p style="font-size: 16px !important" class="color-figma-photo text-center mt-2 mb-2 color-figma-photo-mob">
+              Your request to cancel the deal has been sent successfully. The deal will be cancelled once
+              {{ cancelDealWith }} has accepted the request.
+            </p>
+          </div>
+          <div class="modal-footer pl-3 pr-3 pb-3" *ngIf="loginuser">
+            <button style="height: 53px; border-radius: 9px" type="button"
+              class="btn btn-primary font-bold width-100 m-t-10 m-b-10" (click)="modal.close('Save click');">
+              Ok
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <div [formGroup]="FeedbackForm">
+        <ng-template #feedback let-modal>
+          <div id="feedbackPopup" class="modal fade show" role="dialog" aria-modal="true"
+            style="display: block; padding-left: 17px">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="w-100 h-400 w-500">
+                  <div class="modal-header mt-2">
+                    <h3 class="
+                        modal-title
+                        text-center
+                        w-100
+                        font-21
+                        pt-0
+                        pb-3
+                        headd
+                      ">
+                      Feedback
+                    </h3>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div class="modal-body text-center pt-0 pb-2">
+
+
+                    <div class="row">
+
+                      <div class="col-12 m-b-10 text-center">
+                        <div class="row"></div>
+                        <div class="row mt-4 mb-5">
+                          <div class="col" *ngFor="let value of emojis">
+                            <img (click)="RatingClick()" [src]="value.img" class="width-100" (click)="SelectedEmo(value)"
+                              [ngStyle]="{'opacity': value.opacity}" />
+                          </div>
+                      </div>
+
+                        <div class="row m-b-10 m-t-10">
+                          <div class="col-12">
+                            <textarea formControlName="review" type="text" class="form-control text-left" #review
+                              placeholder="Type Something.."></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="loginuser">
+                    <button *ngIf="ratingSubmit" (click)="PostFeedback()" data-dismiss="modal" data-toggle="modal"
+                      data-target="#deliveryPriority" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+                      type="submit">
+                      Submit
+                    </button>
+
+                    <button *ngIf="!ratingSubmit" (click)="PostFeedback()" data-dismiss="modal" data-toggle="modal"
+                    data-target="#deliveryPriority" class="btn btn-primary font-bold width-100 m-t-10 m-b-10"
+                    type="submit" disabled>
+                    Submit
+                  </button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

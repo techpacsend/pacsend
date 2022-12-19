@@ -1,0 +1,23 @@
+.menu{
+    padding-left: 0px;
+    margin-bottom: 0px;
+  }
+  .menu li{
+    padding-left: 0px;
+    padding:20px;
+      text-transform: uppercase;
+      display:inline; 
+      list-style-type:none;
+      list-style-position: inside;
+      font-weight: 500;
+      color: #6e7a8a;
+  }
+  .menu li .active{
+      color: #6e7a8a;
+      padding-bottom: 8px;
+      border-bottom: 4px solid red;
+  }
+  .menu li a{
+      color: #6e7a8a;
+  }
+  

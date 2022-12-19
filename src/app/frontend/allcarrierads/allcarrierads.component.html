@@ -1,0 +1,157 @@
+
+
+<div class="container-fluid p-t-b-10 bgcolor">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <ul class="menu">
+            <li><a  href="all-sender-ads">Send</a></li>
+            <li><a  class="active" href="all-carrier-ads">Carry</a></li>
+            <li><a href="all-ads">All</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-t-b-20 bgcolor-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-12 mx-auto text-center">
+        <div *ngFor="let product of products" class="card width-100 m-t-b-10" >
+          <div  class="card-body">
+            <div class="row">
+              <div class="col-md-1 col-2  p-r-0">
+                <img src="images/profile-image.png" class="width-100">
+              </div>
+              <div class="col-md-8 col-6 text-left">
+                <h5 class="m-b-0">{{product.title}}</h5>
+
+                <p>{{product.carry_from_location}}</p>
+              </div>
+              <div class="col-md-3 p-t-10 col-4 text-right">
+                <a href="" class="colorRed"><i class="fa fa-plus colorRed"></i> <span class="colorRed font-bold"> Connect</span></a>
+              </div>
+              <div class="col-md-12">
+                <hr class="width-100 bgcolor-2">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1 text-left font-16 p-t-10 col-12"><i class="fa fa-dot-circle-o"></i></div>
+              <div class="col-md-2 text-left col-6">
+                <span class="font-12">Dubai</span>
+                <h5 class="font-14">16:00</h5>
+              </div>
+              <div class="col-md-3 text-left col-6">
+                <span class="font-12">Data of Departure</span>
+                <h5 class="font-14">24th June 2020</h5>
+              </div>
+
+              <div class="col-md-3 text-left col-6">
+                <span class="font-12">Capactiy</span>
+                <h5 class="font-14">24th June 2020</h5>
+              </div>
+              <div class="col-md-3 text-left col-6">
+                <span class="font-12">Distance from airport</span>
+                <h5 class="font-14">45 kms</h5>
+              </div>
+              <div class="col-md-1 col-12 text-left font-16 p-t-10"><i class="fa fa-dot-circle-o"></i> RIY</div>
+              <div class="col-md-2 col-6 text-left">
+                <span class="font-12">Riyadh</span>
+                <h5 class="font-14">18:30</h5>
+              </div>
+              <div class="col-md-3 col-6 text-left">
+                <span class="font-12">Travelling by</span>
+                <h5 class="font-14">Walking</h5>
+              </div>
+
+              <div class="col text-left">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="verificationStep1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="modal-title m-b-20">Verify Yourself</h3>
+        <div class="numberCircleRed">1</div>
+        <div class="numberCircleWhite">2</div>
+        <div class="numberCircleWhite">3</div>
+        <p class="m-b-20 m-t-20">Upload a selfie with your id card!</p>
+        <img src="images/uploadSelfie.png" class="width-100">
+        <button data-dismiss="modal" data-toggle="modal" data-target="#verificationStep2" class="btn btn-primary font-bold width-100 m-t-10 m-b-10" type="submit">NEXT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="verificationStep2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="modal-title m-b-20">Verify Yourself</h3>
+        <div class="numberCircleRed">1</div>
+        <div class="numberCircleRed">2</div>
+        <div class="numberCircleWhite">3</div>
+        <p class="m-b-20 m-t-20">Upload both sides of your national ID card.</p>
+        <div class="row">
+          <div class="col-12 m-b-20">
+            <button class="btn btn-primary">Front</button>
+            <button class="btn btn-primary">Back</button>
+          </div>
+        </div>
+        <img src="images/uploadSelfie.png" class="width-100">
+        <button data-dismiss="modal" data-toggle="modal" data-target="#verificationStep3" class="btn btn-primary font-bold width-100 m-t-10 m-b-10" type="submit">NEXT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="verificationStep3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="modal-title m-b-20">Verify Yourself</h3>
+        <div class="numberCircleRed">1</div>
+        <div class="numberCircleRed">2</div>
+        <div class="numberCircleRed">3</div>
+        <p class="m-b-20 m-t-20">Please Enter your National Id Card Number.</p>
+        <div class="form-group row">
+            <input class="form-control form-custom-control form-control-mobb" name="identityCard" type="text"  placeholder="ID Card">
+        </div>
+        <button data-dismiss="modal" data-toggle="modal" data-target="#verificationStep4" class="btn btn-primary font-bold width-100 m-t-10 m-b-10" type="submit">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="verificationStep4" class="modal fade " role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h3 class="modal-title m-b-20">
+          <!-- Verification Successfull -->
+          Documents Upload Successful
+        </h3>
+        <img src="images/verificationSuccessful.png" class="width-100">
+        <p class="m-b-10 m-t-20">
+          Your documents will be checked and account will be verified shortly.
+          <!-- Your data has been sent successfully for verification. -->
+        </p>
+        <button data-dismiss="modal" class="btn btn-primary font-bold width-100 m-t-10 m-b-10" type="submit">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>

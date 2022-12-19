@@ -1,0 +1,221 @@
+<div class="bgcolor-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 m-t-10-mobile">
+        <div class="card m-b-20 min-vh-75">
+          <div class="card-body">
+            <div class="row backgroundWhite">
+              <div class="col-md-6 col-12">
+                <h4>
+                  <strong>Trip Info : {{ adData["title"] }}</strong>
+                </h4>
+              </div>
+              <div class="col-md-6 col-12 text-left">
+                <a class="buttonTripInfoRed_one buttonWhiteRound pull-right">
+                  <i class="fa fa-exclamation colorWhite"></i></a>
+
+                <a class="buttonTripInfoWhite buttonWhiteRound pull-right"
+                  ><i class="fa fa-heart colorRed"></i
+                ></a>
+                <a class="buttonTripInfoWhite buttonWhiteRound pull-right"
+                  ><i class="fa fa-share"></i
+                ></a>
+
+                <a data-toggle="modal" data-target="#canceltheDeal"
+                  class="display-none
+                    colorBlack
+                    canceltheDeal
+                    width-100
+                    m-t-5
+                    line-height-40
+                    text-right
+                    display-block
+                    pull-right position-absolute top-50 right-25">
+
+                  <span class="shadow-span p-5p">Cancel the deal</span>
+
+                </a>
+              </div>
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">From</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["carry_from_location"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">To</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["carry_to_location"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">Travels on</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["travelling_frequency"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">Trip time</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["from_time"] }} - {{ adData["to_time"] }}
+                </h6>
+              </div>
+              <div class="col-md-6 col-12">
+                <h4 class="m-t-20"><strong>Other Info</strong></h4>
+              </div>
+              <div class="col-md-6 col-12 text-left"></div>
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">Capacitites</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["weight"] }} KG
+                </h6>
+              </div>
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">Categories</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <a
+                  class="btn btn-info btn-tag"
+                  *ngFor="let categories of assignedCategories"
+                  >{{ categories.c_title }}</a
+                >
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">
+                  Travelling by
+                </h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  <img class="max-width-40" src="http://pacsend.uk/public/uploads/traveling/{{
+                      travellingTypes['image']
+                    }}"
+                  />
+                  {{ travellingTypes["title"] }}
+                </h6>
+              </div>
+
+              <div class="col-4 col-md-3 text-left m-t-10">
+                <h6 class="colorGrayish line-height-30 font-16">Cost</h6>
+              </div>
+              <div class="col-8 col-md-9 text-left m-t-10">
+                <h6 class="colorBlack line-height-30 font-16">
+                  {{ adData["payment"] }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <h6 class="colorBlack line-height-30">
+                  <strong> {{ userData["fname"] }} {{ userData["lname"] }}</strong>
+                </h6>
+                <h6 class="colorBlack line-height-30 font-14 font-400">
+                  Sender
+                </h6>
+                <h6
+                  class="colorBlack line-height-30 font-14 font-400">Joined since <strong>{{ userData["created_at"] }}</strong>
+                </h6>
+                <h6
+                  class="colorBlack line-height-30 font-14 font-400"><strong>23</strong> packages sent
+                </h6>
+              </div>
+              <div class="col-4">
+                <img
+                  src="http://pacsend.uk/public/uploads/users/{{
+                    userData['image']
+                  }}"
+                  class="width-100"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 m-t-20">
+            <button
+              (click)="postCarryConnect()"
+              class="btn btn-primary font-bold width-100 backgroundRed borderr"
+              type="submit"
+            >
+              {{ btntextcarry }}
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <h6 class="colorBlack line-height-30">Cancellation Request</h6>
+              </div>
+            </div>
+            <div class="row m-t-10">
+              <div class="col-12">
+                <p class="font-12">
+                  Rauf Lala has requested for deal cancellation request? Do you
+                  want to cancel the deal?
+                </p>
+              </div>
+              <div class="col-12">
+                <button
+                  class="btn btn-danger btn-sm border-1">
+                  Accept the request
+                </button>
+                <button
+                  class="btn btn-sm decline-btn"
+                  data-toggle="modal"
+                  data-target="#feedbackPopup">
+                  Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <h6 class="colorBlack line-height-30">Track your Order</h6>
+              </div>
+              <div class="col-12">
+                <ul class="list-ic vertical">
+                  <li>
+                    <span class="active">&nbsp;</span>
+                    <a href="#" class="color-black font-500">Skapa konto</a>
+                  </li>
+                  <li>
+                    <span class="deactive">&nbsp;</span>
+                    <a class="color-black font-500" href="#">Fyll i dina uppgifter</a>
+                  </li>
+                  <li>
+                    <span>&nbsp;</span>
+                    <a href="#">Voilá! Du har jobb!</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

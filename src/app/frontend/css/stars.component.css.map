@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAA;EACb,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "../stars/stars.component.scss"
+    ],
+    "names": [],
+    "file": "stars.component.css"
+}

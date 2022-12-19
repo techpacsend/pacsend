@@ -1,0 +1,23 @@
+<div class="container-fluid mt-4" #scrollMe>
+  <div class="container">
+    <div class="row">
+      <div class=" p-t-b-40 mx-auto">
+        <div class="col-md-12 text-center mt-10 mb-2">
+          <h3 class="colorRed-2 font-37 font-600 text-center mob-font-25">Frequently Asked Questions</h3>
+        </div>
+      </div>
+    <div  class="col-md-9 col-12 mx-auto text-center">
+        <div *ngFor="let product of products" class=" width-100 m-t-b-10">
+          <div class="p-2">
+            <div class="row">
+              <div class="col-md-12 text-justify top-margin-26">
+                <h5 class="faqs-ques ques-font-size m-b-0">{{product.question}}</h5>
+                <p class="faqs-ans">{{product.answer}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

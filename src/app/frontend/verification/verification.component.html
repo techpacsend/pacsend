@@ -1,0 +1,95 @@
+<ngx-ui-loader fgsSize="180"></ngx-ui-loader>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Pacsend?</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    async />
+</head>
+
+<body class="skin-default card-no-border">
+  <section id="wrapper">
+    <div class="login-register pt-0 p-4 p-r-l-mob-v bgcolor-1">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-12 col-md-4 text-center">
+          <img class="img-responsive extra-p-remove-mob-v m-b-65 max-width-30p" [src]="
+                'http://pacsend.uk/public/uploads/setting/PacsendFooter.png'
+              " />
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="login-box card border-radiuss">
+        <div class="card-body border-radiuss">
+          <form class="form-horizontal form-material" [formGroup]="verificationForm" (submit)="onSubmit()">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="
+                      text-center
+                      m-b-20
+                      font-32 font-600
+                      mob-verification-responsive
+                      color-v
+                    ">
+                  Verification
+                </h3>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <h5 class="text-center m-t-10 font-15 verfiation-email21">
+                    A 6-digit OTP is sent to
+                  </h5>
+                  <h5 class="text-center m-t-15 font-15 verfiation-email22">
+                    <strong>{{ email }}</strong>
+                  </h5>
+                </div>
+              </div>
+              <div class="col-12">
+                <input class="form-custom-control placeholder-opt font-18 font-600" formControlName="verification_code"
+                  type="text" placeholder="OTP" />
+              </div>
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="
+                          form-group
+                          verfiation-email21
+                          m-t-25
+                          text-center
+                          resend-mob-txt-resposive
+                          text-decoration-uderline
+                          p-10
+                        ">
+                        <p>{{transform(counter)}}</p>
+                      <a class="m-b-0 font-15 font-weight-bold opt-mob-responsive" 
+                      [attr.disabled]="counter == 0 ? null: ''"
+                      (click)="resendOTP()">resend OTP</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group m-0 mb-2">
+                  <button class="btn btn-primary width-100 nxt-btn-cs" type="submit">
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 text-center"></div>
+    </div>
+  </section>
+</body>
+
+</html>

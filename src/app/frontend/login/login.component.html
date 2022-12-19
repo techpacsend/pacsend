@@ -1,0 +1,203 @@
+<ngx-ui-loader fgsSize="180" ></ngx-ui-loader>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Pacsend</title>
+</head>
+
+<body class="skin-default card-no-border bgcolor-1"> -->
+  <!-- ============================================================== -->
+  <div class="d-md-flex justify-content-center align-items-center bgcolor-1 w-100 h-100 text-center overflow-auto">
+  <section id="wrapper">
+    <div class="login-register bgcolor-1 p-1-1 overflow-y-scrol overflow-x-hidden">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-12 col-md-4 text-center">
+
+          <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'circle'" [width]="'130px'" [height]="'120px'">
+          </ngx-shimmer-loading>
+
+          <a *ngIf="!aboutPacsendLCP" [routerLink]="['/']" routerLinkActive="router-link-active">
+          <img class="w-75 mb-3"
+            [src]="'http://pacsend.uk/public/uploads/setting/PacsendFooter.png'"/>
+          </a>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+
+      <div class="login-box card position-relative mobile-margin-top-0">
+        <div class="position-absolute">
+          <button class="p-r-10 p-l-10 font-16 btn-login rotate w-100 border-rad-10" [routerLink]="['/sign-up']" >
+            <a class="color-white">Sign Up</a>
+          </button>
+        </div>
+        <div class="position-absolute top-76p">
+          <button (click)="forgetPassword(forgetPass)" class="
+                p-r-10 p-l-10
+                font-16
+                btn-login-forgot
+                rotate
+                w-100
+                border-rad-10
+                text-responsive
+              ">
+            <a class="color-white">Reset Password?</a>
+          </button>
+        </div>
+        <div class="card-body border-radiuss">
+          <form [formGroup]="loginForm" class="form-horizontal form-material" (submit)="onSubmit()">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="signUp-heading-style login-text-responsive mb-4">
+                  Login To Your Account
+                </h3>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input id="email" class="form-custom-control" name="email" type="text" formControlName="email"
+                    placeholder="Email" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input id="password" class="form-custom-control" [type]="inputType" formControlName="password"
+                    placeholder="Password" />
+                    <i class="bi bi-eye possword-eye" *ngIf="isPasswordVisible" (click)="viewPassord('hide')"></i>
+                    <i class="bi bi-eye-slash possword-eye" *ngIf="!isPasswordVisible" (click)="viewPassord('show')"></i>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button [disabled]="!loginForm.valid"
+                  class="btn btn-primary width-100 btn-responsive mt-3 font-600 h-53" type="submit">
+                  Continue
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="col-12 m-t-b-10">
+            <h5 class="text-center font-18 mt-4 colorGrey">
+              OR
+            </h5>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12" (click)="signInWithGoogle()">
+              <a class="social-button" id="google-connect" >
+                <span class="responsive-bold-text font-600 color-v">Connect with Google</span></a>
+            </div>
+            <div class="col-12 col-md-12" (click)="signInWithFB()">
+              <a  class="social-button" id="facebook-connect">
+                <span class="responsive-bold-text font-600 color-v">Connect with Facebook</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ########################### -->
+
+      <div class="col-12 display-none-desktop pt-3 mb-4">
+        <h5 class="text-center font-25 font-700 color-get-sign-up">
+          <a (click)="forgetPassword(forgetPass)" class="colorRed colorRed-mob-responsive-login font-16 font-500">forgot
+            password ? |
+            <span [routerLink]="['/sign-up']"
+              class="colorRed colorRed-mob-responsive-login font-16 font-500 color-figma-gray">Signup for an
+              account</span></a>
+        </h5>
+      </div>
+
+    </div>
+  </section>
+</div>
+  <!-- Forget Pass -->
+
+  <ng-template #forgetPass let-modal>
+    <div class="w-100 h-400 w-500">
+      <div class="modal-header">
+        <h4 class="modal-title text-center w-100 font-21 pt-0 pb-3 headd" id="modal-basic-title btn-ad-text-responsive">
+          Reset Password</h4>
+        <button type="button " class="close" aria-label="Close " (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true ">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pt-0 pb-0">
+        <form class="form-horizontal form-material" [formGroup]="forgetPasswordForm">
+          <div class="form-group">
+            <h6 class="mb-2 font-17 colorGreey">
+              Enter your email and we'll send you your recovery details
+            </h6>
+            <input class="form-custom-control" type="text " formControlName="email" placeholder="Your@mail.com.." />
+          </div>
+          <button [disabled]="this.forgetPasswordForm.invalid" type="button"
+            class="btn btn-primary font-bold width-100 mt-4 btn-fogt-mob m-t-25p"
+            (click)="forgetPasswordEmail(forgetPassVerification)">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class=""></div>
+    </div>
+  </ng-template>
+
+  <ng-template #forgetPassVerification let-modal>
+    <div class="w-100 h-400 w-500">
+      <div class="modal-header">
+        <div class="modal-title verify-head-d">Verification</div>
+        <button type="button " class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-material" [formGroup]="forgetPasswordVerificationForm">
+          <div class="form-group">
+            <input class="form-custom-control" name="verification_code" type="text" formControlName="verification_code"
+              placeholder="Verification Code.." />
+          </div>
+          <button [disabled]="this.forgetPasswordVerificationForm.invalid" type="button"
+            class="btn btn-primary font-bold width-100 m-t-33p" (click)="forgetPasswordVerification(newPassword)">
+            Submit
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template #newPassword let-modal>
+    <div class="w-100 h-400 w-500">
+      <div class="modal-header">
+        <h4 class="modal-title text-center w-100 font-21 pt-0 pb-3 headd" id="modal-basic-title btn-ad-text-responsive">
+          New Password
+        </h4>
+        <button type="button " class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pt-0 pb-0">
+        <form class="form-horizontal form-material" [formGroup]="newPasswordForm">
+          <div class="form-group">
+            <input class="form-custom-control" name="password" type="text" formControlName="password"
+              placeholder="Password.." />
+          </div>
+          <div class="form-group mt-5">
+            <input class="form-custom-control" name="password" type="text" formControlName="confirmPassword"
+              placeholder="Confirm Password.." />
+          </div>
+          <button [disabled]="this.newPasswordForm.invalid" type="button"
+            class="btn btn-primary font-bold width-100 mt-5" (click)="submitNewPassword()">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </ng-template>
+<!-- </body>
+
+</html> -->
