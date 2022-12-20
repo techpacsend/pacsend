@@ -37,7 +37,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('navigationRestricted', { static: false }) navigationRestricted: TemplateRef<any>;
   @ViewChild('navigationLogin', { static: false }) navigationLogin: TemplateRef<any>;
   zoomIn: any;
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
   userDetails: any;
   userVerfy: any;
   boolval: boolean = false;
@@ -125,9 +125,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   sTotal: any;
   preTotalSender: any;
   preTotalCarier: any;
-  imageUrl = "http://pacsend.uk/public/uploads/users/";
-  tagImgUrl = "http://pacsend.uk/public/uploads/category/";
-  adBaseImgUrl = 'http://pacsend.uk/public/uploads/adds/';
+  imageUrl = "https://pacsend.app/public/uploads/users/";
+  tagImgUrl = "https://pacsend.app/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
   categoryDropdownSettings:IDropdownSettings={};
   categories = [];
   isSearch:boolean = false;
@@ -287,7 +287,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
      form.append("page", "1");
       //  const checkNewData= interval(15000);
       //  checkNewData.subscribe(res=>{
-         const data= this.httpClient.post('http://pacsend.uk/api/v1/carier-sender-total', form);
+         const data= this.httpClient.post('https://pacsend.app/api/v1/carier-sender-total', form);
          data.subscribe(x=>{
            this.cTotal=x['total carrier'];
            this.sTotal = x['total sender'];  

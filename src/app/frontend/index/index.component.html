@@ -24,7 +24,7 @@
         *ngIf="googleAdsImageHomeTop != undefined"
         class="w-100 index-ads-banner"
         data-sizes="auto"
-        data-src="'http://pacsend.uk/public/uploads/slots/' + {{googleAdsImageHomeTop | byPassSecurityUrl}} "
+        data-src="'https://pacsend.app/public/uploads/slots/' + {{googleAdsImageHomeTop | byPassSecurityUrl}} "
       />
       <div
         *ngIf="googleAdsScript != undefined"
@@ -42,7 +42,7 @@
         <img 
         *ngIf="googleAdsImagePopupSlot != undefined"
         data-sizes="auto"
-        data-src="'http://pacsend.uk/public/uploads/slots/'+{{ googleAdsImagePopupSlot | byPassSecurityUrl}}"
+        data-src="'https://pacsend.app/public/uploads/slots/'+{{ googleAdsImagePopupSlot | byPassSecurityUrl}}"
         class="lazyload w-100"/>
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
     </div>
@@ -142,12 +142,12 @@
           <!-- <img src="../../../assets/Facebook-Cover-min.webp" class="mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" /> -->
           <img
           data-sizes="auto"
-	        data-src="http://pacsend.uk/public/uploads/about/{{aboutimage}}"
+	        data-src="https://pacsend.app/public/uploads/about/{{aboutimage}}"
            class="lazyload mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" />
 
           <img  
           data-sizes="auto"
-	        data-src="http://pacsend.uk/public/uploads/about/{{aboutimage}}"
+	        data-src="https://pacsend.app/public/uploads/about/{{aboutimage}}"
           class="lazyload mt-5 width-100 mob-view-strech-img-show"/>
         </div>
       </div>
@@ -580,7 +580,7 @@
   <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="11.5">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     <div *ngIf="!alladsData">
-      <!-- url: 'http://pacsend.uk/public/uploads/users/' + item.creater.image, -->
+      <!-- url: 'https://pacsend.app/public/uploads/users/' + item.creater.image, -->
     <agm-marker *ngFor="let item of filteredMarkers"
     [latitude]="item.from_latitude" [longitude]="item.from_longitude" class="image1" [iconUrl]="{
       url: item.creater.custom_profile_photo? baseImageUrl + item.creater.custom_profile_photo: item.creater.image? baseImageUrl + item.creater.image:'../../../assets/default.jpg',

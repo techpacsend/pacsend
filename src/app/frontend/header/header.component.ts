@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('navigationLogin', { static: false }) navigationLogin: TemplateRef<any>;
   @ViewChild('whypacsend', { static: false }) pacsend: ElementRef;
 
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
 
   isDisabled: boolean = false;
   usable: boolean = true;
@@ -737,7 +737,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.sharedService.onProfileImageGet().subscribe((res) => { 
       if (res) {
-        this.avatar_image = "http://pacsend.uk/public/uploads/users/" + res.ProfileImage;
+        this.avatar_image = "https://pacsend.app/public/uploads/users/" + res.ProfileImage;
       }
       
     })
@@ -961,13 +961,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.equalsOne = true;
         this.notequalsOne = false;
         this.isLogin = true;
-        this.avatar_image = "http://pacsend.uk/public/uploads/users/" + x.userData.custom_profile_photo;
+        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.custom_profile_photo;
       }
      else if (x.userData.image) {
         this.equalsOne = true;
         this.notequalsOne = false;
         this.isLogin = true;
-        this.avatar_image = "http://pacsend.uk/public/uploads/users/" + x.userData.image;
+        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.image;
       }
       else {
         this.equalsOne = true;

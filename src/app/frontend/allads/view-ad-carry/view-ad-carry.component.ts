@@ -23,7 +23,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ViewAdCarryComponent implements OnInit, AfterViewInit {
 
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
   myStatus = false;
@@ -32,7 +32,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
   ratingSubmit: boolean = false;
   forUserDetails: any;
   hideLCP: boolean;
-  imageBaseUrl = 'http://pacsend.uk/public/uploads/users/';
+  imageBaseUrl = 'https://pacsend.app/public/uploads/users/';
   notificationMessage: any;
 
   GetWishlList() {

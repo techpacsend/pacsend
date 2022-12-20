@@ -76,7 +76,7 @@ export class AdEditComponent implements OnInit {
   @ViewChild("navigationLogin", { static: false })
   navigationLogin: TemplateRef<any>;
 
-  mrcURL: string = "http://pacsend.uk";
+  mrcURL: string = "https://pacsend.app";
 
   isDisabled: boolean = false;
   usable: boolean = true;
@@ -401,7 +401,7 @@ export class AdEditComponent implements OnInit {
   imageIndex: number = 0;
   images = [];
   showImages = [];
-  adImageBaseUrl = "http://pacsend.uk/public/uploads/adds/";
+  adImageBaseUrl = "https://pacsend.app/public/uploads/adds/";
   filesAmount;
   allowImg = ["image/jpeg", "image/png", "image/jpg", "image/bmp"];
   countryShortName = 'PK';
@@ -2410,14 +2410,14 @@ export class AdEditComponent implements OnInit {
           this.onClickPriority(3);
         }
 
-        // let adImages = `http://pacsend.uk/public/uploads/adds/${product['data'].ad_image}`;
+        // let adImages = `https://pacsend.app/public/uploads/adds/${product['data'].ad_image}`;
         if (product.adGallery) {
           let images = {
             imageName: "",
           };
           product.adGallery.forEach((img) => {
             if (img.image) {
-              let adImages = `http://pacsend.uk/public/uploads/adds/${img.image}`;
+              let adImages = `https://pacsend.app/public/uploads/adds/${img.image}`;
               images.imageName = img.image;
               this.uploadedImagesSender.push(images);
               this.showImages.push(adImages);

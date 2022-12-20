@@ -61,7 +61,7 @@ doAlladsRed():Observable<any>{
   }
 
   public sendImages(body) {
-    return this.httpClient.post('http://pacsend.uk/api/v1/post-sender-ad-images', body);
+    return this.httpClient.post('https://pacsend.app/api/v1/post-sender-ad-images', body);
   }
 
   public PostSenderAdnew(body) {

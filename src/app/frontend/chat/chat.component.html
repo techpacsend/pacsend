@@ -24,7 +24,7 @@
 
                   <div class="col-md-12 padding-zero text-left">
                     <img *ngIf="googleAdsImageChatTop != undefined" class="w-100 mb-3" [src]="
-                        'http://pacsend.uk/public/uploads/slots/' +
+                        'https://pacsend.app/public/uploads/slots/' +
                           googleAdsImageChatTop | byPassSecurityUrl
                       " />
                     <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript">
@@ -142,7 +142,7 @@
 
           <div *ngIf="!checkChatShow || !chatShowDisable" class="col-lg-9 col-md-9 col-sm-12 col-12">
 
-            <img src="http://pacsend.uk/public/uploads/users/chetEmpty.png" class="blank Chat image w-100" />
+            <img src="https://pacsend.app/public/uploads/users/chetEmpty.png" class="blank Chat image w-100" />
           </div>
           <div *ngIf="
               checkChatShow && (showChatMobile || showChatMobile == undefined) && (chatShowDisable)
@@ -249,7 +249,7 @@
                               <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
                                 <label>Size</label>
                                 <span>
-                                  <img src="http://pacsend.uk/public/uploads/travelingBy/{{
+                                  <img src="https://pacsend.app/public/uploads/travelingBy/{{
                                     Chat.traveling_by_image
                                   }}" height="20" width="15" class="d-none" />                                
                                   {{ Chat.traveling_by_fullname }}
@@ -331,7 +331,7 @@
                             <div class="row">
                               <div class="col-12 position-relative pl-0 pr-0">
                                 <img [src]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " class="
                                     img-resposnive
@@ -358,7 +358,7 @@
                               </div>
                               <div class="col-md-12 text-right">
                                 <a [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <i class="fas fa-arrow-circle-down font-25"></i>
@@ -379,7 +379,7 @@
                             <div class="row">
                               <div class="col-md-12">
                                 <a *ngIf="item.extension == 'pdf'" [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <img src="assets/ICONS-01.png" alt="photo" />
@@ -390,7 +390,7 @@
 
                                 <a *ngIf="item.extension == 'zip' ||
                                 item.extension == 'rar'" [href]="
-                                'http://pacsend.uk/public/uploads/chat/' +
+                                'https://pacsend.app/public/uploads/chat/' +
                                 item.attachment
                               " target="_blank">
                                   <img src="assets/ICONS-08.png" alt="photo" />
@@ -403,7 +403,7 @@
                                     item.extension == 'doc' ||
                                     item.extension == 'docx'
                                   " [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <img src="assets/ICONS-03.png" alt="photo" />
@@ -413,7 +413,7 @@
                                     item.extension == 'xls' ||
                                     item.extension == 'xlsx'
                                   " [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <img src="assets/ICONS-02.png" alt="photo" />
@@ -426,7 +426,7 @@
                                     item.extension == 'ppt' ||
                                     item.extension == 'pptx'
                                   " [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <img src="assets/ICONS-07.png" alt="photo" />
@@ -435,7 +435,7 @@
                                     }}</span>
                                 </a>
                                 <a *ngIf="item.extension == 'txt'" [href]="
-                                    'http://pacsend.uk/public/uploads/chat/' +
+                                    'https://pacsend.app/public/uploads/chat/' +
                                     item.attachment
                                   " target="_blank">
                                   <img src="assets/ICONS-06.png" alt="photo" />

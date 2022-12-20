@@ -36,7 +36,7 @@ import { SharedService } from '../services/shared.service';
 export class MapsComponent implements OnInit {
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
 
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
 
   form: FormGroup;
   zoomIn: any;
@@ -153,10 +153,10 @@ export class MapsComponent implements OnInit {
   addressGmap: any;
   googleAdsImageVerifyLeft: string;
   googleAdsImageVerifyRight: string;
-  baseImageUrl = "http://pacsend.uk/public/uploads/users/";
-  mapBaseImageUrl = "http://pacsend.uk/public/uploads/slots/";
-  tagImgUrl = "http://pacsend.uk/public/uploads/category/";
-  adBaseImgUrl = 'http://pacsend.uk/public/uploads/adds/';
+  baseImageUrl = "https://pacsend.app/public/uploads/users/";
+  mapBaseImageUrl = "https://pacsend.app/public/uploads/slots/";
+  tagImgUrl = "https://pacsend.app/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
   private geoCoder;
   address: any;
   loginUser:any
@@ -262,7 +262,7 @@ export class MapsComponent implements OnInit {
   usericon(item) {
     let Sendericon12 = {
       url:
-        "http://pacsend.uk/public/uploads/users/" +
+        "https://pacsend.app/public/uploads/users/" +
         item.creater.image,
       scaledSize: { height: 50, width: 50 },
     };

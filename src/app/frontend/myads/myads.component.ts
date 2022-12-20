@@ -21,7 +21,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class MyadsComponent implements OnInit {
 
 
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
 
   searchForm;
   longitude1: number;
@@ -83,9 +83,9 @@ export class MyadsComponent implements OnInit {
   selfy: any;
   userVerfy: any;
   isDataAvalaible = true;
-  baseImageUrl = 'http://pacsend.uk/public/uploads/users/';
-  tagImgUrl = "http://pacsend.uk/public/uploads/category/";
-  adBaseImgUrl = 'http://pacsend.uk/public/uploads/adds/';
+  baseImageUrl = 'https://pacsend.app/public/uploads/users/';
+  tagImgUrl = "https://pacsend.app/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
   categoryDropdownSettings:IDropdownSettings={};
   categories = [];
   page: number = 1;

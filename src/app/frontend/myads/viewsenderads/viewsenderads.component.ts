@@ -14,7 +14,7 @@ import { MyAdService } from '../myads.service';
 })
 export class ViewsenderadsComponent implements OnInit {
 
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
   clientid = "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
   btntext = "Connect";
   form: FormGroup

@@ -16,7 +16,7 @@ export class MybookingComponent implements OnInit {
 
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
 
- mrcURL: string = 'http://pacsend.uk';
+ mrcURL: string = 'https://pacsend.app';
 
   hidesender: boolean = true;
   hidecarrier: boolean = true;

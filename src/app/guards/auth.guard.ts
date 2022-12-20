@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   client_key: string;
   email: any;
-  authCheck: string="http://pacsend.uk/api/v1/email-exists";
+  authCheck: string="https://pacsend.app/api/v1/email-exists";
   userData:any; //User Data
 
   constructor(

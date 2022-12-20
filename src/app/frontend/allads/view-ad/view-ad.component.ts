@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ViewAdComponent implements OnInit, AfterViewInit {
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
   myStatus = false;
   reports: any;
   selectedId: any;
@@ -30,7 +30,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
   cancelAccepted: any;
   imageIndex: number=0;
   hideLCP: boolean;
-  imageBaseUrl = 'http://pacsend.uk/public/uploads/users/';
+  imageBaseUrl = 'https://pacsend.app/public/uploads/users/';
   pickUpAlert: boolean;
   deliveryAlert: boolean;
   notificationMessage: any;

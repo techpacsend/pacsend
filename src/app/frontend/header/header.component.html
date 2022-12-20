@@ -481,7 +481,7 @@
               <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'56px'" [height]="'56px'">
               </ngx-shimmer-loading>
 
-              <img *ngIf="!aboutPacsendLCP" src="http://pacsend.uk/public/uploads/traveling/{{
+              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.app/public/uploads/traveling/{{
                   travellingType.image
                 }}" class="width-100 " />
             </div>
@@ -1243,7 +1243,7 @@
               <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'56px'" [height]="'56px'">
               </ngx-shimmer-loading>
 
-              <img *ngIf="!aboutPacsendLCP" src="http://pacsend.uk/public/uploads/travelingBy/{{
+              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.app/public/uploads/travelingBy/{{
                   travellingType.image
                 }}" class="width-100" />
             </div>
@@ -1762,7 +1762,7 @@
     <ng-template #verifyProfileStepOne let-modal>
       <div class="ad-left position-absolute top-0 right-44">
         <img *ngIf="googleAdsImageVerifyRight != undefined" class="w-100" [src]="
-            'http://pacsend.uk/public/uploads/slots/' +
+            'https://pacsend.app/public/uploads/slots/' +
               googleAdsImageVerifyRight | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -1770,7 +1770,7 @@
 
       <div class="ad-right position-absolute top-0 left-44">
         <img *ngIf="googleAdsImageVerifyRight != undefined" class="w-100" [src]="
-            'http://pacsend.uk/public/uploads/slots/' +
+            'https://pacsend.app/public/uploads/slots/' +
               googleAdsImageVerifyRight | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>

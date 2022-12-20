@@ -46,7 +46,7 @@
       </div>
       <div *ngIf="hideLCP" class="mt-3 col-12 d-flex justify-content-center align-items-center">
         <img *ngIf="googleAdsImage != undefined" class="w-100" [src]="
-            'http://pacsend.uk/public/uploads/slots/' + googleAdsImage
+            'https://pacsend.app/public/uploads/slots/' + googleAdsImage
               | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -292,7 +292,7 @@
           </div>
           <div *ngIf="hideLCP" class="col-12 mt-3">
             <img *ngIf="googleAdsImageSenderAdRight != undefined" class="w-100" [src]="
-                'http://pacsend.uk/public/uploads/slots/' +
+                'https://pacsend.app/public/uploads/slots/' +
                   googleAdsImageSenderAdRight | byPassSecurityUrl
               " />
             <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>

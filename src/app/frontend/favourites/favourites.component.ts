@@ -15,7 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./favourites.component.css']
 })
 export class FavouritesComponent implements OnInit {
-  mrcURL: string = 'http://pacsend.uk';
+  mrcURL: string = 'https://pacsend.app';
 
   Senders = []
   Carriers = []
@@ -23,9 +23,9 @@ export class FavouritesComponent implements OnInit {
   device: string;
   deviceInfo = null;
   showCarrierMobile: boolean;
-  baseImageUrl = 'http://pacsend.uk/public/uploads/users/';
-  tagImgUrl = "http://pacsend.uk/public/uploads/category/";
-  adBaseImgUrl = 'http://pacsend.uk/public/uploads/adds/';
+  baseImageUrl = 'https://pacsend.app/public/uploads/users/';
+  tagImgUrl = "https://pacsend.app/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
   userId: number;
   clientId = "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
   page: number = 1;

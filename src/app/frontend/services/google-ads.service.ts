@@ -15,7 +15,7 @@ export class GoogleAdsService {
   }
 
   getAds(): Observable<GoogleAds> {
-    return this.http.get<GoogleAds>("http://pacsend.uk/api/v1/slot/settings?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
+    return this.http.get<GoogleAds>("https://pacsend.app/api/v1/slot/settings?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
   }
 
 }
