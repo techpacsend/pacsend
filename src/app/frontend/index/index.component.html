@@ -580,7 +580,6 @@
   <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="11.5">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     <div *ngIf="!alladsData">
-      <!-- url: 'https://pacsend.app/public/uploads/users/' + item.creater.image, -->
     <agm-marker *ngFor="let item of filteredMarkers"
     [latitude]="item.from_latitude" [longitude]="item.from_longitude" class="image1" [iconUrl]="{
       url: item.creater.custom_profile_photo? baseImageUrl + item.creater.custom_profile_photo: item.creater.image? baseImageUrl + item.creater.image:'../../../assets/default.jpg',

@@ -1480,14 +1480,19 @@ getCarrierData(close?) {
             new google.maps.LatLng(+m.from_latitude, +m.from_longitude),
             center
           ) / 1000;
-        if (distanceInKm < area) {
+
+        this.filteredMarkers.push(m);
+        return;
+        /*if (distanceInKm < area) {
           this.filteredMarkers.push(m);
           return;
-        }
+        }*/
       });
       this.mapZoom = 11.5;
       this.searchFilterResult = this.filteredMarkers.length;
       this.cdRef.detectChanges();
+      console.log('this.filteredMarkers')
+      console.log(this.filteredMarkers)
     });
 
   }

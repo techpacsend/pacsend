@@ -1337,6 +1337,9 @@ export class AdEditComponent implements OnInit {
 
   getSetting() {
     this.settingService.getSettings().subscribe((data: any[]) => {
+      console.log('data');
+      console.log(data);
+      
       this.settings = data["data"];
       this.id = data["data"].id;
       this.name = data["data"].name;
