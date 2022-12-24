@@ -346,11 +346,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   home_img_2;
   created_at;
   updated_at;
+  unverified_text;
+  unverified_image;
   Image: any;
   carrier: any;
   Favicon: any;
   latitude: any;
   longitude: any;
+  settingImageUrl = 'https://pacsend.app/public/uploads/setting/';
 
   @ViewChild("searchmap", { static: true }) public searchmap: ElementRef;
   Title: any;
@@ -1817,6 +1820,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.home_img_2 = data["data"].home_img_2;
       this.created_at = data["data"].created_at;
       this.updated_at = data["data"].updated_at;
+      this.unverified_text = data["data"].meta_description;
+      this.unverified_image = data["data"].home_img_1;
     });
   }
 

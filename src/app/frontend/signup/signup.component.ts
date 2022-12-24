@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   sContact: string;
   sEmail: string;
   private geoCoder;
-  country = 'uk';
+  country = 'AE';
   isCountry = false;
   inputType = 'password';
   isPasswordVisible = false;
