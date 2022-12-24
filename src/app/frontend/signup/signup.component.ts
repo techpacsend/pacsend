@@ -122,6 +122,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
       this.settingService.Error("Please enter email!");
       return;
     }
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!regex.test(this.signUpForm.controls.email.value)){
+      this.settingService.Error("Please enter valid email!");
+      return false;
+    }
+
     if (this.signUpForm.controls.first_name.value ==='' || this.signUpForm.controls.first_name.errors ) { 
       this.settingService.Error("Please enter firstname!");
       return;
