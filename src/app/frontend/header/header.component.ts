@@ -1820,8 +1820,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.home_img_2 = data["data"].home_img_2;
       this.created_at = data["data"].created_at;
       this.updated_at = data["data"].updated_at;
-      this.unverified_text = data["data"].meta_description;
-      this.unverified_image = data["data"].home_img_1;
+      this.unverified_text = data["data"].unverified_user_message;
+      this.unverified_image = data["data"].unverified_user_image;
     });
   }
 
