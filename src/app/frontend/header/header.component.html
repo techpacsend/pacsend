@@ -671,8 +671,8 @@
             border-radius: 5px;
           " [ngStyle]="{
             border: deliveryPty[i] ? '2px solid #da2926' : '2px solid #E1E7EC'
-          }">
-          <div class="row" (click)="getPriorityid(priority.id); onClickPriority(i)">
+          }" >
+          <div *ngIf="priority.slug !==''" class="row" (click)="getPriorityid(priority.id); onClickPriority(i)">
             <div class="col-6 text-left col-md-6">
               <a style="color: #202833 !important" class="font-16 font-700 mb-0 p-l-r-10">{{ priority.title }}</a>
             </div>

@@ -1595,3 +1595,6 @@ margin-bottom: 5px;
 .MobIconLinks a svg {
   margin: 0px !important;
 }
+.col-12 m-b-10:empty{
+  display: none;
+}

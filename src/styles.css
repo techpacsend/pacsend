@@ -16478,7 +16478,9 @@ span.scale-rating label:before {
 .SBAr {
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
 }
-
+.col-12 m-b-10:empty{
+  display: none;
+}
 @media (min-width: 768px) {
   .collapse.dont-collapse-sm {
     display: block;

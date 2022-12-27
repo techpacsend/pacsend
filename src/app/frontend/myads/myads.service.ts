@@ -9,7 +9,7 @@ import {Observable,Subject} from 'rxjs';
 export class MyAdService {
   readonly baseUrl = environment.baseUrl;
   // readonly MYadsurl = this.baseUrl + "/my-ads?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G"
-  readonly MYadsurl = this.baseUrl + "  "
+  readonly MYadsurl = this.baseUrl + "/my-ads_v2?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G"
   readonly allCarrierAds = this.baseUrl + "/ads/carrier?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G&";
   readonly allSenderAds = this.baseUrl + "/ads/sender?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G&";
   readonly ad = this.baseUrl + "/ads/";

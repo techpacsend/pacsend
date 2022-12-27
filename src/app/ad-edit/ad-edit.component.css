@@ -1424,3 +1424,7 @@ div.pac-container {
   width: 100% !important;
   height: 150px !important;
 }' */
+
+.col-12 m-b-10:empty{
+  display: none;
+}
