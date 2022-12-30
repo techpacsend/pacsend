@@ -45,7 +45,6 @@ const styles = ({
     margin: '14px'
   }
 });
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -372,9 +371,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
   imagesss: any;
   adType: number;
   alladsData: boolean;
+  active_tab:any = 'all';
   googleAdsImageSenderAdRight: string;
   baseImageUrl = 'https://pacsend.app/public/uploads/users/';
   settingImageUrl = 'https://pacsend.app/public/uploads/setting/';
+
 
   constructor(private dataServicePri: PrivacyPolicyService,private dataServiceTerm: TermsAndConditionService,private dataServiceFaq: FaqsService,private dataService: IndexService, private mapsAPILoader: MapsAPILoader, private spinner: NgxSpinnerService,
     private componentFactoryResolver: ComponentFactoryResolver, private modalService: NgbModal, private theme: LyTheme2, private _MapService: MapsService,
@@ -1448,6 +1449,7 @@ getAllAds(count, type) {
 }
 
 getSenderData(close?) {
+  this.active_tab = 'sender';
   this.alladsData=false;
   this.adType = 2;
   this.senderclass = true;
@@ -1457,6 +1459,7 @@ getSenderData(close?) {
   this.spinner.show();
 }
 getCarrierData(close?) {
+  this.active_tab = 'carrier';
   this.alladsData=false;
   this.adType = 1;
   this.senderclass = false;
@@ -1466,6 +1469,7 @@ getCarrierData(close?) {
 }
 
   getAllData() {
+    this.active_tab = 'all';
     this.alladsData=true;
   }
   getMarkers(area: number, markers?: any) {

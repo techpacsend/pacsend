@@ -543,34 +543,31 @@
         <div class="card-body">
           <div class="row">
             <div class="col-4">
-              <a class="
-                  btn btn-secondary btn-sm
-                  width-100
-                  myBullet
-                  line-height-0
-                  font-16 font-500
-                " [ngClass]="clickSenderMap ? 'myBulletactive' : ''" (click)="
-                  getCarrierData();"  id="btnSender">Send</a>
+              <a 
+              [ngClass]="active_tab == 'carrier' ?
+              'myBulletactive btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'
+              :
+              'btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'"
+              (click)="
+              getCarrierData();"  id="btnSender">Send</a>
             </div>
             <div class="col-4">
-              <a class="
-                  btn btn-secondary btn-sm
-                  width-100
-                  myBullet
-                  line-height-0
-                  font-16 font-500
-                " [ngClass]="clickCarrierMap ? 'myBulletactive' : ''" (click)="getSenderData();
-                  " id="btnCarrier">Carry</a>
+              <a
+              [ngClass]="active_tab == 'sender' ?
+              'myBulletactive btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'
+              :
+              'btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'"
+              (click)="getSenderData();
+              " id="btnCarrier">Carry</a>
             </div>
             <div class="col-4">
-              <a class="
-                  btn btn-secondary btn-sm
-                  width-100
-                  line-height-0
-                  myBullet
-                  font-16 font-500
-                " [ngClass]="clickAllMap ? 'myBulletactive' : ''" (click)="getAllData();
-                  " id="btnCarrier">All</a>
+              <a
+                [ngClass]="active_tab == 'all' ?
+                  'myBulletactive btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'
+                  :
+                  'btn btn-secondary btn-sm width-100 line-height-0 myBullet font-16 font-500'"
+                (click)="getAllData();"
+                id="btnCarrier">All</a>
             </div>
           </div>
         </div>
