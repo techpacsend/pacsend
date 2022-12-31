@@ -1425,6 +1425,6 @@ div.pac-container {
   height: 150px !important;
 }' */
 
-.col-12 m-b-10:empty{
+.delivery_location:empty{
   display: none;
 }

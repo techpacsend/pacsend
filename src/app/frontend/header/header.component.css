@@ -19,7 +19,7 @@
 .term-ui{
   margin-right: 40px;
     margin-left: 40px;
-    text-align: justify;
+    text-align: left;
     overflow: scroll;
     height: 300px;
 }
@@ -1595,6 +1595,6 @@ margin-bottom: 5px;
 .MobIconLinks a svg {
   margin: 0px !important;
 }
-.col-12 m-b-10:empty{
+.delivery_location:empty{
   display: none;
 }
