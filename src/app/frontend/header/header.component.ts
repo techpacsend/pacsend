@@ -2061,12 +2061,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSelect($event) {
+  onSelect($event,verifyProfileStepTwo) {
     this.uploadfile.push(...$event.addedFiles);
     if (this.uploadfile.length > 1) {
       this.uploadfile = []
       this.SettingService.Error("Only 1 Image Is Allowed..");
     } else {
+      this.verificationstepTwo(verifyProfileStepTwo)
     }
   }
 
@@ -2486,6 +2487,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.SettingService.Info('Your profile is under verification process!');
     }
   }
+  
+  verificationstepOne(verifyProfileStepOne){
+    this.modalService.dismissAll();
+    this.modalReference = this.modalService.open(verifyProfileStepOne, {
+      ariaLabelledBy: "modal-basic-title",
+      windowClass: "modal-width",
+      backdrop: 'static',
+      centered: true
+    });
+  }
+
+  verificationstepTwo2(verifyProfileStepTwo){
+    this.modalService.dismissAll();
+    this.modalReference = this.modalService.open(verifyProfileStepTwo, {
+      ariaLabelledBy: "modal-basic-title",
+      windowClass: "modal-width",
+      backdrop: 'static',
+      centered: true
+    });
+  }
+  
   verificationstepTwo(verifyProfileStepTwo, profile?) {
     this.UploadImage();
     if (this.uploadfile.length == 0) {
@@ -2501,6 +2523,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
     }
   }
+  
   verificationstepThree(verifyProfileStepThree) {
 
     if (!this.clicked) {
@@ -2594,7 +2617,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSelectBack($event) {
+  frontimage() {
+    this.disablefrontbtn = false;
+    this.disabledbackbtn = true;
+
+    this.frontSelfie = false;
+    this.backSelfie = true;
+  }
+
+  backimage() {
+    this.disablefrontbtn = true;
+    this.disabledbackbtn = false;
+
+    this.frontSelfie = true;
+    this.backSelfie = false;
+  }
+
+  onSelectBack($event,verifyProfileStepThree) {
     this.frontSelfie = true;
     this.backSelfie = true;
     this.disablefrontbtn = true;
@@ -2605,6 +2644,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.SettingService.Error('Only Single Image Allowed..');
     } else {
       this.UploadImageFrontandBack();
+      this.modalService.dismissAll();
+      this.modalReference = this.modalService.open(verifyProfileStepThree, {
+        ariaLabelledBy: "modal-basic-title",
+        windowClass: "modal-width",
+        backdrop: 'static',
+        centered: true
+      });
     }
   }
 

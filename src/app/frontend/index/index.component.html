@@ -65,30 +65,32 @@
         responsive-height-second
       ">
       <div class="banner-hover-left" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_1 + ')'}">
-        <div class="carousel-caption text-center">
-          <!-- <h6 class="
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active" >
+          <div class="carousel-caption text-center">
+            <!-- <h6 class="
+                heading-custom-caption
+                colorWhite
+                cursor-pointer
+                mob-v-h6
+                text-shadow000
+              " (click)="
+                adTypeId = '2';
+                openPackageInfo(packageInfo, whereAreYouTravellingFrom)
+              "> -->
+              <h6 class="
               heading-custom-caption
               colorWhite
               cursor-pointer
               mob-v-h6
               text-shadow000
-            " (click)="
-              adTypeId = '2';
-              openPackageInfo(packageInfo, whereAreYouTravellingFrom)
-            "> -->
-            <h6 class="
-            heading-custom-caption
-            colorWhite
-            cursor-pointer
-            mob-v-h6
-            text-shadow000
-          ">
-            CARRIER
-          </h6>
-          <p class="custom-caption-desc custom-caption">
-            I want to carry a package.
-          </p>
-        </div>
+            ">
+              CARRIER
+            </h6>
+            <p class="custom-caption-desc custom-caption">
+              I want to carry a package.
+            </p>
+          </div>
+        </a>
       </div>
     </div>
     <div class="
@@ -100,16 +102,18 @@
         justify-content-center
         responsive-height-second
       ">
-      <div class="banner-hover-right" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_2 + ')'}">
-        <div class="carousel-caption text-center">
-            <h6 class="heading-custom-caption colorWhite cursor-pointer mob-v-h6">
-            SENDER
-          </h6>
-          <p class="custom-caption custom-caption-desc">
-            I want to send a package.
-          </p>
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active" >
+        <div class="banner-hover-right" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_2 + ')'}">
+          <div class="carousel-caption text-center">
+              <h6 class="heading-custom-caption colorWhite cursor-pointer mob-v-h6">
+              SENDER
+            </h6>
+            <p class="custom-caption custom-caption-desc">
+              I want to send a package.
+            </p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

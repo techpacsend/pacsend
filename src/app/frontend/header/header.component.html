@@ -1786,7 +1786,7 @@
           <p class="color-figma-photo text-center mt-4 mb-3 color-figma-photo-mob">
             Upload a selfie with your id card
           </p>
-          <div class="custom-dropzone custom-dropZone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+          <div class="custom-dropzone custom-dropZone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event,verifyProfileStepTwo)">
             <ngx-dropzone-label>
               <svg width="80" height="64" viewBox="0 0 80 64" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -1827,7 +1827,7 @@
           <div class="numberCircleRed mob-view-red">2</div>
           <div class="numberCircleWhite mob-view-red">3</div>
 
-          <p *ngIf="!frontselfiearray.length || !backselfiearray.length"
+          <p
             class="color-figma-photo text-center mt-4 mb-3 ml-4 mr-4 color-figma-photo-mob">
             {{
             !disablefrontbtn
@@ -1835,18 +1835,18 @@
             : "Upload your ID card back image"
             }}
           </p>
-          <p *ngIf="frontselfiearray.length && backselfiearray.length"
+          <!-- <p *ngIf="frontselfiearray.length && backselfiearray.length"
             class="color-figma-photo text-center mt-4 mb-3 ml-4 mr-4 color-figma-photo-mob">
             Please "click" next to add your National ID Number.
-          </p>
+          </p> -->
           <div class="row">
-            <div class="col-12 m-b-20" *ngIf="!frontselfiearray.length || !backselfiearray.length">
-              <button [disabled]="disablefrontbtn" class="btn w-30 mr-2 mob-responsive-btn-font"
-                [ngClass]="!disablefrontbtn ? 'btn-primary' : 'deactive-Back'">
+            <div class="col-12 m-b-20" >
+              <button class="btn w-30 mr-2 mob-responsive-btn-font"
+                [ngClass]="!disablefrontbtn ? 'btn-primary' : 'deactive-Back'" (click)="frontimage()">
                 Front
               </button>
-              <button [disabled]="disabledbackbtn" [ngClass]="!disabledbackbtn ? 'btn-primary' : 'deactive-Back'"
-                class="btn w-30 mob-responsive-btn-font">
+              <button [ngClass]="!disabledbackbtn ? 'btn-primary' : 'deactive-Back'"
+                class="btn w-30 mob-responsive-btn-font" (click)="backimage()">
                 Back
               </button>
             </div>
@@ -1868,7 +1868,7 @@
           </div>
           <div [hidden]="backSelfie">
             <div class="custom-dropzone custom-dropZone" ngx-dropzone [accept]="'image/*'"
-              (change)="onSelectBack($event)">
+              (change)="onSelectBack($event,verifyProfileStepThree)">
               <ngx-dropzone-label><svg width="80" height="64" viewBox="0 0 80 64" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1884,9 +1884,13 @@
         </div>
         <div class="modal-footer p-0">
           <button type="button"
-            class="btn btn-primary font-600 m-t-14 mt-4 mb-5 h-56 next-btnn verify-btn-card-mob-responsive"
+            class="btn btn-primary font-600 m-t-14 mt-4 h-56 next-btnn verify-btn-card-mob-responsive"
             (click)="verificationstepThree(verifyProfileStepThree)">
             Next
+          </button>
+          <button type="button" class="btn btn-primary font-600 m-t-20 mb-4 h-56 next-btnn verify-btn-card-mob-responsive"
+            (click)="verificationstepOne(verifyProfileStepOne)">
+            Back
           </button>
         </div>
       </div>
@@ -1918,10 +1922,12 @@
         </div>
         <div class="modal-footer p-0">
           <button type="button"
-            class="btn btn-primary font-600 m-t-10 m-b-20 h-56 next-btnn verify-btn-card-mob-responsive"
+            class="btn btn-primary font-600 m-t-10 h-56 next-btnn verify-btn-card-mob-responsive"
             (click)="verificationsuccessfull(verificationSuccessful)">
             Verify
           </button>
+          <button type="button" class="btn btn-primary font-600 m-t-20 mb-4 h-56 next-btnn verify-btn-card-mob-responsive"
+          (click)="verificationstepTwo2(verifyProfileStepTwo)">Back</button>
         </div>
       </div>
     </ng-template>
