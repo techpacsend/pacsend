@@ -401,6 +401,7 @@ export class MapsComponent implements OnInit {
     };
     this._MapService.getAllSenderAds(body).subscribe((x: any) => {
       this.filteredMarkers = x.data;
+      
       if (type == 2) {
         let location = [];
         let location1 = [];
@@ -416,7 +417,6 @@ export class MapsComponent implements OnInit {
         x.data.forEach((element) => {
           this.AllAds.push(element);
         });
-
       }
       if (type == 1) {
         let location = [];
@@ -484,11 +484,12 @@ export class MapsComponent implements OnInit {
             new google.maps.LatLng(+m.from_latitude, +m.from_longitude),
             center
           ) / 1000;
-        if (distanceInKm < area) {
+        // if (distanceInKm < area) {
           this.filteredMarkers.push(m);
           return;
-        }
+        // }
       });
+
       this.mapZoom = 11.5;
       this.searchFilterResult = this.filteredMarkers.length;
       this.cdRef.detectChanges();
@@ -872,12 +873,18 @@ export class MapsComponent implements OnInit {
 
   filterModalData() {
     this._MapService.getFilterItemOnAdType(this.adType, this.lat, this.lng).subscribe((res) => {
+      
       this.filterData = res;
-      this.minWeight = +this.filterData.minWeight;
-      this.maxWeight = +this.filterData.maxWeight;
+      // this.minWeight = +this.filterData.minWeight;
+      this.minWeight = +1;
+
+      this.maxWeight = +1000;
+      // this.maxWeight = +this.filterData.maxWeight;
       this.filter.capacity = this.filterData.minWeight;
-      this.minPayment = +this.filterData.minPayment;
-      this.maxPayment = +this.filterData.maxPayment;
+      // this.minPayment = +this.filterData.minPayment;
+      // this.maxPayment = +this.filterData.maxPayment;
+      this.minPayment = +1;
+      this.maxPayment = +1000;
       this.filter.payment = this.filterData.minPayment;
 
       this.filterData.categories.forEach((item, index) => {
