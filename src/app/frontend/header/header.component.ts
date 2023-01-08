@@ -1202,10 +1202,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   openSizeOfPackage(sizeOfPackage) {
     this.senderAd.image = this.images;
     if (
-      this.senderAd.title == "" ||
+      this.senderAd.title == '' ||
       this.senderAd.categoryIds.length <= 0 ||
-      this.senderAd.weight == "" ||
-      !this.senderAd.image.length
+      this.senderAd.weight == '' ||
+      this.senderAd.weight <= '0' ||
+     !this.senderAd.image.length
     ) {
       this.SettingService.Error('Please fill all the fields!')
     } else {
@@ -1457,6 +1458,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loader.start();
     if (this.senderAd.payment == null) {
       this.SettingService.Error('Please enter payment value!');
+      this.loader.stop();
+      return null;
+    }
+    if (this.senderAd.payment <= '0') {
+      this.SettingService.Error('Please enter grater than 0 payment value!');
       this.loader.stop();
       return null;
     }
