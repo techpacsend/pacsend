@@ -812,3 +812,7 @@ body {
   border-radius: 10px;
   margin-top: 10px;
 }
+.sb-group a{color:red!important;width:54px;position:relative;display:block;height:54px;background-color:#fff!important;border-radius:50%!important;padding:5px;font-size:13px!important;transition:.3s;text-align:center;margin:.4125em;box-shadow:0 1px 6px 1px #cac7c7!important}
+.sb-group a:hover{background:red!important}
+.sb-group a:hover svg{color:#fff!important}
+.sb-group{flex-wrap:wrap;display:inline-flex;align-items:flex-start}
