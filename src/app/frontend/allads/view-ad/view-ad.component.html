@@ -115,7 +115,7 @@
                               'whatsapp',
                               'email',
                               'copy'
-                            ]" [size]="-8" (click)="check('open')">
+                            ]" [size]="1" (click)="check('open')">
                           </share-buttons>
                         </div>
                       </div>
@@ -262,7 +262,7 @@
 
                 <h6 class="sender-inner-ad-desc-1">
                   Active since
-                  <strong class="sender-inner-ad-desc">{{adData?.created_at | date}}</strong>
+                  <strong class="sender-inner-ad-desc">{{adData?.date | formatdates}}</strong>
                 </h6>
 
                 <h6 class="sender-inner-ad-desc-1">
