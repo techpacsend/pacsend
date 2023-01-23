@@ -164,7 +164,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
   iSfeedback: boolean;
   fbuserId: any;
   travelType: any = [];
-
+  page_url : any;
 
   constructor(private loader: NgxUiLoaderService,private actRoute: ActivatedRoute,
     private dataService: DataService,
@@ -177,6 +177,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     private googlAdsService: GoogleAdsService,
     private cdRef: ChangeDetectorRef,private myAdService:MyAdService
   ) {
+    this.page_url = this.router['location']._platformLocation.location.origin+router.url;
     this.imageGallary = [];
     this.loginuser = JSON.parse(localStorage.getItem("user"));
     // this.adID = this.actRoute.snapshot.params['id'];
@@ -226,6 +227,21 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     localStorage.setItem("page","adDetail");
     this.myAdService.getAlladsActive();
   }
+
+  copyMessage(){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.page_url;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
 
   getGoogleAdImage() { 
     this.googlAdsService.getAds().subscribe(data => {

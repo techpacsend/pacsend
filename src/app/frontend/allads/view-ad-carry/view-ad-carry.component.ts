@@ -178,6 +178,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
   loginuser: any
   pickUpAlert: boolean;
   deliveryAlert: boolean;
+  page_url : any;
 
   constructor(private actRoute: ActivatedRoute,
     private dataService: DataService,
@@ -192,6 +193,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     private cdRef: ChangeDetectorRef,
     private myAdService: MyAdService)
   {
+    this.page_url = this.router['location']._platformLocation.location.origin+router.url;
     this.loginuser = JSON.parse(localStorage.getItem("user"));
     // this.adID = this.actRoute.snapshot.params['id'];
     this.adID = localStorage.getItem("carrierDetailsId")
@@ -259,6 +261,20 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     this.GetNotificationFirebase();
     localStorage.setItem("page", "adDetail");
     this.myAdService.getAlladsActive();
+  }
+
+  copyMessage(){
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.page_url;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
   ngAfterViewInit() {
