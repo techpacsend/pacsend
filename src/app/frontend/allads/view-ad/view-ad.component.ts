@@ -181,8 +181,11 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     this.imageGallary = [];
     this.loginuser = JSON.parse(localStorage.getItem("user"));
     // console.log('this.actRoute.snapshot.params',this.actRoute.snapshot.params['title'])
-    this.adID = this.actRoute.snapshot.params['title'];
-    // this.adID = localStorage.getItem("senderDetailsId");
+    // this.adID = this.actRoute.snapshot.params['title'];
+    this.adID = localStorage.getItem("senderDetailsId");
+    if(this.adID == ''){
+      this.adID = this.actRoute.snapshot.params['title'];
+    }
     if (!this.loginuser) { 
       this.getAdDetails(this.adID, '');
       this.getGoogleAdImage();
@@ -213,8 +216,10 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     this.disabledstatusbutton = true
     let userId = localStorage.getItem("userId")
     this.loginuserid = userId;
-    // this.adID = localStorage.getItem("senderDetailsId");
-    this.adID = this.actRoute.snapshot.params['title'];
+    this.adID = localStorage.getItem("senderDetailsId");
+    if(this.adID == ''){
+      this.adID = this.actRoute.snapshot.params['title'];
+    }
     this.initform();
     this.GetWishlList();
 
