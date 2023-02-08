@@ -29,7 +29,9 @@ import { UserProfileComponent } from './frontend/user-profile/user-profile.compo
 import { NotificationComponent } from './notification/notification.component';
 import { DefaultPageComponent } from './frontend/default-page/default-page.component';
 import { SignupNextComponent } from './frontend/signup/signup-next.component';
+import { MyActivityComponent } from './frontend/my-activity/my-activity.component';
 import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -85,12 +87,16 @@ const routes: Routes = [
         .then((m) => m.AdEditModule),
         canActivate: [AuthGuard]
       },
-    
       {
         path: 'my-ads',
         // component: MyadsComponent,
         loadChildren: () => import("./frontend/myads/myads.module")
         .then((m) => m.MyAdsModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'my-activity',
+        component: MyActivityComponent,
         canActivate: [AuthGuard]
       },
       {

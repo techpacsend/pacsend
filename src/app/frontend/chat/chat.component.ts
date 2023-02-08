@@ -627,8 +627,8 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
         this.cdRef.detectChanges();
       },
       (err) => {
-        this.presenseService.setUserStatusOfflineAndOnline(this.docId, 'offline')
-        this.settingService.Error(err.message);
+        // this.presenseService.setUserStatusOfflineAndOnline(this.docId, 'offline')
+        // this.settingService.Error(err.message);
       }
     );
     this.loader.stop();

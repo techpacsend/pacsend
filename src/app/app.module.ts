@@ -42,6 +42,7 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { SlugifyPipe } from './pipe/slugify.pipe';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { MyActivityComponent } from './frontend/my-activity/my-activity.component';
 // import { FormatdatesPipe } from './pipe/formatdates.pipe';
 export class GlobalVariables {
   testVal = '#00bcd4';
@@ -94,6 +95,7 @@ const firebase = {
     SafePipe,
     DefaultPageComponent,
     SlugifyPipe,
+    MyActivityComponent,
     // FormatdatesPipe,
   ],
   imports: [

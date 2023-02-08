@@ -1,0 +1,1772 @@
+<div>
+  <div class="container-fluid p-t-b-10 mob-v-li-block bgcolor">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <ul class="menu menu-m-l">
+            <li class="mob-v-li-block">
+              <a [ngClass]="clickCarrier ? 'active' : 'any'" (click)="carrierAds()" class="text-capitalize">I
+                Want To Send</a>
+            </li>
+            <li class="mob-v-li-block">
+              <a class="text-capitalize menu-m-l-li" [ngClass]="clickSender ? 'active' : 'any'" (click)="senderAds()"
+                id="sender">I Want To Carry</a>
+            </li>
+            <li class="mob-v-display-block">
+              <a class="text-capitalize menu-m-l-li2 mob-v-display-block" [ngClass]="clickAll ? 'active' : 'any'"
+                (click)="allAds()">All</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid col-6-btn-mob">
+    <div class="row">
+      <div (click)="showCarrierMobile = true" class="col-6 col-xs-6 col-sm-6" [ngClass]="{
+          'mob-v-maindiv-btn': showCarrierMobile,
+          'mob-v-maindiv-btn-2nd': !showCarrierMobile
+        }">
+        <p class="d-flex align-items-center justify-content-center m-0 py-3 px-0 w-100 h-100" [ngClass]="{
+            'mob-v-maindiv-btn-p': showCarrierMobile,
+            'mob-v-maindiv-btn-2nd-p': !showCarrierMobile
+          }">
+          Carrier
+        </p>
+      </div>
+      <div (click)="showCarrierMobile = false" class="col-6 col-xs-6 col-sm-6" [ngClass]="{
+          'mob-v-maindiv-btn': !showCarrierMobile,
+          'mob-v-maindiv-btn-2nd': showCarrierMobile
+        }">
+        <p class="d-flex align-items-center justify-content-center m-0 py-3 px-0 w-100 h-100" [ngClass]="{
+            'mob-v-maindiv-btn-p': !showCarrierMobile,
+            'mob-v-maindiv-btn-2nd-p': showCarrierMobile
+          }">
+          Sender
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="allads" infinite-scroll [infiniteScrollDisabled]="scrollDisable" [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScroll()"
+    class="container-fluid p-t-b-20 px-0 p-l-r-0" style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'"
+    ngxUiLoaderBlurred>
+    <div class="container-fluid bg-light-gray p-l-r-0">
+      <div class="container">
+        <div class="row bg-light-gray mob-v-display-block">
+          <div class="col-12 text-center bg-light-gray myadds-button-mob-v">
+            <div class="row">
+              <div class="col-6">
+                <span class="myadds-button-mob-v-span line-height-45 font-18 cursor-default color-dark-gray"
+                  id="sender">Here are your <span class="font-700">Carriers</span>
+                </span>
+              </div>
+              <div class="col-6 text-center bg-light-gray bg-box-shadowv myadds-button-mob-v">
+                <div class="row">
+                  <div class="col-12">
+                    <span class="myadds-button-mob-v-span line-height-45 font-18 cursor-default color-dark-gray"
+                      id="carriers">Here are your <span class="font-700">Senders</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- carrier-all -->
+    <div class="container-fluid p-t-b-20 px-0 mob-v-padding fluid-2" style="background-color: #ecf0f3">
+      <div class="container">
+        <div class="row">
+          <div *ngIf="showCarrierMobile || showCarrierMobile == undefined"
+            class="col-md-6 col-12 text-center padding-zero-mobile mb-2 p-0-r-0">
+            <div class="CBox rounded-bottom mb-3" *ngFor="let item of carriers" data-aos="zoom-in">
+              <div class="CBoxBody d-flex flex-column p-4">
+                <div class="ToolBar text-right pt-2 pb-1">
+                  <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                    <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                      <a src=""
+                        (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                        class="btn btn-sm btn-primary text-white">
+                        <i class="fa fa-plus text-white" *ngIf="item.requested_is_connect != '1'"></i>
+                        {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="UserBar d-flex justify-content-between">
+                  <div class="ProfBox d-flex flex-row  align-items-center">
+                    <div class="ProfPic mr-3">
+                      <img class="rounded-circle"
+                        [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                    </div>
+                    <div class="ProfDetail d-flex flex-column">
+                      <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                        {{ item.first_name }} {{ item.last_name }}
+                      </h5>
+                      <div class="StarnStatBox d-flex flex-row">
+                        <div class="star-container">
+                          <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                            [initialStars]="item.avgFeedBack"></ngx-stars>
+                        </div>
+                        <!-- SHARE BUTTON -->
+                        <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                    <small class="mr-lg-2">Willing to Charge</small>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                </div>
+                <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                  <h5 _ngcontent-ebm-c11="">
+                    {{ item.title?item.title:'_____' }}
+                  </h5>
+                </div>
+                <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getCarrierId(item)">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                      <div class="InfoBox PickupBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Pick Up</label>
+                        <span>
+                          {{
+                          item.from
+                          ? (item.from)
+                          : "N/A"
+                          }}
+                        </span>
+                      </div>
+                      <div class="InfoBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Drop Off</label>
+                        <span>
+                          {{
+                          item.to
+                          ? (item.to)
+                          : ("N/A" | uppercase)
+                          }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                      <div class="row">
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Date of Departure</label>
+                          <span>{{ item.travelling_frequency | formatdates }}</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Capacity</label>
+                          <span>{{ item.weight }} Kgs</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Travelling by</label>
+                          <span>
+                            <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                              item.traveling_by_image
+                            }}" height="20" width="15" class="d-none" />
+                            {{ item.traveling_by }}
+                          </span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                          <label>Willing to Charge</label>
+                          <span>{{ item.payment }} AED</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                  <a *ngFor="let tags of item['types']"
+                    class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                    <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                    {{ tags.type_name }}
+                  </a>
+                </div>
+              </div>
+            </div><!--CBOX x here-->
+            <div *ngIf="ExactDataCarrierAll.length > 0" class="container-fluid p-t-b-20 px-0"
+              style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+              <div class="all-results d-flex justify-content-between" *ngIf="ExactDataCarrierAll.length > 0">
+                <div>
+                  {{
+                  ExactDataCarrierAll.length > 0
+                  ? "Exact Search"
+                  : ""
+                  }}
+                </div>
+                <div>
+                  <span class="text-danger mr-1">
+                    {{
+                    ExactDataCarrierAll.length > 0
+                    ? ExactDataCarrierAll.length
+                    : ""
+                    }}
+                  </span>
+                  <small>{{
+                    ExactDataCarrierAll.length > 0
+                    ? "Result"
+                    : ""
+                    }}</small>
+                </div>
+              </div>
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll" data-aos="zoom-in">
+                <div class="CBoxBody d-flex flex-column p-4">
+                  <div class="ToolBar text-right pt-2 pb-1">
+                    <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                      <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                        <a src="" *ngIf="item.requested_is_connect !== '1'"
+                          (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                          class="btn btn-sm btn-primary text-white">
+                          <i *ngIf="item.requested_is_connect !== '1'" class="fa fa-plus text-white"></i>
+                          {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                        </a>
+                        <a src="" *ngIf="item.requested_is_connect == '1'" class="btn btn-sm btn-primary text-white">
+                          {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="UserBar d-flex justify-content-between">
+                    <div class="ProfBox d-flex flex-row  align-items-center">
+                      <div class="ProfPic mr-3">
+                        <img class="rounded-circle"
+                          [src]="item.creater.custom_profile_photo? imageUrl + item.creater.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                      </div>
+                      <div class="ProfDetail d-flex flex-column">
+                        <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                          {{ item.first_name }} {{ item.last_name }}
+                        </h5>
+                        <div class="StarnStatBox d-flex flex-row">
+                          <div class="star-container">
+                            <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                              [initialStars]="item.avgFeedBack"></ngx-stars>
+                          </div>
+                          <!-- SHARE BUTTON -->
+                          <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                      <small class="mr-lg-2">Willing to Pay</small>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                  <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                    <h5 _ngcontent-ebm-c11="">
+                      {{ item.carrier_ad_title?item.carrier_ad_title:'_____' }}
+                    </h5>
+                  </div>
+                  <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getCarrierId(item)">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                        <div class="InfoBox PickupBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Pick Up</label>
+                          <span>
+                            {{
+                            item.carrier_from_location
+                            ? (item.carrier_from_location)
+                            : "N/A"
+                            }}
+                          </span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Drop Off</label>
+                          <span>
+                            {{
+                            item.carrier_to_location
+                            ? (item.carrier_to_location)
+                            : "N/A"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                        <div class="row">
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Date of Departure</label>
+                            <span>{{ item.travelling_frequency | formatdates }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Capacity</label>
+                            <span>{{ item.weight }} Kgs</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Travelling by</label>
+                            <span>
+                              <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                                item.traveling_by_image
+                              }}" height="20" width="15" class="d-none" />
+                              {{ item.traveling_by }}
+                            </span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                            <label>Willing to Pay</label>
+                            <span>{{ item.payment }} AED</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                    <a *ngFor="let tags of item['types']"
+                      class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                      <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                      {{ tags.type_name }}
+                    </a>
+                  </div>
+                </div>
+              </div><!--CBOX x here-->
+            </div>
+            <div *ngIf="NonExactDataCarrierAll.length > 0" class="container-fluid p-t-b-20 px-0"
+              style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+              <div class="all-results d-flex justify-content-between" *ngIf="NonExactDataCarrierAll.length > 0">
+                <div>
+                  {{
+                  NonExactDataCarrierAll.length > 0
+                  ? "Related Search"
+                  : ""
+                  }}
+                </div>
+                <div>
+                  <span class="text-danger mr-1">
+                    {{
+                    NonExactDataCarrierAll.length > 0
+                    ? NonExactDataCarrierAll.length
+                    : ""
+                    }}
+                  </span>
+                  <small>{{
+                    NonExactDataCarrierAll.length > 0
+                    ? "Result"
+                    : ""
+                    }}</small>
+                </div>
+              </div>
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataCarrierAll" data-aos="zoom-in">
+                <div class="CBoxBody d-flex flex-column p-4">
+                  <div class="ToolBar text-right pt-2 pb-1">
+                    <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                      <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                        <a src="" *ngIf="item.requested_is_connect !== '1'"
+                          (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                          class="btn btn-sm btn-primary text-white">
+                          <i *ngIf="item.requested_is_connect !== '1'" class="fa fa-plus text-white"></i>
+                          {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                        </a>
+                        <a src="" *ngIf="item.requested_is_connect == '1'" class="btn btn-sm btn-primary text-white">
+                          {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="UserBar d-flex justify-content-between">
+                    <div class="ProfBox d-flex flex-row  align-items-center">
+                      <div class="ProfPic mr-3">
+                        <img class="rounded-circle"
+                          [src]="item.creater.custom_profile_photo? imageUrl + item.creater.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                      </div>
+                      <div class="ProfDetail d-flex flex-column">
+                        <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                          {{ item.first_name }} {{ item.last_name }}
+                        </h5>
+                        <div class="StarnStatBox d-flex flex-row">
+                          <div class="star-container">
+                            <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                              [initialStars]="item.avgFeedBack"></ngx-stars>
+                          </div>
+                          <!-- SHARE BUTTON -->
+                          <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                      <small class="mr-lg-2">Willing to Charge</small>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                  <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                    <h5 _ngcontent-ebm-c11="">
+                      {{ item.carrier_ad_title?item.carrier_ad_title:'_____' }}
+                    </h5>
+                  </div>
+                  <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getCarrierId(item)">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                        <div class="InfoBox PickupBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Pick Up</label>
+                          <span>
+                            {{
+                            item.carrier_from_location
+                            ? (item.carrier_from_location)
+                            : ("N/A" | uppercase)
+                            }}
+                          </span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Drop Off</label>
+                          <span>
+                            {{
+                            item.carrier_to_location
+                            ? (item.carrier_to_location)
+                            : ("N/A" | uppercase)
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                        <div class="row">
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Date of Departure</label>
+                            <span>{{ item.travelling_frequency | formatdates }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Capacity</label>
+                            <span>{{ item.weight }} Kgs</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Travelling by</label>
+                            <span>
+                              <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                                item.traveling_by_image
+                              }}" height="20" width="15" class="d-none" />
+                              {{ item.traveling_by }}
+                            </span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                            <label>Willing to Charge</label>
+                            <span>{{ item.payment }} AED</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                    <a *ngFor="let tags of item['types']"
+                      class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                      <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                      {{ tags.type_name }}
+                    </a>
+                  </div>
+                </div>
+              </div><!--CBOX x here-->
+
+              <div *ngIf="ExactDataCarrierAll.length > 0" class="container-fluid p-t-b-20 px-0"
+                style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+                <div class="all-results d-flex justify-content-between" *ngIf="ExactDataCarrierAll.length > 0">
+                  <div>
+                    {{
+                    ExactDataCarrierAll.length > 0
+                    ? "Exact Search"
+                    : ""
+                    }}
+                  </div>
+                  <div>
+                    <span class="text-danger mr-1">
+                      {{
+                      ExactDataCarrierAll.length > 0
+                      ? ExactDataCarrierAll.length
+                      : ""
+                      }}
+                    </span>
+                    <small>{{
+                      ExactDataCarrierAll.length > 0
+                      ? "Result"
+                      : ""
+                      }}</small>
+                  </div>
+                </div>
+                <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll" data-aos="zoom-in">
+                  <div class="CBoxBody d-flex flex-column p-4">
+                    <div class="ToolBar text-right pt-2 pb-1">
+                      <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                        <div class="text-right mob-vw-request">
+                          <a src=""
+                            (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                            class="btn btn-sm btn-primary text-white">
+                            <i *ngIf="item.requested_is_connect !== '1'" class="fa fa-plus text-white"></i>
+                            {{item.requested_is_connect == "1"? "Requested": "Connect"}}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="UserBar d-flex justify-content-between">
+                      <div class="ProfBox d-flex flex-row  align-items-center">
+                        <div class="ProfPic mr-3">
+                          <img class="rounded-circle"
+                            [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                        </div>
+                        <div class="ProfDetail d-flex flex-column">
+                          <h5 (click)="postcarrierConnect(item.ad_id)"
+                            class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                            {{ item.first_name }} {{ item.last_name }}
+                          </h5>
+                          <div class="StarnStatBox d-flex flex-row">
+                            <div class="star-container">
+                              <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                                [initialStars]="item.avgFeedBack"></ngx-stars>
+                            </div>
+                            <!-- SHARE BUTTON -->
+                            <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="postcarrierConnect(item.ad_id)">
+                      <div class="row">
+                        <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                          <div class="InfoBox PickupBox d-flex flex-column text-left">
+                            <i class="circle"></i>
+                            <label>Pick Up</label>
+                            <span>
+                              {{ item.from }}
+                            </span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left">
+                            <i class="circle"></i>
+                            <label>Drop Off</label>
+                            <span>
+                              {{ item.to }}
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                          <div class="row">
+                            <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                              <label>Travelling Frequancy</label>
+                              <span>{{ item.travelling_frequency | formatdates}}</span>
+                            </div>
+                            <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                              <label>Capactiy</label>
+                              <span>{{ item.weight }} Kgs</span>
+                            </div>
+                            <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                              <label>Amount Per Kg</label>
+                              <span>{{ item.payment }} Kgs</span>
+                            </div>
+                            <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                              <label>Travelling by</label>
+                              <span>
+                                <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                                  item.traveling_by_image
+                                }}" height="20" width="15" class="d-none" />
+                                {{ item.traveling_by }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                      <a *ngFor="let tags of item['types']"
+                        class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                        <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                        {{ tags.type_name }}
+                      </a>
+                    </div>
+                  </div>
+                </div><!--CBOX x here-->
+              </div>
+            </div>
+          </div>
+          <!-- sender-all -->
+          <div *ngIf="!showCarrierMobile || showCarrierMobile == undefined"
+            class="col-md-6 col-12 text-center padding-zero-mobile mb-2 p-0-0">
+            <div class="CBox rounded-bottom mb-3" *ngFor="let item of senders" data-aos="zoom-in">
+              <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom">
+                <img [src]="adBaseImgUrl + item?.ad_image" alt="">
+              </div>
+              <div class="CBoxBody d-flex flex-column p-4">
+                <div class="ToolBar text-right pt-2 pb-1">
+                  <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                    <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                      <a src="" class="btn btn-sm btn-primary text-white"
+                        (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                        *ngIf="(item.requested_is_accept == '' || item.requested_is_accept == 0) && (item.offeror == null || item.offeror == 0)">
+                        <i *ngIf="item.requested_is_connect != '1' && (item.offeror == null || item.offeror == 0)"
+                          class="fa fa-plus text-white"></i>
+                        <span disabled="disabled">
+                          {{item.requested_is_connect == '1'? "Requested": "Connect"}}
+                        </span>
+                      </a>
+                      <span>
+                        <i *ngIf="item.requested_is_connect != '1' && (item.offeror == null || item.offeror == 0)"
+                          class="fa fa-plus text-white"></i>
+                        <span *ngIf="item.requested_is_accept == '1'"
+                          class="btn btn-sm btn-primary text-white mob-vw-request-span"
+                          disabled="disabled">{{item.offeror == null && item.offeror == 0? "Pending for Approval":
+                          "Awarded"}}
+                        </span>
+                        <span
+                          *ngIf="item.offeror != null && item.offeror != 0 && item.offeror != userId && item.requested_is_accept != 0"
+                          class="mob-vw-request-span-1" disabled="disabled">
+                          Awarded to someone!
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="UserBar d-flex justify-content-between">
+                  <div class="ProfBox d-flex flex-row  align-items-center">
+                    <div class="ProfPic mr-3">
+                      <img class="rounded-circle"
+                        [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                    </div>
+                    <div class="ProfDetail d-flex flex-column">
+                      <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                        {{ item.first_name }} {{ item.last_name }}
+                      </h5>
+                      <div class="StarnStatBox d-flex flex-row">
+                        <div class="star-container">
+                          <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                            [initialStars]="item.avgFeedBack"></ngx-stars>
+                        </div>
+                        <!-- SHARE BUTTON -->
+                        <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                    <small class="mr-lg-2">Willing to Pay</small>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                </div>
+                <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                  <h5 _ngcontent-ebm-c11="">
+                    {{ item.ad_title?item.ad_title:'_____' }}
+                  </h5>
+                </div>
+                <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                      <div class="InfoBox PickupBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Pick Up</label>
+                        <span>
+                          {{
+                          item.pickup_location
+                          ? (item.pickup_location)
+                          : ("N/A" | uppercase)
+                          }}
+                        </span>
+                      </div>
+                      <div class="InfoBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Drop Off</label>
+                        <span>
+                          {{
+                          item.delivery_location
+                          ? (item.delivery_location)
+                          : "N/A"
+                          }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                      <div class="row">
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Needs to be delivered by</label>
+                          <span>{{ item.showDate | formatdates }}</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Capacity</label>
+                          <span>{{ item.weight }} Kgs</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Size</label>
+                          <span>
+                            <img src="https://pacsend.app/public/uploads/traveling/{{
+                              item.traveling_type_image
+                            }}" height="20" width="15" class="d-none" />
+                            {{ item.traveling_type }}</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                          <label>Willing to Pay</label>
+                          <span>{{ item.payment }} AED</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                  <a *ngFor="let tags of item['types']"
+                    class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                    <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                    {{ tags.type_name }}
+                  </a>
+                </div>
+              </div>
+            </div><!--CBOX x here-->
+            <div *ngIf="ExactDataSenderAll.length > 0" class="container-fluid p-t-b-20 px-0"
+              style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+              <div class="all-results d-flex justify-content-between" *ngIf="ExactDataSenderAll.length > 0">
+                <div>
+                  {{
+                  ExactDataSenderAll.length > 0
+                  ? "Exact Search"
+                  : ""
+                  }}
+                </div>
+                <div>
+                  <span class="text-danger mr-1">
+                    {{
+                    ExactDataSenderAll.length > 0
+                    ? ExactDataSenderAll.length
+                    : ""
+                    }}
+                  </span>
+                  <small>{{
+                    ExactDataSenderAll.length > 0
+                    ? "Result"
+                    : ""
+                    }}</small>
+                </div>
+              </div>
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataSenderAll" data-aos="zoom-in">
+                <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img
+                    [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
+                <div class="CBoxBody d-flex flex-column p-4">
+                  <div class="ToolBar text-right pt-2 pb-1">
+                    <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                      <div *ngIf="item?.creater.id != userId"
+                        class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 p-t-10 text-right mob-vw-request">
+                        <a *ngIf="item.requested_is_connect != '1'" href="javascript:;"
+                          (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)"
+                          class="btn btn-sm btn-primary text-white">
+                          <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus text-white mr-1"></i>
+                          <span class="mob-vw-request-span" disabled="disabled">
+                            {{item.requested_is_connect == "1"? 'Requested': 'Connect'}}
+                          </span>
+                        </a>
+                        <a *ngIf="item.requested_is_connect == '1'" href="javascript:;"
+                          class="btn btn-sm btn-primary text-white">
+                          <span class="mob-vw-request-span" disabled="disabled">
+                            {{item.requested_is_connect == "1"? 'Requested': 'Connect'}}
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="UserBar d-flex justify-content-between">
+                    <div class="ProfBox d-flex flex-row  align-items-center">
+                      <div class="ProfPic mr-3">
+                        <img class="rounded-circle"
+                          [src]="item.creater.custom_profile_photo? imageUrl + item.creater.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                      </div>
+                      <div class="ProfDetail d-flex flex-column">
+                        <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                          {{ item.first_name }} {{ item.last_name }}
+                        </h5>
+                        <div class="StarnStatBox d-flex flex-row">
+                          <div class="star-container">
+                            <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                              [initialStars]="item.avgFeedBack"></ngx-stars>
+                          </div>
+                          <!-- SHARE BUTTON -->
+                          <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                      <small class="mr-lg-2">Willing to Pay</small>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                  <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                    <h5 _ngcontent-ebm-c11="">
+                      {{ item.ad_title }}
+                    </h5>
+                  </div>
+                  <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                        <div class="InfoBox PickupBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Pick Up</label>
+                          <span>
+                            {{
+                            item.pickup_location
+                            ? (item.pickup_location)
+                            : ("N/A" | uppercase)
+                            }}
+                          </span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Drop Off</label>
+                          <span>
+                            {{
+                            item.delivery_location
+                            ? (item.delivery_location)
+                            : "N/A"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                        <div class="row">
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Needs to be delivered by</label>
+                            <span>{{ item.custom_date }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Capacity</label>
+                            <span>{{ item.weight }} Kgs</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Size</label>
+                            <span>
+                              <img src="https://pacsend.app/public/uploads/traveling/{{
+                                item.traveling_type_image
+                              }}" height="20" width="15" class="d-none" />
+                              {{ item.traveling_type }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                            <label>Willing to Pay</label>
+                            <span>{{ item.payment }} AED</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                    <a *ngFor="let tags of item['types']"
+                      class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                      <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                      {{ tags.type_name }}
+                    </a>
+                  </div>
+                </div>
+              </div><!--CBOX x here-->
+            </div>
+
+            <div *ngIf="NonExactDataSenderAll.length > 0" class="container-fluid p-t-b-20 px-0"
+              style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+              <div class="all-results d-flex justify-content-between" *ngIf="NonExactDataSenderAll.length > 0">
+                <div>
+                  {{
+                  NonExactDataSenderAll.length > 0
+                  ? "Related Search"
+                  : ""
+                  }}
+                </div>
+                <div>
+                  <span class="text-danger mr-1">
+                    {{
+                    NonExactDataSenderAll.length > 0
+                    ? NonExactDataSenderAll.length
+                    : ""
+                    }}
+                  </span>
+                  <small>{{
+                    NonExactDataSenderAll.length > 0
+                    ? "Result"
+                    : ""
+                    }}</small>
+                </div>
+              </div>
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataSenderAll" data-aos="zoom-in">
+                <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img
+                    [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
+                <div class="CBoxBody d-flex flex-column p-4">
+                  <div class="ToolBar text-right pt-2 pb-1">
+                    <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                      <div *ngIf="item?.creater.id != userId"
+                        class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 p-t-10 text-right mob-vw-request">
+                        <a *ngIf="item.requested_is_connect != '1'" href="javascript:;"
+                          class="btn btn-primary btn-sm text-white" disabled="disabled"
+                          (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                          <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus mr-1"></i>
+                          {{item.requested_is_connect == "1" ? "Requested" : "Connect"}}
+                        </a>
+                        <a *ngIf="item.requested_is_connect == '1'" href="javascript:;"
+                          class="btn btn-primary btn-sm text-white" disabled="disabled">
+                          {{item.requested_is_connect == "1" ? "Requested" : "Connect"}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="UserBar d-flex justify-content-between">
+                    <div class="ProfBox d-flex flex-row  align-items-center">
+                      <div class="ProfPic mr-3">
+                        <img class="rounded-circle"
+                          [src]="item.creater.custom_profile_photo? imageUrl + item.creater.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                      </div>
+                      <div class="ProfDetail d-flex flex-column">
+                        <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                          {{ item.first_name }} {{ item.last_name }}
+                        </h5>
+                        <div class="StarnStatBox d-flex flex-row">
+                          <div class="star-container">
+                            <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                              [initialStars]="item.avgFeedBack"></ngx-stars>
+                          </div>
+                          <!-- SHARE BUTTON -->
+                          <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                      <small class="mr-lg-2">Willing to Pay</small>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                  <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                    <h5 _ngcontent-ebm-c11="">
+                      {{ item.ad_title }}
+                    </h5>
+                  </div>
+                  <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                        <div class="InfoBox PickupBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Pick Up</label>
+                          <span>
+                            {{
+                            item.pickup_location
+                            ? (item.pickup_location)
+                            : ("N/A" | uppercase)
+                            }}
+                          </span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left">
+                          <i class="circle"></i>
+                          <label>Drop Off</label>
+                          <span>
+                            {{
+                            item.delivery_location
+                            ? (item.delivery_location)
+                            : "N/A"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                        <div class="row">
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Needs to be delivered by</label>
+                            <span>{{ item.showDate | formatdates }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Capacity</label>
+                            <span>{{ item.weight }} Kgs</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                            <label>Size</label>
+                            <span>
+                              <img src="https://pacsend.app/public/uploads/traveling/{{
+                                item.traveling_type_image
+                              }}" height="20" width="15" class="d-none" />
+                              {{ item.traveling_type }}</span>
+                          </div>
+                          <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                            <label>Willing to Pay</label>
+                            <span>{{ item.payment }} AED</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                    <a *ngFor="let tags of item['types']"
+                      class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                      <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                      {{ tags.type_name }}
+                    </a>
+                  </div>
+                </div>
+              </div><!--CBOX x here-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="carrierads" infinite-scroll [infiniteScrollDisabled]="scrollDisable"
+    [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+    [infiniteScrollThrottle]="throttle" (scrolled)="onScroll()" class="container-fluid p-t-b-20 px-0"
+    style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mx-auto text-center allads-wanto-send-card">
+          <div *ngFor="let item of carriers" class="container px-0" data-aos="zoom-in">
+            <div class="CBox rounded-bottom mb-3">
+              <div class="CBoxBody d-flex flex-column p-4">
+                <div class="ToolBar text-right pt-2 pb-1">
+                  <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                    <div *ngIf="item?.creater.id != userId" class="">
+                      <a href="javascript:;" class="btn btn-sm btn-primary text-white"
+                        (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                        <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus mr-1"></i>
+                        {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="UserBar d-flex justify-content-between">
+                  <div class="ProfBox d-flex flex-row  align-items-center">
+                    <div class="ProfPic mr-3">
+                      <img class="rounded-circle"
+                        [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                    </div>
+                    <div class="ProfDetail d-flex flex-column">
+                      <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                        {{ item.first_name }} {{ item.last_name }}
+                      </h5>
+                      <div class="StarnStatBox d-flex flex-row">
+                        <div class="star-container">
+                          <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                            [initialStars]="item.avgFeedBack"></ngx-stars>
+                        </div>
+                        <!-- SHARE BUTTON -->
+                        <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                    <small class="mr-lg-2">Willing to Charge</small>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                </div>
+                <div class="TitleBar text-left pt-4 pb-4 pl-3">
+                  <h5 _ngcontent-ebm-c11="">
+                    {{ item.title }}
+                  </h5>
+                </div>
+                <div class="DetailBox pl-3 pl-lg-5 cursor">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                      <div class="InfoBox PickupBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Pick Up</label>
+                        <span>
+                          {{item.from? (item.from):item.carrier_from_location?
+                          (item.carrier_from_location): ("N/A" | uppercase)}}
+                        </span>
+                      </div>
+                      <div class="InfoBox d-flex flex-column text-left">
+                        <i class="circle"></i>
+                        <label>Drop Off</label>
+                        <span>
+                          {{item.to? (item.to):item.carrier_to_location?(item.carrier_to_location): ("N/A" |
+                          uppercase)}}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                      <div class="row">
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Date of Departure</label>
+                          <span>{{ item.travelling_frequency | formatdates}}</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Capacity</label>
+                          <span>{{ item.weight }} Kgs</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                          <label>Travelling by</label>
+                          <span>
+                            <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                              item.traveling_by_image
+                            }}" height="20" width="15" class="d-none" />
+                            {{ item.traveling_by }}</span>
+                        </div>
+                        <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                          <label>Willing to Charge</label>
+                          <span>{{ item.payment }} AED</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+                  <a *ngFor="let tags of item['types']"
+                    class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                    <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                    {{ tags.type_name }}
+                  </a>
+                </div>
+              </div>
+            </div><!--CBOX x here-->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+
+  <div *ngIf="ExactData.length > 0" class="container" style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'"
+    ngxUiLoaderBlurred>
+    <div class="all-results d-flex justify-content-between" *ngIf="ExactData.length > 0">
+      <div>
+        {{
+        ExactData.length > 0
+        ? "Exact Search"
+        : ""
+        }}
+      </div>
+      <div>
+        <span class="text-danger mr-1">
+          {{
+          ExactData.length > 0
+          ? ExactData.length
+          : ""
+          }}
+        </span>
+        <small>{{
+          ExactData.length > 0
+          ? "Result"
+          : ""
+          }}</small>
+      </div>
+    </div>
+    <div *ngFor="let item of ExactData; let i = index" class="container" data-aos="zoom-in">
+      <div class="CBox rounded-bottom mb-3">
+        <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img
+            [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
+        <div class="CBoxBody d-flex flex-column p-4">
+          <div class="ToolBar text-right pt-2 pb-1">
+            <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+              <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                <a href="javascript:;" class="btn btn-sm btn-primary text-white" disabled="disabled"
+                  (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                  <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus text-white mr-1"></i>
+                  {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="UserBar d-flex justify-content-between">
+            <div class="ProfBox d-flex flex-row  align-items-center">
+              <div class="ProfPic mr-3">
+                <img class="rounded-circle"
+                  [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+              </div>
+              <div class="ProfDetail d-flex flex-column">
+                <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                  {{ item.first_name }} {{ item.last_name }}
+                </h5>
+                <div class="StarnStatBox d-flex flex-row">
+                  <div class="star-container">
+                    <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                      [initialStars]="item.avgFeedBack"></ngx-stars>
+                  </div>
+                  <!-- SHARE BUTTON -->
+                  <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+              <small class="mr-lg-2">Willing to Pay</small>
+              <span>{{ item.payment }} AED</span>
+            </div>
+          </div>
+          <div class="TitleBar text-left pt-4 pb-4 pl-3">
+            <h5 (click)="getSenderId(item)" _ngcontent-ebm-c11="">
+              {{ item.ad_title?item.ad_title:'____' }}
+            </h5>
+          </div>
+          <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+            <div class="row">
+              <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                <div class="InfoBox PickupBox d-flex flex-column text-left">
+                  <i class="circle"></i>
+                  <label>Pick Up</label>
+                  <span>
+                    {{
+                    item.pickup_location
+                    ? (item.pickup_location)
+                    : ("N/A" | uppercase)
+                    }}
+                  </span>
+                </div>
+                <div class="InfoBox d-flex flex-column text-left">
+                  <i class="circle"></i>
+                  <label>Drop Off</label>
+                  <span>
+                    {{
+                    item.delivery_location
+                    ? (item.delivery_location)
+                    : ("N/A" | uppercase)
+                    }}
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                <div class="row">
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Needs to be delivered by</label>
+                    <span>{{ item.showDate | formatdates }}</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Capacity</label>
+                    <span>{{ item.weight }} Kgs</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                    <label>Willing to Pay</label>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Size</label>
+                    <span>
+                      <img src="https://pacsend.app/public/uploads/traveling/{{
+                          item.traveling_type_image
+                        }}" height="20" width="15" class="d-none" />
+                      {{ item.traveling_type }}</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                    <label>Willing to Pay</label>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+            <a *ngFor="let tags of item['types']"
+              class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+              <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+              {{ tags.type_name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="NonExactData.length > 0" class="container" style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'"
+    ngxUiLoaderBlurred>
+    <div class="all-results d-flex justify-content-between" *ngIf="NonExactData.length > 0">
+      <div>
+        {{
+        NonExactData.length > 0
+        ? "Related Search"
+        : ""
+        }}
+      </div>
+      <div>
+        <span class="text-danger mr-1">
+          {{
+          NonExactData.length > 0
+          ? NonExactData.length
+          : ""
+          }}
+        </span>
+        <small>{{
+          NonExactData.length > 0
+          ? "Result"
+          : ""
+          }}</small>
+      </div>
+    </div>
+    <div *ngFor="let item of NonExactData" class="container" data-aos="zoom-in">
+      <div class="CBox rounded-bottom mb-3">
+        <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img
+            [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
+        <div class="CBoxBody d-flex flex-column p-4">
+          <div class="ToolBar text-right pt-2 pb-1">
+            <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+              <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                <a href="javascript:;" class="btn btn-sm btn-primary text-white" disabled="disabled"
+                  (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                  <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus text-white mr-1"></i>
+                  {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="UserBar d-flex justify-content-between">
+            <div class="ProfBox d-flex flex-row  align-items-center">
+              <div class="ProfPic mr-3">
+                <img class="rounded-circle"
+                  [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+              </div>
+              <div class="ProfDetail d-flex flex-column">
+                <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                  {{ item.first_name }} {{ item.last_name }}
+                </h5>
+                <div class="StarnStatBox d-flex flex-row">
+                  <div class="star-container">
+                    <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                      [initialStars]="item.avgFeedBack"></ngx-stars>
+                  </div>
+                  <!-- SHARE BUTTON -->
+                  <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+              <small class="mr-lg-2">Willing to Pay</small>
+              <span>{{ item.payment }} AED</span>
+            </div>
+          </div>
+          <div class="TitleBar text-left pt-4 pb-4 pl-3">
+            <h5 (click)="getSenderId(item)" _ngcontent-ebm-c11="">
+              {{ item.ad_title?item.ad_title:'____' }}
+            </h5>
+          </div>
+          <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+            <div class="row">
+              <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                <div class="InfoBox PickupBox d-flex flex-column text-left">
+                  <i class="circle"></i>
+                  <label>Pick Up</label>
+                  <span>
+                    {{
+                    item.pickup_location
+                    ? (item.pickup_location)
+                    : ("N/A" | uppercase)
+                    }}
+                  </span>
+                </div>
+                <div class="InfoBox d-flex flex-column text-left">
+                  <i class="circle"></i>
+                  <label>Drop Off</label>
+                  <span>
+                    {{
+                    item.delivery_location
+                    ? (item.delivery_location)
+                    : ("N/A" | uppercase)
+                    }}
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                <div class="row">
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Needs to be delivered by</label>
+                    <span>{{ item.showDate | formatdates }}</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Capacity</label>
+                    <span>{{ item.weight }} Kgs</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                    <label>Willing to Pay</label>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                    <label>Size</label>
+                    <span>
+                      <img src="https://pacsend.app/public/uploads/traveling/{{
+                        item.traveling_type_image
+                      }}" height="20" width="15" class="d-none" />
+                      {{ item.traveling_type }}</span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                    <label>Willing to Pay</label>
+                    <span>{{ item.payment }} AED</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+            <a *ngFor="let tags of item['types']"
+              class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+              <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+              {{ tags.type_name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="senderads" infinite-scroll [infiniteScrollDisabled]="scrollDisable"
+    [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+    [infiniteScrollThrottle]="throttle" (scrolled)="onScroll()" class="container-fluid p-t-b-20 px-0"
+    style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+    <div class="col-md-3"></div>
+    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
+      <div *ngFor="let item of senders" class="container px-0" data-aos="zoom-in">
+        <div class="CBox rounded-bottom mb-3">
+          <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img
+              [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
+          <div class="CBoxBody d-flex flex-column p-4">
+            <div class="ToolBar text-right pt-2 pb-1">
+              <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                <div *ngIf="item?.creater.id != userId" class="text-right mob-vw-request">
+                  <a href="javascript:;" class="btn btn-sm btn-primary text-white"
+                    (click)="postSenderConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                    <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus text-white mr-1"></i>
+                    {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="UserBar d-flex justify-content-between">
+              <div class="ProfBox d-flex flex-row  align-items-center">
+                <div class="ProfPic mr-3">
+                  <img class="rounded-circle"
+                    [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                </div>
+                <div class="ProfDetail d-flex flex-column">
+                  <h5 (click)="getSenderId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                    {{ item.first_name }} {{ item.last_name }}
+                  </h5>
+                  <div class="StarnStatBox d-flex flex-row">
+                    <div class="star-container">
+                      <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                        [initialStars]="item.avgFeedBack"></ngx-stars>
+                    </div>
+                    <!-- SHARE BUTTON -->
+                    <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                <small class="mr-lg-2">Willing to Pay</small>
+                <span>{{ item.payment }} AED</span>
+              </div>
+            </div>
+            <div class="TitleBar text-left pt-4 pb-4 pl-3">
+              <h5 (click)="getSenderId(item)" _ngcontent-ebm-c11="">
+                {{ item.ad_title?item.ad_title:'____' }}
+              </h5>
+            </div>
+            <div class="DetailBox pl-3 pl-lg-5 cursor" (click)="getSenderId(item)">
+              <div class="row">
+                <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                  <div class="InfoBox PickupBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Pick Up</label>
+                    <span>
+                      {{
+                      item.pickup_location
+                      ? (item.pickup_location)
+                      : ("N/A" | uppercase)
+                      }}
+                    </span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Drop Off</label>
+                    <span>
+                      {{
+                      item.delivery_location
+                      ? (item.delivery_location)
+                      : ("N/A" | uppercase)
+                      }}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                  <div class="row">
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Needs to be delivered by</label>
+                      <span>{{ item.showDate | formatdates }}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Capacity</label>
+                      <span>{{ item.weight }} Kgs</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                      <label>Willing to Pay</label>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Size</label>
+                      <span>
+                        <img src="https://pacsend.app/public/uploads/traveling/{{
+                          item.traveling_type_image
+                        }}" height="20" width="15" class="d-none" />
+                        {{ item.traveling_type }}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                      <label>Willing to Pay</label>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+              <a *ngFor="let tags of item['types']"
+                class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                {{ tags.type_name }}
+              </a>
+            </div>
+          </div>
+        </div><!--CBOX x here-->
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div *ngIf="NonExactDataCarrier.length > 0" infinite-scroll (scrolled)="onScroll()"
+    class="container-fluid p-t-b-20 px-0" style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+    <div class="col-md-3"></div>
+    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
+      <div *ngFor="let item of NonExactDataCarrier" class="container px-0" data-aos="zoom-in">
+        <div class="CBox rounded-bottom mb-3">
+          <div class="CBoxBody d-flex flex-column p-4">
+            <div class="ToolBar text-right pt-2 pb-1">
+              <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                <div *ngIf="item?.creater.id != userId" class="">
+                  <a href="javascript:;" class="btn btn-sm btn-primary text-white"
+                    (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                    <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus mr-1"></i>
+                    {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="UserBar d-flex justify-content-between">
+              <div class="ProfBox d-flex flex-row  align-items-center">
+                <div class="ProfPic mr-3">
+                  <img class="rounded-circle"
+                    [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                </div>
+                <div class="ProfDetail d-flex flex-column">
+                  <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                    {{ item.first_name }} {{ item.last_name }}
+                  </h5>
+                  <div class="StarnStatBox d-flex flex-row">
+                    <div class="star-container">
+                      <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                        [initialStars]="item.avgFeedBack"></ngx-stars>
+                    </div>
+                    <!-- SHARE BUTTON -->
+                    <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                <small class="mr-lg-2">Willing to Charge</small>
+                <span>{{ item.payment }} AED</span>
+              </div>
+            </div>
+            <div class="TitleBar text-left pt-4 pb-4 pl-3">
+              <h5 _ngcontent-ebm-c11="">
+                {{ item.title }}
+              </h5>
+            </div>
+            <div class="DetailBox pl-3 pl-lg-5 cursor">
+              <div class="row">
+                <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                  <div class="InfoBox PickupBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Pick Up</label>
+                    <span>
+                      {{item.from? (item.from):item.carrier_from_location?
+                      (item.carrier_from_location): ("N/A" | uppercase)}}
+                    </span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Drop Off</label>
+                    <span>
+                      {{item.to? (item.to):item.carrier_to_location?(item.carrier_to_location): ("N/A" | uppercase)}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                  <div class="row">
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Date of Departure</label>
+                      <span>{{ item.travelling_frequency | formatdates }}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Capacity</label>
+                      <span>{{ item.weight }} Kgs</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Travelling by</label>
+                      <span>
+                        <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                          item.traveling_by_image
+                        }}" height="20" width="15" class="d-none" />
+                        {{ item.traveling_by }}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                      <label>Willing to Charge</label>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+              <a *ngFor="let tags of item['types']"
+                class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                {{ tags.type_name }}
+              </a>
+            </div>
+          </div>
+        </div>><!--CBOX x here-->
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div *ngIf="ExactDataCarrier.length > 0" infinite-scroll (scrolled)="onScroll()" class="container-fluid p-t-b-20 px-0"
+    style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
+    <div class="col-md-3"></div>
+    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
+      <div *ngFor="let item of ExactDataCarrier" class="container px-0" data-aos="zoom-in">
+        <div class="CBox rounded-bottom mb-3">
+          <div class="CBoxBody d-flex flex-column p-4">
+            <div class="ToolBar text-right pt-2 pb-1">
+              <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">
+                <div *ngIf="item?.creater.id != userId" class="">
+                  <a href="javascript:;" class="btn btn-sm btn-primary text-white"
+                    (click)="postcarrierConnect(item); PostConnectFirebase('A New Connection request is received from', item)">
+                    <i *ngIf="item.requested_is_connect != '1'" class="fa fa-plus mr-1"></i>
+                    {{ item.requested_is_connect == '1' ? "Requested" : "Connect" }}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="UserBar d-flex justify-content-between">
+              <div class="ProfBox d-flex flex-row  align-items-center">
+                <div class="ProfPic mr-3">
+                  <img class="rounded-circle"
+                    [src]="item.custom_profile_photo? imageUrl + item.custom_profile_photo:item.user_image? imageUrl + item.user_image : '../../../assets/default.jpg'" />
+                </div>
+                <div class="ProfDetail d-flex flex-column">
+                  <h5 (click)="getCarrierId(item)" class="font-24 font-600 mt-2 mb-0 ml-2 cursor getcolor">
+                    {{ item.first_name }} {{ item.last_name }}
+                  </h5>
+                  <div class="StarnStatBox d-flex flex-row">
+                    <div class="star-container">
+                      <ngx-stars color="#E73047" [size]="1" [readonly]="true" [size]="4" [maxStars]="5"
+                        [initialStars]="item.avgFeedBack"></ngx-stars>
+                    </div>
+                    <!-- SHARE BUTTON -->
+                    <a href="#" class="px-2 py-1 d-none"><i class="fa fa-code-branch fa-rotate-90 mx-2"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">
+                <small class="mr-lg-2">Willing to Charge</small>
+                <span>{{ item.payment }} AED</span>
+              </div>
+            </div>
+            <div class="TitleBar text-left pt-4 pb-4 pl-3">
+              <h5 _ngcontent-ebm-c11="">
+                {{ item.title }}
+              </h5>
+            </div>
+            <div class="DetailBox pl-3 pl-lg-5 cursor">
+              <div class="row">
+                <div class="col-md-6 col-lg-7 pl-4 pl-lg-0 LocationBox">
+                  <div class="InfoBox PickupBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Pick Up</label>
+                    <span>
+                      {{item.from? (item.from):item.carrier_from_location?
+                      (item.carrier_from_location): ("N/A" | uppercase)}}
+                    </span>
+                  </div>
+                  <div class="InfoBox d-flex flex-column text-left">
+                    <i class="circle"></i>
+                    <label>Drop Off</label>
+                    <span>
+                      {{item.to? (item.to):item.carrier_to_location?(item.carrier_to_location): ("N/A" | uppercase)}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5 pt-4 pt-md-0">
+                  <div class="row">
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Date of Departure</label>
+                      <span>{{ item.travelling_frequency | formatdates}}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Capacity</label>
+                      <span>{{ item.weight }} Kgs</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12">
+                      <label>Travelling by</label>
+                      <span>
+                        <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                          item.traveling_by_image
+                        }}" height="20" width="15" class="d-none" />
+                        {{ item.traveling_by }}</span>
+                    </div>
+                    <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">
+                      <label>Willing to Charge</label>
+                      <span>{{ item.payment }} AED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="TagBar d-flex flex-row flex-wrap py-4 pl-lg-4 pl-3 pr-3">
+              <a *ngFor="let tags of item['types']"
+                class="badge badge-pill mr-1 mb-1 font-12 ng-star-inserted text-capitalize">
+                <img [src]="tagImgUrl + tags?.type_image" width="16px" />
+                {{ tags.type_name }}
+              </a>
+            </div>
+          </div>
+        </div>><!--CBOX x here-->
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <ng-template #navigationRestricted let-modal>
+    <div style="width: 100%" [@zoomIn]="zoomIn">
+      <div class="modal-header mt-4">
+        <h4 class="modal-title font-21 font-500 w-100" id="modal-basic-title">
+          Not Allowed
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center pt-0 pb-0">
+        <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-50" />
+        <p class="color-figma-photo text-center mt-2 mb-2">
+          You cannot navigate on this page
+        </p>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </ng-template>
+</div>
+<!-- login-alert -->
+<ng-template #navigationLogin let-modal *ngIf="!user">
+  <div class="w-100" [@zoomIn]="zoomIn">
+    <div class="modal-header mt-4">
+      <h4 class="modal-title font-21 font-500 w-100" id="modal-basic-title">
+        Not Allowed
+      </h4>
+    </div>
+    <div class="modal-body text-center pt-0 pb-0">
+      <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-50" />
+      <p class="alert-text text-center mt-2 mb-2">
+        You have to login first
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary font-600 width-100 m-t-10 h-56" (click)="backToLogin()">
+        Let's Login
+      </button>
+    </div>
+  </div>
+</ng-template>

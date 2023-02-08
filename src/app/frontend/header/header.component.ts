@@ -404,6 +404,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   clickAllAds: boolean = false;
   clickMyProfle: boolean = false;
   clickMyAds: boolean = false;
+  clickMyActivity : boolean = false;
   clickChat: boolean = false;
   clickFavourites: boolean = false;
   clickNotification: boolean = false;
@@ -1067,6 +1068,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.clickMap = false;
     this.clickAllAds = false;
     this.clickMyAds = false;
+    this.clickMyActivity = false;
     this.clickChat = false;
     this.clickFavourites = false;
     this.clickNotification = false;
@@ -1087,6 +1089,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.clickNotification = true;
       this.clickAllAds = false;
       this.clickMyAds = false;
+      this.clickMyActivity = false;
       this.clickFavourites = false;
       this.clickChat = false;
       this.clickMap = false;
@@ -1908,6 +1911,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.clickMap = true;
     this.clickAllAds = false;
     this.clickMyAds = false;
+    this.clickMyActivity = false;
     this.clickFavourites = false;
     this.clickChat = false;
     this.adPostClicked = false;
@@ -1920,6 +1924,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.page == 'adDetail') {
       this.clickAllAds = false;
       this.clickMyAds = false;
+      this.clickMyActivity = false;
       this.clickFavourites = false;
       this.clickChat = false;
       this.clickMap = false;
@@ -1929,6 +1934,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     else {
       this.clickAllAds = true;
       this.clickMyAds = false;
+      this.clickMyActivity = false;
       this.clickFavourites = false;
       this.clickNotification = false;
       this.clickChat = false;
@@ -1942,6 +1948,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     localStorage.removeItem('page');
     this.clickAllAds = true;
     this.clickMyAds = false;
+    this.clickMyActivity = false;
     this.clickFavourites = false;
     this.clickChat = false;
     this.clickMap = false;
@@ -1952,14 +1959,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   myAds() {
     if (this.user.is_verified == '0' || this.user.is_verified == '2')
       this.navigationRestrictionPopup();
-    this.clickAllAds = false;
-    this.clickMyAds = true;
-    this.clickFavourites = false;
-    this.clickChat = false;
-    this.clickMap = false;
-    this.adPostClicked = false;
-    this.clickMyProfle = false;
-    this.clickNotification = false;
+      this.clickAllAds = false;
+      this.clickMyAds = true;
+      this.clickMyActivity = false;
+      this.clickFavourites = false;
+      this.clickChat = false;
+      this.clickMap = false;
+      this.adPostClicked = false;
+      this.clickMyProfle = false;
+      this.clickNotification = false;
   }
   // Footer Routings
   onClickAbout() {
@@ -1983,6 +1991,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onClickMyAds() {
     this.router.navigateByUrl("my-ads");
   }
+  onClickMyActivity() {
+    this.clickAllAds = false;
+    this.clickMyAds = false;
+    this.clickMyActivity = true;
+    this.clickFavourites = false;
+    this.clickChat = false;
+    this.clickMap = false;
+    this.adPostClicked = false;
+    this.clickMyProfle = false;
+    this.clickNotification = false;
+    this.router.navigateByUrl("my-activity");
+  }
   onClickAllAds() {
     this.router.navigateByUrl("all-ads");
   }
@@ -1995,6 +2015,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.navigationRestrictionPopup();
     this.clickAllAds = false;
     this.clickMyAds = false;
+    this.clickMyActivity = false;
     this.clickFavourites = false;
     this.clickMap = false;
     this.clickChat = true;
@@ -2011,6 +2032,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.navigationRestrictionPopup();
     this.clickAllAds = false;
     this.clickMyAds = false;
+    this.clickMyActivity = false;
     this.clickFavourites = true;
     this.clickChat = false;
     this.clickMap = false;
@@ -2392,6 +2414,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.router.navigate(["user-profile/", userid]);
       this.clickAllAds = false;
       this.clickMyAds = false;
+      this.clickMyActivity = false;
       this.clickChat = false;
       this.clickFavourites = false;
       this.clickNotification = false;

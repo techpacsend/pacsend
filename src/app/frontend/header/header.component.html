@@ -76,6 +76,11 @@
           <button (click)="openNewAd(newAd, 0)" class="btn_post_add">
             Post Ad
           </button>
+          <a [routerLink]="['/my-activity']" routerLinkActive="router-link-active" [ngClass]="
+              clickMyActivity
+                ? 'p-r-10 p-l-10 font-14 active mr-51'
+                : 'p-r-10 p-l-10 font-14 mr-51 font-700 color-figma-gray'
+            " (click)="onClickMyActivity()">Activity</a>
 
         </div>
         <div class="col text-right p-t-20" *ngIf="!isLogin">
@@ -201,6 +206,10 @@
                     <i class="fas fa-paper-plane"></i>
                     Post Ad
                 </button>
+                <a [routerLink]="['/my-activity']" routerLinkActive="router-link-active" title="My Activity" (click)="openNav(1)">              
+                  <i class="fas fa-sort-amount-down"></i>
+                  Activity
+              </a>
               </div>
             </div>
           </div>
