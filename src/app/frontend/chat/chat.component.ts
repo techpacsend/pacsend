@@ -480,7 +480,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
           this.Message.forEach((mess) => {
             dateTime = mess.dateTime.split(" ");
             chatDateTime = this.calculateMessageDateTime(
-              dateTime[0] + "," + dateTime[1]
+              dateTime[0].split("-")[1] +"/" + dateTime[0].split("-")[2] +"/" + dateTime[0].split("-")[0] + "," + dateTime[1]
             );
             mess.chatDateTime = chatDateTime;
             if (mess.message_type == 2)
@@ -560,7 +560,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
         this.Message.forEach((mess) => {
           dateTime = mess.dateTime.split(" ");
           chatDateTime = this.calculateMessageDateTime(
-            dateTime[0] + "," + dateTime[1]
+            dateTime[0].split("-")[1] +"/" + dateTime[0].split("-")[2] +"/" + dateTime[0].split("-")[0] + "," + dateTime[1]
           );
           mess.chatDateTime = chatDateTime;
           if (mess.message_type == 2)
@@ -899,7 +899,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
         .GetSendMessages(this.sender_id, this.chatheadid, message, type)
         .subscribe(
           (res: any) => {
-            let messageDateTime = res.data.date + "," + res.data.time;
+            let messageDateTime = res.data.date.split("-")[1] +"/" + res.data.date.split("-")[2] +"/" + res.data.date.split("-")[0] + "," + res.data.time;
             this.calculateMessageDateTime(messageDateTime);
             this.ClickChat(this.chatheadid, false);
             this.Message.push();
@@ -1096,6 +1096,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
     const date1 = new Date(datee + "," + time);
     const date2 = new Date(date);
     const result = datetimeDifference(date1, date2);
+    
     let chatDateTime;
     if (result.years != 0 && result.months != 0) {
       if (result.months == 1) {
