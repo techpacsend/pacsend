@@ -20,6 +20,9 @@ export class DataService {
   readonly allds = this.baseUrl + "/senders-and-carriers-ads_v2";
   readonly allSenderAds = this.baseUrl + "/sender-ads_v2";
   readonly allCarrierAds = this.baseUrl + "/carrier-ads_v2";
+
+  readonly myactivityallSenderAds = this.baseUrl + "/sender-ads-my-activity";
+  readonly myactivityallCarrierAds = this.baseUrl + "/carrier-ads-my-activity";
   
 
   readonly ad = this.baseUrl + "/ads/";
@@ -87,6 +90,18 @@ export class DataService {
     return this.httpClient.post(this.allCarrierAds, form);
   }
 
+  public myactivityallcarrierRequest(page) {
+    let form = new FormData();
+    form.append("client_key", "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
+    form.append("longitude", this.longitude);
+    form.append("latitude", this.latitude);
+    form.append("user_id", this.user_id);
+    form.append("page", page);
+    return this.httpClient.post(this.myactivityallCarrierAds, form);
+  }
+
+  
+
   public allsenderRequest(page) {
     let form = new FormData();
     form.append("client_key", "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
@@ -95,6 +110,16 @@ export class DataService {
     form.append("user_id", this.user_id);
     form.append("page", page);
     return this.httpClient.post(this.allSenderAds, form);
+  }
+
+  public myactivityallsenderRequest(page) {
+    let form = new FormData();
+    form.append("client_key", "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
+    form.append("longitude", this.longitude);
+    form.append("latitude", this.latitude);
+    form.append("user_id", this.user_id);
+    form.append("page", page);
+    return this.httpClient.post(this.myactivityallSenderAds, form);
   }
 
   viewCarrierAdd(id) {

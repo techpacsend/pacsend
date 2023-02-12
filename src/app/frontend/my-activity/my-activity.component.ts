@@ -226,7 +226,7 @@ export class MyActivityComponent implements OnInit, OnChanges, OnDestroy {
   }
   getsenderadsMethod() {
     if (this.allAds || this.senderads) {
-      this.dataService.allsenderRequest(this.page).subscribe((data) => {
+      this.dataService.myactivityallsenderRequest(this.page).subscribe((data) => {
         var sendertmpData = data['data'];
         this.preTotalSender=data['total'];
         sendertmpData.forEach((sender) => {
@@ -252,7 +252,7 @@ export class MyActivityComponent implements OnInit, OnChanges, OnDestroy {
   }
   getcarreradsMethod() {
     if (this.allAds || this.carrierads) {
-      this.dataService.allcarrierRequest(this.page).subscribe((data) => {
+      this.dataService.myactivityallcarrierRequest(this.page).subscribe((data) => {
         let tmpData = data['data'];
         this.preTotalCarier=data['total'];
         tmpData.forEach((carrier) => {
@@ -322,12 +322,12 @@ export class MyActivityComponent implements OnInit, OnChanges, OnDestroy {
       user_id: null,
       categories:[]
     }
-    this.dataService.allsenderRequest(this.page).subscribe(data => {
+    this.dataService.myactivityallsenderRequest(this.page).subscribe(data => {
       this.NonExactData = [];
       this.ExactData = [];
       this.senders = data['data'];
     });
-    this.dataService.allcarrierRequest(this.page).subscribe((data) => {
+    this.dataService.myactivityallcarrierRequest(this.page).subscribe((data) => {
       this.NonExactDataCarrier = [];
       this.ExactDataCarrier = [];
       this.carriers = data['data'];
@@ -776,7 +776,7 @@ export class MyActivityComponent implements OnInit, OnChanges, OnDestroy {
                     }
                     else {
                       this.dataService
-                        .allsenderRequest(this.page)
+                        .myactivityallsenderRequest(this.page)
                         .subscribe((data) => {
                           this.senders = data["data"];
                           this.cdRef.detectChanges();
@@ -850,7 +850,7 @@ export class MyActivityComponent implements OnInit, OnChanges, OnDestroy {
                      }
                   }
                   else { 
-                    this.dataService.allcarrierRequest(this.page).subscribe((data) => {
+                    this.dataService.myactivityallcarrierRequest(this.page).subscribe((data) => {
                       this.carriers = data['data'];
                       this.cdRef.detectChanges();
                     });
