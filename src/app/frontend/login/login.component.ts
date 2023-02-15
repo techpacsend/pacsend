@@ -184,7 +184,12 @@ export class LoginComponent implements OnInit {
       } else {
         this.settingService.Error(res['message'])
       }
-    });
+    },
+    (err: HttpErrorResponse) => {
+      this.settingService.Error('Verification pin is invalid!!');
+    }
+    
+    );
   }
 
   submitNewPassword() {

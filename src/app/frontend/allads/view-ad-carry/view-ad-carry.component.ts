@@ -89,7 +89,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     },
     (error) => { 
       this.loader.stop();
-      this.SettingService.Error('Report not submittd')
+      this.SettingService.Error('Report not submitted')
     });
     this.cdRef.detectChanges();
   }

@@ -97,7 +97,7 @@ export class SignupNextComponent implements OnInit {
       this.settingService.Error("Please fill all the fields!");
       return;
     } else {
-      this.settingService.Error(" Else Please fill all the fields!");
+      this.settingService.Error("Please fill all the fields!");
       localStorage.setItem("verificationEmail1", this.signUpForm.controls.email.value)
       localStorage.setItem("Sfirst_name2", this.signUpForm.controls.first_name.value)
       localStorage.setItem("Slast_name", this.signUpForm.controls.last_name.value)

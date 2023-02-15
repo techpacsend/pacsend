@@ -52,12 +52,12 @@
             </div>
             <div class="col-12 m-b-20">
               <div class="form-group" *ngIf="isCountry">
-                <input type="number" ng2TelInput [ng2TelInputOptions]="{initialCountry: country}" maxlength="10"
+                <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: country}" maxlength="10"
                   class="form-custom-control number-field" formControlName="contact"  />
               </div>
               <div class="form-group" *ngIf="!isCountry">
-                <input type="number" ng2TelInput [ng2TelInputOptions]="{initialCountry: country}" maxlength="10"
-                  class="form-custom-control number-field" formControlName="contact"  />
+                <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: country}" maxlength="10"
+                  class="form-custom-control number-field"   />
               </div>
             </div>
 

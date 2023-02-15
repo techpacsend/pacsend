@@ -788,7 +788,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   PostPointofContact(pointcontactnumber, pointcontactname) {
     this.loader.start();
     if (pointcontactnumber.length > 20) {
-      this.settingService.Error("Contect number is too long!");
+      this.settingService.Error("Contact number is too long!");
       this.loader.stop();
     } else {
       this.loader.stop();

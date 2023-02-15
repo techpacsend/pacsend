@@ -86,7 +86,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
       this.loader.stop();
     }, (error) => { 
       this.loader.stop();
-      this.SettingService.Error('Report not submittd')
+      this.SettingService.Error('Report not submitted')
     });
     this.cdRef.detectChanges();
   }
@@ -932,7 +932,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
       this.modalService.dismissAll();
       this.cdRef.detectChanges();
     }, (err: HttpErrorResponse) => {
-      this.SettingService.Error("   Invalid PIN !")
+      this.SettingService.Error("Invalid PIN!")
     });
   }
 
