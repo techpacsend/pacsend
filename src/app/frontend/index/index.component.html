@@ -91,9 +91,9 @@
         justify-content-center
         responsive-height-second
       ">
-      
-        <div class="banner-hover-right" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_2 + ')'}">
-          <a [routerLink]="['/login']" routerLinkActive="router-link-active">
+
+      <div class="banner-hover-right" [ngStyle]="{'background-image': 'url(' + settingImageUrl + home_img_2 + ')'}">
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active">
           <div class="carousel-caption text-center">
             <!-- <h6 class="heading-custom-caption colorWhite cursor-pointer mob-v-h6">
               SENDER
@@ -103,8 +103,8 @@
             </p>
           </div>
         </a>
-        </div>
-      
+      </div>
+
     </div>
   </div>
 </div>
@@ -708,6 +708,30 @@
                   <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="senderdesc_3"></p>
                 </div>
               </div>
+              <div class="row how-to-text-hover">
+                <div class="col-1 padding-desktop-zero">
+                  <div [ngClass]="{ activeRedTab: tab4 }"
+                    class="dayCircleRed font-bold p-3 font-32 mob-font-21 mob-v-font-24">
+                    4
+                  </div>
+                </div>
+                <div class="col-10 padding-desktop-zero mt-1">
+
+                  <a>
+                    <span (click)="changeTab('tab4')" [ngClass]="{ activeTabText: tab4 }"
+                      class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l"
+                      (click)="setVideo('sender', 3)" [innerHTML]="sendertitle4"></span></a>
+                </div>
+                <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+
+                  <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="senderdesc_4"></p>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
               <iframe height="480" frameborder="0" [src]="senderVideoLink | safe" data-src="{{senderVideoLink | safe}}"
@@ -783,6 +807,27 @@
                   mx-auto
                 ">
                   <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="carrierdesc_3"></p>
+                </div>
+              </div>
+              <div class="row how-to-text-hover">
+                <div class="col-1 padding-desktop-zero">
+                  <div [ngClass]="{ activeRedTab: tabCarrier4 }" class="dayCircleRed font-bold p-3 font-32 mob-font-21">
+                    4
+                  </div>
+                </div>
+                <div class="col-10 padding-desktop-zero mt-1">
+                  <a>
+                    <span (click)="changeCarrierTab('tab4')" [ngClass]="{ activeTabText: tabCarrier4 }"
+                      class="font-800 font-24 mob-font-21 ml-4 pointer howToHomeText font-m-l"
+                      (click)="setVideo('carrier', 3)" [innerHTML]="carriertitle4"></span></a>
+                </div>
+                <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="
+                  col-11 col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11
+                  m-b-10
+                  mx-auto
+                ">
+                  <p class="normalGrayStyle1 text-justify m-t-10" [innerHTML]="carrierdesc_4"></p>
                 </div>
               </div>
             </div>

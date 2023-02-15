@@ -94,9 +94,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
   tab1: boolean = true;
   tab2: boolean = false;
   tab3: boolean = false;
+  tab4: boolean = false;
   tabCarrier1: boolean = true;
   tabCarrier2: boolean = false;
   tabCarrier3: boolean = false;
+  tabCarrier4: boolean = false;
   @ViewChild('bannerTesting', { static: true }) content: TemplateRef<any>;
   //  modalRef: BsModalRef;
   @ViewChild('dashboardPopupBanner', { static: false }) dashboardPopupBanner: TemplateRef<any>;
@@ -128,10 +130,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
     }];
   /* new sender ad object */
 
-  senderVideoLink = 'https://www.youtube.com/embed/w7LA6CmesNo';
-  carrierVideoLink = 'https://www.youtube.com/embed/BEpITY4rqGU';
-  senderVidArray = ["https://www.youtube.com/embed/Q_3i__JGg8w", "https://www.youtube.com/embed/Kr5S04b3bkU", "https://www.youtube.com/embed/Q_3i__JGg8w"];
-  carrierVidArray = ["https://www.youtube.com/embed/BEpITY4rqGU", "https://www.youtube.com/embed/E1q1kjWII4c", "https://www.youtube.com/embed/dvRrh8NOTbM"];
+  senderVideoLink = 'https://www.youtube.com/embed/fd9LkXX9t3s';
+  carrierVideoLink = 'https://www.youtube.com/embed/fd9LkXX9t3s';
+  senderVidArray = ["https://www.youtube.com/embed/fd9LkXX9t3s", "https://www.youtube.com/embed/1OQ0gqJyKv0", "https://www.youtube.com/embed/vwp6uFFqgm8","https://www.youtube.com/embed/n6MAhvWgVbM"];
+  carrierVidArray = ["https://www.youtube.com/embed/fd9LkXX9t3s", "https://www.youtube.com/embed/vwp6uFFqgm8", "https://www.youtube.com/embed/67Ok8diAqLw","https://www.youtube.com/embed/n6MAhvWgVbM"];
 
 
   /* new sender ad object */
@@ -317,12 +319,16 @@ export class IndexComponent implements OnInit, AfterViewInit {
   senderdesc_2;
   sendertitle3;
   senderdesc_3;
+  sendertitle4;
+  senderdesc_4;
   carriertitle1;
   carrierdesc_1;
   carriertitle2;
   carrierdesc_2;
   carriertitle3;
   carrierdesc_3;
+  carriertitle4;
+  carrierdesc_4;
   carrier_image;
   sender_image;
   // Why Pacsend
@@ -434,7 +440,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.HowContent= false;
     }, 3000);
 
-    this.senderVideoLink = "https://www.youtube.com/embed/Q_3i__JGg8w";
+    this.senderVideoLink = "https://www.youtube.com/embed/fd9LkXX9t3s";
 
     this.renderMap();
     // this.getHowContent();
@@ -620,10 +626,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
         this.carrierVidArray.push(res.data.c_imbed_link_1);
         this.carrierVidArray.push(res.data.c_imbed_link_2);
         this.carrierVidArray.push(res.data.c_imbed_link_3);
+        this.carrierVidArray.push(res.data.c_imbed_link_4);
         this.senderVidArray.push(res.data.s_imbed_link_1);
         this.senderVidArray.push(res.data.s_imbed_link_2);
         this.senderVidArray.push(res.data.s_imbed_link_3);
-
+        this.senderVidArray.push(res.data.s_imbed_link_4);
       }
 
     })
@@ -755,6 +762,9 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.carriertitle3 = data['data'].c_title_3;
       this.carrierdesc_3 = data['data'].c_desc_3;
 
+      this.carriertitle4 = data['data'].c_title_4;
+      this.carrierdesc_4 = data['data'].c_desc_4;
+
 
 
       this.sendertitle1 = data['data'].s_title_1;
@@ -766,14 +776,19 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.sendertitle3 = data['data'].s_title_3;
       this.senderdesc_3 = data['data'].s_desc_3;
 
+      this.sendertitle4 = data['data'].s_title_4;
+      this.senderdesc_4 = data['data'].s_desc_4;
+
       this.carrier_image = data['data'].c_image_4;
       this.sender_image = data['data'].s_image_4;
       this.carrierVidArray.push(data.data.c_imbed_link_1);
       this.carrierVidArray.push(data.data.c_imbed_link_2);
       this.carrierVidArray.push(data.data.c_imbed_link_3);
+      this.carrierVidArray.push(data.data.c_imbed_link_4);
       this.senderVidArray.push(data.data.s_imbed_link_1);
       this.senderVidArray.push(data.data.s_imbed_link_2);
       this.senderVidArray.push(data.data.s_imbed_link_3);
+      this.senderVidArray.push(data.data.s_imbed_link_4);
 
 
     })
@@ -1365,16 +1380,25 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.tab1 = true;
       this.tab2 = false;
       this.tab3 = false;
+      this.tab4 = false;
     }
     else if (tab == 'tab2') {
       this.tab1 = false;
       this.tab2 = true;
       this.tab3 = false;
+      this.tab4 = false;
+    }
+    else if (tab == 'tab3') {
+      this.tab1 = false;
+      this.tab2 = true;
+      this.tab3 = false;
+      this.tab4 = false;
     }
     else {
       this.tab1 = false;
       this.tab2 = false;
-      this.tab3 = true;
+      this.tab3 = false;
+      this.tab4 = true;
     }
   }
 
@@ -1383,16 +1407,25 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.tabCarrier1 = true;
       this.tabCarrier2 = false;
       this.tabCarrier3 = false;
+      this.tabCarrier4 = false;
     }
     else if (carrierTab == 'tab2') {
       this.tabCarrier1 = false;
       this.tabCarrier2 = true;
       this.tabCarrier3 = false;
+      this.tabCarrier4 = false;
+    }
+    else  if (carrierTab == 'tab3') {
+      this.tabCarrier1 = false;
+      this.tabCarrier2 = false;
+      this.tabCarrier3 = false;
+      this.tabCarrier4 = false;
     }
     else {
       this.tabCarrier1 = false;
       this.tabCarrier2 = false;
-      this.tabCarrier3 = true;
+      this.tabCarrier3 = false;
+      this.tabCarrier4 = true;
     }
   }
 
