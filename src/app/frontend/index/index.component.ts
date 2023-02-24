@@ -390,7 +390,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: Document
   ) {
       if (localStorage.getItem('user') != null || localStorage.getItem('userId') != null) {
-        this.router.navigateByUrl("all-ads");
+        // this.router.navigateByUrl("all-ads");
       }
     localStorage.setItem("index", "indexpage");
 

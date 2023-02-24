@@ -146,7 +146,7 @@ const firebase = {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('589055665445212')
+            provider: new FacebookLoginProvider('1371396193607547')
           }
         ]
       } as SocialAuthServiceConfig,
