@@ -57,7 +57,7 @@
               </div>
               <div class="form-group" *ngIf="!isCountry">
                 <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: country}" maxlength="10"
-                  class="form-custom-control number-field"   />
+                  class="form-custom-control number-field"  formControlName="contact" />
               </div>
             </div>
 

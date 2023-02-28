@@ -163,7 +163,7 @@
         <div class="row">
           <div *ngIf="showCarrierMobile || showCarrierMobile == undefined"
             class="col-md-6 col-12 text-center padding-zero-mobile mb-2 p-0-r-0">
-            <div class="CBox rounded-bottom mb-3" *ngFor="let item of carriers" data-aos="zoom-in">              
+            <div class="CBox rounded-bottom mb-3" *ngFor="let item of carriers" >              
               <div class="CBoxBody d-flex flex-column p-4">
                 <div class="ToolBar text-right pt-2 pb-1">
                   <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">                       
@@ -293,7 +293,7 @@
                   }}</small>
                 </div>
               </div>    
-              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll"  data-aos="zoom-in">              
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll"  >              
                 <div class="CBoxBody d-flex flex-column p-4">
                   <div class="ToolBar text-right pt-2 pb-1">
                     <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">                       
@@ -427,7 +427,7 @@
                   }}</small>
                 </div>
               </div>   
-              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataCarrierAll" data-aos="zoom-in">              
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataCarrierAll" >              
                 <div class="CBoxBody d-flex flex-column p-4">
                   <div class="ToolBar text-right pt-2 pb-1">
                     <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">                       
@@ -561,7 +561,7 @@
                     }}</small>
                   </div>
                 </div> 
-                <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll" data-aos="zoom-in">              
+                <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataCarrierAll" >              
                   <div class="CBoxBody d-flex flex-column p-4">
                     <div class="ToolBar text-right pt-2 pb-1">
                       <div class="col-lg-12 px-0 text-right d-flex flex-row justify-content-end">                       
@@ -655,7 +655,7 @@
           <!-- sender-all -->
           <div *ngIf="!showCarrierMobile || showCarrierMobile == undefined"
             class="col-md-6 col-12 text-center padding-zero-mobile mb-2 p-0-0">
-            <div class="CBox rounded-bottom mb-3" *ngFor="let item of senders" data-aos="zoom-in">
+            <div class="CBox rounded-bottom mb-3" *ngFor="let item of senders" >
               <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom">
               <img [src]="adBaseImgUrl + item?.ad_image" alt="">
             </div>
@@ -799,7 +799,7 @@
                   }}</small>
                 </div>
               </div> 
-              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataSenderAll" data-aos="zoom-in">
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of ExactDataSenderAll" >
                 <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom" ><img [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
                 <div class="CBoxBody d-flex flex-column p-4">
                   <div class="ToolBar text-right pt-2 pb-1">
@@ -939,7 +939,7 @@
                   }}</small>
                 </div>
               </div>
-              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataSenderAll"  data-aos="zoom-in">
+              <div class="CBox rounded-bottom mb-3" *ngFor="let item of NonExactDataSenderAll"  >
                 <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
                 <div class="CBoxBody d-flex flex-column p-4">
                   <div class="ToolBar text-right pt-2 pb-1">
@@ -1067,7 +1067,7 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mx-auto text-center allads-wanto-send-card">
-          <div *ngFor="let item of carriers" class="container px-0" data-aos="zoom-in">
+          <div *ngFor="let item of carriers" class="container px-0" >
             <div class="CBox rounded-bottom mb-3">              
               <div class="CBoxBody d-flex flex-column p-4">
                 <div class="ToolBar text-right pt-2 pb-1">
@@ -1198,7 +1198,7 @@
         }}</small>
       </div>
     </div> 
-    <div *ngFor="let item of ExactData; let i = index" class="container" data-aos="zoom-in">
+    <div *ngFor="let item of ExactData; let i = index" class="container" >
       <div class="CBox rounded-bottom mb-3">          
           <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
           <div class="CBoxBody d-flex flex-column p-4">
@@ -1336,7 +1336,7 @@
         }}</small>
       </div>
     </div> 
-    <div *ngFor="let item of NonExactData" class="container" data-aos="zoom-in">
+    <div *ngFor="let item of NonExactData" class="container" >
       <div class="CBox rounded-bottom mb-3">          
         <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
         <div class="CBoxBody d-flex flex-column p-4">
@@ -1455,7 +1455,7 @@
     style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
     <div class="col-md-3"></div>
     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
-      <div *ngFor="let item of senders" class="container px-0" data-aos="zoom-in">
+      <div *ngFor="let item of senders" class="container px-0" >
         <div class="CBox rounded-bottom mb-3">          
           <div (click)="getSenderId(item)" class="cardimg h-180 rounded-top border-bottom"><img [src]="adBaseImgUrl + item?.ad_image" alt=""></div>
           <div class="CBoxBody d-flex flex-column p-4">
@@ -1573,7 +1573,7 @@
     style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
     <div class="col-md-3"></div>
     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
-      <div *ngFor="let item of NonExactDataCarrier" class="container px-0" data-aos="zoom-in">
+      <div *ngFor="let item of NonExactDataCarrier" class="container px-0" >
         <div class="CBox rounded-bottom mb-3">              
           <div class="CBoxBody d-flex flex-column p-4">
             <div class="ToolBar text-right pt-2 pb-1">
@@ -1680,7 +1680,7 @@
     style="background-color: #ecf0f3" [loaderId]="'Ad-Loader'" ngxUiLoaderBlurred>
     <div class="col-md-3"></div>
     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto text-center">
-      <div *ngFor="let item of ExactDataCarrier" class="container px-0" data-aos="zoom-in">
+      <div *ngFor="let item of ExactDataCarrier" class="container px-0" >
         <div class="CBox rounded-bottom mb-3">              
           <div class="CBoxBody d-flex flex-column p-4">
             <div class="ToolBar text-right pt-2 pb-1">
