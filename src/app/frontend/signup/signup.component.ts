@@ -145,12 +145,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
       return;
     }
     else {
-      console.log('this.signUpForm.controls',this.signUpForm.controls)
-      console.log('LOgin form call');
-      return false;
       this.loader.startBackgroundLoader('saveButton');
       this.settingService.signUp(this.signUpForm.value);
-
       setTimeout(() => {
         this.loader.stopBackgroundLoader('saveButton')
       }, 1500);
