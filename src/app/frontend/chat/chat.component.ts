@@ -1091,6 +1091,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   calculateMessageDateTime(date) {
+    return '';
     var time = new Date().toLocaleTimeString();
     var datee = new Date().toLocaleDateString();
     const date1 = new Date(datee + "," + time);

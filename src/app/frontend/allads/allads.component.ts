@@ -199,6 +199,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
 
    localStorage.removeItem("filterSendLongtitude");
    localStorage.removeItem("filterSendLatitude");
+   this.onScroll();
 
   }
 

@@ -140,6 +140,8 @@ export class MyadsComponent implements OnInit {
     localStorage.removeItem("filterSendLongtitude");
     localStorage.removeItem("filterSendLatitude");
     this.getCategoriesType();
+
+    this.onScroll();
   }
 
   
