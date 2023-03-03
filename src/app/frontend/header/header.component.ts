@@ -1794,7 +1794,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.carriarAd.travelling_frequency =
           index == 0
             ? element.toString()
-            : this.carriarAd.travelling_frequency + "," + element.toString();
+            : this.carriarAd.travelling_frequency + ", " + element.toString();
       });
     } else {
       this.carriarAd.travelling_frequency = date;
