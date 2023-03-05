@@ -69,20 +69,20 @@
                             </div>
 
                             <div class="col-md-6 col-lg-6 col-xl-6 mb-1 mt-2">
-                                <h6 class="font-12 color-figma-gray font-600 mb-1">National Id No.</h6>
+                                <h6 class="font-12 color-figma-gray font-600 mb-1">Document ID Number</h6>
                                 <h6 class="font-14 color-shade-black font-600">{{ userDetails.nic_no }}</h6>
                             </div>
                             <div class="col-md-6 col-lg-6 col-xl-6 mb-2 mt-2">
                                 <h6 class="font-12 color-figma-gray font-600 mb-1">Country Name</h6>
-                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.country_name }}</h6>
+                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.country }}</h6>
                             </div>
                             <div class="col-md-6 col-lg-6 col-xl-6 mb-2 mt-2">
                                 <h6 class="font-12 color-figma-gray font-600 mb-1">State Name</h6>
-                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.state_name }}</h6>
+                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.state }}</h6>
                             </div>
                             <div class="col-md-12 mb-2 mt-2">
                                 <h6 class="font-12 color-figma-gray font-600 mb-1">City Name</h6>
-                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.city_name }}</h6>
+                                <h6 class="font-14 color-shade-black font-600">{{ userDetails.city }}</h6>
                             </div>
                             <div class="col-md-12 text-center mb-2">
                                 <button type="button" [routerLink]="['/favourites']" routerLinkActive="router-link-active" class=" btn btn-xs btn-sm btn-md btn-lg btn-primary w-100 font-13 ">Favourite</button>
@@ -1627,6 +1627,18 @@
                                 <label for="fname" class="font-13 font-600">Last name:</label>
                                 <input type="text" name="lname" [(ngModel)]="userDetails.lname"
                                     class="form-control form-custom-control mb-0" id="name" placeholder="Last Name" />
+                            </div>
+                            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <label for="fname" class="font-13 font-600">Country:</label>
+                                <input type="text" name="country" [(ngModel)]="userDetails.country" class="form-control form-custom-control mb-0" id="name" placeholder="Last Name" />
+                            </div>
+                            <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <label for="fname" class="font-13 font-600">State:</label>
+                                <input type="text" name="state" [(ngModel)]="userDetails.state" class="form-control form-custom-control mb-0" id="name" placeholder="Last Name" />
+                            </div>
+                            <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <label for="fname" class="font-13 font-600">City:</label>
+                                <input type="text" name="city" [(ngModel)]="userDetails.city" class="form-control form-custom-control mb-0" id="name" placeholder="Last Name" />
                             </div>
                             <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <label for="email" class="font-13 font-600">Email:</label>

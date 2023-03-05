@@ -295,6 +295,9 @@ export class UserProfileComponent implements OnInit {
       country_id:this.c_id,
       state_id:this.s_id,
       city_id:this.city_id,
+      country:this.userDetails.country,
+      state:this.userDetails.state,
+      city:this.userDetails.city,
       user_id: +localStorage.getItem("userId")
 
     }

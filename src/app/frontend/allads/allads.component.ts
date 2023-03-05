@@ -193,14 +193,13 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
     });
    setTimeout(() => {
     window.scroll(0,0);
-   },1000)
+    this.onScroll();
+    },1000)
    localStorage.removeItem("longitude");
    localStorage.removeItem("latitude");
 
    localStorage.removeItem("filterSendLongtitude");
    localStorage.removeItem("filterSendLatitude");
-   this.onScroll();
-
   }
 
   getCategoriesType() {

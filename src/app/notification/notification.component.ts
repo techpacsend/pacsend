@@ -54,6 +54,7 @@ export class NotificationComponent implements OnInit {
         )
         .snapshotChanges()
         .subscribe((querySnapshot) => {
+          querySnapshot = querySnapshot.reverse();
           let Array = [];
           querySnapshot.forEach((doc) => {
             let data:any = {
@@ -92,6 +93,8 @@ export class NotificationComponent implements OnInit {
           }
         });
     }
+    // console.log('NotificationsArray',this.NotificationsArray)
+    // console.log('NotificationsArray',this.NotificationsArray.reverse())
   }
 
   onScroll() {
