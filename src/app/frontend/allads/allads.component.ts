@@ -36,6 +36,7 @@ import { DatePipe } from '@angular/common';
 export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('navigationRestricted', { static: false }) navigationRestricted: TemplateRef<any>;
   @ViewChild('navigationLogin', { static: false }) navigationLogin: TemplateRef<any>;
+  buttondisable: boolean = false;
   zoomIn: any;
   mrcURL: string = 'https://pacsend.app';
   userDetails: any;
@@ -720,6 +721,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   postSenderConnect(item) {
+    if(this.buttondisable == true){
+      return false;
+    }
     this.user = JSON.parse(localStorage.getItem("user"));
     if (!this.user) {
       this.navigationLoginPopup()
@@ -734,7 +738,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
           this.loader.start()
 
           this.disabled = true;
-
+          this.buttondisable = true;
           this.UserProfileService.getUserProfile(this.userId).pipe(
             finalize(() => {
               this.loader.stop();
@@ -753,6 +757,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
                   (res) => {
                     localStorage.setItem("SenderRequest", JSON.stringify(1));
                     localStorage.setItem("AdId", item.ad_id);
+                    this.buttondisable = false;
                     this.SettingService.Success("Request Sent Successfully");
                     if (this.isSearch) {
                       if (this.NonExactDataSenderAll.length) {
@@ -801,6 +806,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   postcarrierConnect(item) {
+    if(this.buttondisable == true){
+      return false;
+    }
     this.user = JSON.parse(localStorage.getItem("user"));
     if (!this.user) {
       this.navigationLoginPopup()
@@ -813,13 +821,14 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
         this.loader.start()
 
         this.disabled = true;
-
+        this.buttondisable = true;
         this.UserProfileService.getUserProfile(this.userId).pipe(
           finalize(() => {
             this.loader.stop();
           })
         )
           .subscribe((x: any) => {
+            
             this.userVerfy = x.userData;
             if (this.userVerfy.is_verified == 1) {
               let userid = localStorage.getItem("userId")
@@ -830,7 +839,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
               }
               this.dataService.postcarrierConnect(obj)
                 .subscribe(res => {
+                  this.buttondisable = false;      
                   this.SettingService.Success("Request Sent Successfully");
+
                   if (this.isSearch) {
                     if (this.NonExactDataCarrierAll.length) {
                       for (let i = 0; i < this.NonExactDataCarrierAll.length; i++) { 

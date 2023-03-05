@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   isCountry = false;
   inputType = 'password';
   isPasswordVisible = false;
+  buttondisable = false;
 
   constructor(
     private loader: NgxUiLoaderService,
@@ -108,6 +109,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
+    if(this.buttondisable == true){
+      return false;
+    }
     localStorage.setItem("verificationEmail", this.signUpForm.controls.email.value)
     localStorage.setItem("first_name", this.signUpForm.controls.first_name.value)
     localStorage.setItem("last_name", this.signUpForm.controls.last_name.value)
@@ -146,8 +150,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
     }
     else {
       this.loader.startBackgroundLoader('saveButton');
+      this.buttondisable = true;
       this.settingService.signUp(this.signUpForm.value);
       setTimeout(() => {
+        this.buttondisable = false;
         this.loader.stopBackgroundLoader('saveButton')
       }, 1500);
     }

@@ -26,6 +26,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
   mrcURL: string = 'https://pacsend.app';
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
+  buttondisable:boolean = false;
   myStatus = false;
   clicked: any;
   alreadyReported: boolean = false;
@@ -418,8 +419,12 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
   }
 
   CancelRequestAccept(status) {
-
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.CancelRequestCarrierAdAccept(this.adID, this.aduser_id, this.toUserId, status).subscribe((res: any) => {
+      this.buttondisable = false;
       if (status == 0) {
         this.cancelFirebaseNotification();
         this.cancelRequested = false;
@@ -449,7 +454,12 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     } else {
       user_type_id = 0;
     }
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.SendCarrierAdCancelRequest(this.adID, this.aduser_id, this.toUserId, user_type_id).subscribe((res: any) => {
+      this.buttondisable = false;
       this.modalReference = this.modalService.open(cancelRequestSent, { ariaLabelledBy: 'modal-basic-title', windowClass: 'modal-width' })
       this.showCancelCard = true;
       this.showCancelBtn = false;
@@ -470,11 +480,16 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl("/all-ads")
     }
     else if (this.connectBtn == "Connect") {
+      if(this.buttondisable == true){
+        return false;
+      }
+      this.buttondisable = true;
       let userId = localStorage.getItem("userId")
       this.form.controls['user_id'].setValue(userId);
       this.form.controls['client_key'].setValue(this.clientid);
       this.form.controls['ad_id'].setValue(Number(this.adID));
       this.dataService.postcarrierConnect(this.form.value).subscribe(res => {
+        this.buttondisable = false;
         this.SettingService.Success("Request Sent Successfully")
         localStorage.setItem("CarrierRequest", JSON.stringify(1))
         localStorage.setItem("CarryAdId", this.adID);
@@ -494,7 +509,13 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     let pip = new DatePipe("en-US");
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     this.notificationMessage = 'You pickup for ad ' + this.adData.title + ' on ' + todayDate + ' is confirmed by ' + user.fname + ' ' + user.lname;
+    if(this.buttondisable == true){
+      false;
+    }
+    this.buttondisable = true;
+
     this.dataService.POSTPickeuppckageforcarrier(this.adID).subscribe(res => {
+      this.buttondisable = false;
       this.hidetrack = false;
       this.hidestatus = true;
       this.hideyes = true
@@ -512,7 +533,12 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
 
   PostDealProcessNo() {
     this.notificationMessage = 'No pickup for ad ' + this.adData.title;  
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.packageNotPickedCarrier(this.adID).subscribe(res => {
+      this.buttondisable = false;
       this.hideyes = true
       this.showCancelBtn = true;
       this.disbaledstatusbtn = false
@@ -532,7 +558,13 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     let pip = new DatePipe("en-US");
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     this.notificationMessage = 'Delivery confirmed by sender on ' + todayDate + ' for ad ' + this.adData.title  + ' by ' + user.fname + ' ' + user.lname;
+    if(this.buttondisable == true){
+      return false
+    }
+    this.buttondisable = true;
+    
     this.dataService.POSTDileveredforcarrier(this.adID, this.user_id).subscribe(res => {
+      this.buttondisable = false;
       this.hidedileverybtn = true;
       this.hidestatus = false;
       this.btnStatus = "Deal Done";
@@ -597,7 +629,12 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
         this.notificationMessage = 'Your package is picked up by ' + user.fname + ' ' + user.lname + ' on ' + todayDate + ' for ad ' + this.adData.title + '. Please confirm Pickup.';
         this.loginUserId=localStorage.getItem("userId");
         this.pickUpAlert = true;
+        if(this.buttondisable == true){
+          return false;
+        }
+        this.buttondisable = true;
         this.dataService.POSTPickeuppckageforcarrierReq(this.adID, this.pickupUserId).subscribe(res => {
+          this.buttondisable = false;
           if (res) {
             this.PostNotificationFromFireStore(this.notificationMessage);
             this.showCancelBtn = false;
@@ -643,7 +680,12 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     this.notificationMessage = 'Pin verified by carrier for ad ' + this.adData.title + ' on ' + todayDate + ' by ' + user.fname + ' ' + user.lname;
     var textvalue = this.VerificationForem.controls['verification'].value;
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.POSTVarificationforcarrier(this.adID, this.receiverid, textvalue).subscribe((res: any) => {
+      this.buttondisable = false;
       if (res.status === "error") {
         this.SettingService.Error(res.message);
         this.hidestatus = false

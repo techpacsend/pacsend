@@ -47,6 +47,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   @ViewChild("scrollBottom", { static: true }) private scrollBottom: ElementRef;
 
   mrcURL: string = "https://pacsend.app";
+  buttondisable:boolean = false;
 
   ChatForm: FormGroup;
   modalReference: any;
@@ -652,11 +653,16 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   PostAccept() {
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     if (this.ad_type == 1) {
       this._chatservice
         .PostActionRequest(1, this.adId, this.offerer_id)
         .subscribe(
           (res) => {
+            this.buttondisable = false;
             this.settingService.Success("Request Accepted Succesfully");
             this.hidebutton = true;
             this.hidetext = false;
@@ -675,6 +681,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
         .PostActionRequestCarrier(1, this.adId, this.offerer_id)
         .subscribe(
           (res) => {
+            this.buttondisable = false;
             this.settingService.Success("Request Accepted Succesfully");
             this.hidebutton = true;
             this.hidetext = false;
@@ -709,6 +716,10 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   PostAward(pointOfContact) {
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     if (this.ad_type == 1) {
       this._chatservice
         .PostOfferAcceptance(this.adId, this.offerer_id)
@@ -718,6 +729,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
             this.hideaward = true;
             this.hideshield = true;
             this.hidekey = false;
+            this.buttondisable = false;
             this.settingService.Success("Offer Awarded Successfully");
             this.assignJobFirebaseNotification(this.Chat);
             setTimeout(() => {
@@ -733,6 +745,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
           }
         );
     } else if (this.ad_type == 2) {
+      this.buttondisable = false;
       this.modalReference = this.modalService.open(pointOfContact, {
         ariaLabelledBy: "modal-basic-title",
         windowClass: "modal-width",

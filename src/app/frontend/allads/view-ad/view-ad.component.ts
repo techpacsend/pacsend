@@ -22,6 +22,7 @@ import { DatePipe } from '@angular/common';
 export class ViewAdComponent implements OnInit, AfterViewInit {
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
   mrcURL: string = 'https://pacsend.app';
+  buttondisable:boolean = false;
   myStatus = false;
   reports: any;
   selectedId: any;
@@ -457,7 +458,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
   }
 
   async getAdDetails(adID, userId) {
-
+    
     this.dataService.viewSenderAd(adID)
       .subscribe((product: any) => {
         this.adData = product['data'];
@@ -751,7 +752,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     }
   }
   CancelRequestAcceptens(status) {
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.CancelRequestSenderAdAccept(this.adID, this.userid, this.offererid, status).subscribe((res: any) => {
+      this.buttondisable = false;
       let index = this.adData.offerer_data.length;
       if (status == 0) {
         this.cancelRequested = false;
@@ -790,7 +796,13 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     } else {
       user_type_id = 0;
     }
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
+
     this.dataService.SendCancelRequest(this.adID, this.userid, this.offererid, user_type_id).subscribe((res: any) => {
+      this.buttondisable = false;
       this.modalReference = this.modalService.open(cancelRequestSent, { ariaLabelledBy: 'modal-basic-title', windowClass: 'modal-width' })
       this.showCancelCard = true;
       this.showCancelBtn = false;
@@ -840,7 +852,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
       this.form.controls['user_id'].setValue(userid);
       this.form.controls['client_key'].setValue(this.clientid);
       this.form.controls['ad_id'].setValue(Number(this.adID));
+      if(this.buttondisable == true){
+        return false;
+      }
+      this.buttondisable = true;
       this.dataService.postSenderConnect(this.form.value).subscribe(res => {
+        this.buttondisable = false;
         localStorage.setItem("SenderRequest", JSON.stringify(1))
         localStorage.setItem("AdId", this.adID);
         this.btntext = "Requested";
@@ -875,7 +892,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     let pip = new DatePipe("en-US");
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     this.notificationMessage = 'You pickup for ad ' + this.adData.ad_title + ' on ' + todayDate + ' is confirmed by ' + user.fname + ' ' + user.lname;
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.PostDealProcess(this.adID, "0").subscribe(res => {
+      this.buttondisable = false;
       this.hidetrack = false;
       this.hidestatus = true;
       this.hideyes = true
@@ -896,7 +918,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     let pip = new DatePipe("en-US");
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     this.notificationMessage = 'Pickup unverified by sender for ' + this.adData.ad_title + ' on ' + todayDate + ' by ' + user.fname + ' ' + user.lname;
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.PostDealProcess(this.adID, "1").subscribe(res => {
+      this.buttondisable = false;
       this.hidetrack = false;
       this.hidestatus = true;
       this.hideyes = true
@@ -919,7 +946,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     var textvalue = this.VerificationForem.controls['verification'].value;
     this.notificationMessage = 'Pin verified by carrier for ad ' + this.adData.ad_title + ' on ' + todayDate + ' by ' + user.fname + ' ' + user.lname
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;    
     this.dataService.PostVerificationAPI(this.adID, textvalue).subscribe(res => {
+      this.buttondisable = false;
       this.SettingService.Success("Success");
       this.disabledstatusbutton = true;
       this.btnStatus = "Confirm Delivery";
@@ -945,7 +977,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     let todayDate = pip.transform(today, "dd/MM/yyyy");
     if (this.btnStatus == "Picked Up") {
       this.notificationMessage = 'Your package is picked up by' + ' ' + user.fname + ' ' + user.lname + ' on ' + todayDate + ' for ' + this.adData.ad_title + '.  Please confirm Pickup.'
+      if(this.buttondisable == true){
+        return false;
+      }
+      this.buttondisable = true;
       this.dataService.PostDealProcess(this.adID).subscribe(res => {
+        this.buttondisable = false;
         this.showCancelBtn = false;
         this.disabledstatusbutton = true;
         this.hidepickedupli = false;
@@ -961,7 +998,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     }
     else if (this.btnStatus == "Reached the destination") {
       this.notificationMessage = 'Your package on ad ' + this.adData.ad_title + ' has reached the destinaion.';
+      if(this.buttondisable == true){
+        return false;
+      }
+      this.buttondisable = true;
       this.dataService.PostReachedDestination(this.adID).subscribe(res => {
+        this.buttondisable = false;
         this.btnStatus = "Verify PIN";
         this.hidereachedli = true;
         this.hidetrack = false;
@@ -980,7 +1022,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     }
     else if (this.btnStatus == "Confirm Delivery") {
       this.notificationMessage = 'Delivery confirmed by sender on ' + todayDate + ' for ad ' + this.adData.ad_title + ' by ' + user.fname + ' ' + user.lname
+      if(this.buttondisable == true){
+        return false;
+      }
+      this.buttondisable = true;
       this.dataService.PostDilevered(this.adID, this.offererid).subscribe(res => {
+        this.buttondisable = false;
         this.btnStatus = "Deal Closed";
         if (+localStorage.getItem('userId') == +this.adData.creater.id && this.adData.ad_type == 1 && this.adData.carrier_feedbacks ==null) {
           this.hidefeedback = false;
@@ -1012,7 +1059,12 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
 
   PostDelieverd() {
     let userId = localStorage.getItem("userId")
+    if(this.buttondisable == true){
+      return false;
+    }
+    this.buttondisable = true;
     this.dataService.PostDilevered(this.adID, userId).subscribe(res => {
+      this.buttondisable = false;
       this.btnStatus = "Deal Closed";
       this.hidedelieveredli = false
       this.hidedileverybtn = true;
