@@ -74,8 +74,7 @@ export class NotificationComponent implements OnInit {
                 notificationText: res.data.notificationText,
                 createdAt: res.data.createdAt,
                 updatedAt: res.data.updatedAt,
-                docId: res.id,
-
+                docId: res.id
               };
             let duplicateNotification = this.NotificationsArray.find((x) => x.docId == result.docId);
               if (!duplicateNotification) { 
@@ -106,6 +105,8 @@ export class NotificationComponent implements OnInit {
   }
 
   Route(item) {
+    const itemRef = this.db.doc('Notification/'+item.docId);
+    itemRef.update({ isRead:1});
     if (
       item.notificationText.includes("Connection request received") > 0 ||
       item.notificationText.includes("Connection request accepted") > 0
