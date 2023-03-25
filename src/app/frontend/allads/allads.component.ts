@@ -1,4 +1,4 @@
-import { SettingService } from './../../app.service';
+import { SettingService } from '../../app.service';
 import { ChangeDetectorRef, Component, HostListener, OnChanges, OnDestroy, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { DataService } from './allads.service';
 import { Router } from '@angular/router';
@@ -38,7 +38,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('navigationLogin', { static: false }) navigationLogin: TemplateRef<any>;
   buttondisable: boolean = false;
   zoomIn: any;
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   userDetails: any;
   userVerfy: any;
   boolval: boolean = false;
@@ -126,9 +126,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   sTotal: any;
   preTotalSender: any;
   preTotalCarier: any;
-  imageUrl = "https://pacsend.app/public/uploads/users/";
-  tagImgUrl = "https://pacsend.app/public/uploads/category/";
-  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
+  imageUrl = "https://pacsend.tech/public/uploads/users/";
+  tagImgUrl = "https://pacsend.tech/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.tech/public/uploads/adds/';
   categoryDropdownSettings:IDropdownSettings={};
   categories = [];
   isSearch:boolean = false;
@@ -288,7 +288,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
      form.append("page", "1");
       //  const checkNewData= interval(15000);
       //  checkNewData.subscribe(res=>{
-         const data= this.httpClient.post('https://pacsend.app/api/v1/carier-sender-total', form);
+         const data= this.httpClient.post('https://pacsend.tech/api/v1/carier-sender-total', form);
          data.subscribe(x=>{
            this.cTotal=x['total carrier'];
            this.sTotal = x['total sender'];  
@@ -674,6 +674,14 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   PostConnectFirebase(type: string,item) {
+    if (this.user && (this.user.is_verified == 2 || this.user.is_verified == 0)) {
+      // this.navigationRestrictionPopup();
+      return false;
+    }
+    if (item.requested_is_connect == 1) {
+      return false;
+    }
+    
     let user: any = JSON.parse(localStorage.getItem("user"));
     let today = new Date();
     let pip = new DatePipe('en-US');
@@ -781,7 +789,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
                     }
                     else {
                       this.dataService
-                        .allsenderRequest(this.page)
+                        .allsenderRequest(0)
                         .subscribe((data) => {
                           this.senders = data["data"];
                           this.cdRef.detectChanges();
@@ -812,6 +820,9 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
     this.user = JSON.parse(localStorage.getItem("user"));
     if (!this.user) {
       this.navigationLoginPopup()
+    }
+    if(this.user && (this.user.is_verified == 2 || this.user.is_verified == 0)) {
+      this.navigationRestrictionPopup();
     }
     else {
       if (item.requested_is_connect == 1) {
@@ -861,7 +872,7 @@ export class AlladsComponent implements OnInit, OnChanges, OnDestroy {
                      }
                   }
                   else { 
-                    this.dataService.allcarrierRequest(this.page).subscribe((data) => {
+                    this.dataService.allcarrierRequest(0).subscribe((data) => {
                       this.carriers = data['data'];
                       this.cdRef.detectChanges();
                     });

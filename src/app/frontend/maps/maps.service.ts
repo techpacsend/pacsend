@@ -12,7 +12,7 @@ export class MapsService {
   readonly senderAndcarrier = this.baseUrl + "/carrier-and-sender-at-location";
   readonly senderAds = this.baseUrl + "/sender-at-my-location";
   readonly carrierAds = this.baseUrl + "/carrier-at-my-location";
-  readonly user = "https://pacsend.app/webservices/api/v1/user/";
+  readonly user = "https://pacsend.tech/webservices/api/v1/user/";
   readonly clientkey = "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
   readonly Verification1 = this.baseUrl + "/profile-verification-step-one";
   readonly Verification2 = this.baseUrl + "/profile-verification-step-two";

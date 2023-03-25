@@ -14,7 +14,7 @@ import { MyAdService } from '../myads.service';
 })
 export class ViewcarrieradsComponent implements OnInit {
 
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   clientid = "Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
   public btntextcarry = "Connect";
   adID: any; //Getting id from URL

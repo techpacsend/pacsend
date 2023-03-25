@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('navigationLogin', { static: false }) navigationLogin: TemplateRef<any>;
   @ViewChild('whypacsend', { static: false }) pacsend: ElementRef;
 
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
 
   isDisabled: boolean = false;
   usable: boolean = true;
@@ -163,9 +163,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     fromCity: null,
     receiverName: null,
     receivernumber: null,
-    terms: false
-
+    terms: false,
+    currency:'AED'
   };
+  currencys = [];
   zoom_adcarry_from: any = 20;
   zoom_adcarry_to: any = 20;
   zoom_adsender_from: any = 20;
@@ -196,6 +197,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     custome_time: null,
     category_ids: null,
     keyword_ids: [],
+    currency : 'AED'
   };
 
   /* new sender ad object */
@@ -353,7 +355,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   Favicon: any;
   latitude: any;
   longitude: any;
-  settingImageUrl = 'https://pacsend.app/public/uploads/setting/';
+  settingImageUrl = 'https://pacsend.tech/public/uploads/setting/';
 
   @ViewChild("searchmap", { static: true }) public searchmap: ElementRef;
   Title: any;
@@ -697,6 +699,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.GetMessage();
     this.getSetting();
     this.notificationBell();
+    this.getCurrencyType();
 
     if (localStorage.getItem("user")) {
       let user: any = JSON.parse(localStorage.getItem("user"));
@@ -741,7 +744,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.sharedService.onProfileImageGet().subscribe((res) => { 
       if (res) {
-        this.avatar_image = "https://pacsend.app/public/uploads/users/" + res.ProfileImage;
+        this.avatar_image = "https://pacsend.tech/public/uploads/users/" + res.ProfileImage;
       }
       
     })
@@ -965,13 +968,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.equalsOne = true;
         this.notequalsOne = false;
         this.isLogin = true;
-        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.custom_profile_photo;
+        this.avatar_image = "https://pacsend.tech/public/uploads/users/" + x.userData.custom_profile_photo;
       }
      else if (x.userData.image) {
         this.equalsOne = true;
         this.notequalsOne = false;
         this.isLogin = true;
-        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.image;
+        this.avatar_image = "https://pacsend.tech/public/uploads/users/" + x.userData.image;
       }
       else {
         this.equalsOne = true;
@@ -1040,7 +1043,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       carrier_from_location: [],
       carrier_to_location: [],
       keyword_ids: [],
-      customCategories:[]
+      customCategories:[],
+      currency : ''
     });
   }
 
@@ -1499,7 +1503,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     formData.append("keyword_ids", this.senderAd.keywordId);
     formData.append("from_longitude", this.senderAd.fromLongitude);
     formData.append("from_latitude", this.senderAd.fromLatitude);
+    formData.append("currency", this.senderAd.currency);
     formData.append("customCategories", JSON.stringify(this.customeCategoryList))
+    
     // formData.append("customCategories", this.customeCategoryList)
 
     if (this.senderAd.fromLocation == null) {
@@ -1746,6 +1752,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.CarrierForm.controls["to_city"].setValue(
         this.carriarAd.to_city
       );
+      this.CarrierForm.controls["currency"].setValue(
+        this.carriarAd.currency
+      );
+      
       this.CarrierForm.controls["customCategories"].setValue(
         this.customeCategoryList)
 
@@ -1870,6 +1880,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.categories = data["data"];
       this.categories.forEach((element) => {
         element.clicked = false;
+      });
+    });
+  }
+  getCurrencyType(){
+    this.settingService.getCurrencys().subscribe((data: any[]) => {
+      this.currencys = [];
+      data["data"].forEach(element => {
+        this.currencys.push(element.title)
       });
     });
   }
@@ -2742,6 +2760,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       custome_time: null,
       category_ids: null,
       keyword_ids: [],
+      currency : 'AED'
     };
     this.senderAd = {
       title: "",
@@ -2767,8 +2786,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       fromCity: null,
       receiverName: null,
       receivernumber: null,
-      terms: false
+      terms: false,
+      currency : 'AED'
     };
+
     this.selectedTag = [];
     this.travellingTypes.forEach((element, index) => {
       this.travelTypeSelect[index] = false;

@@ -22,7 +22,7 @@ export class SettingService {
   readonly categories =
     this.baseUrl +
     "/categories?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
-
+  readonly currency = this.baseUrl + "/currency-list?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G";
 
     readonly keywords =
     this.baseUrl +
@@ -81,6 +81,10 @@ export class SettingService {
 
   public getCategories() {
     return this.httpClient.get(this.categories);
+  }
+
+  public getCurrencys() {
+    return this.httpClient.get(this.currency);
   }
 
   public getkeywords() {

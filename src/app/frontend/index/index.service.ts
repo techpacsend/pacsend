@@ -17,7 +17,7 @@ export class IndexService {
     return this.httpClient.get(this.aboutAPI);
   }
   public GetVideoLink(){
-    return this.httpClient.get("https://pacsend.app/api/v1/home-how-content?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
+    return this.httpClient.get("https://pacsend.tech/api/v1/home-how-content?client_key=Q4thTfwL6E8qAyKo68hW0e8EVeTpCn9YHO91oO5G");
   }
   public GetWhyPacsend(){
     return this.httpClient.get(this.whyPacsend);

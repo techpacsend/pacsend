@@ -76,8 +76,8 @@ export class AdEditComponent implements OnInit {
   @ViewChild("navigationLogin", { static: false })
   navigationLogin: TemplateRef<any>;
 
-  mrcURL: string = "https://pacsend.app";
-
+  mrcURL: string = "https://pacsend.tech";
+  currencys = [];
   isDisabled: boolean = false;
   usable: boolean = true;
   isclicked: boolean = false;
@@ -156,6 +156,7 @@ export class AdEditComponent implements OnInit {
     pickup_location: null,
     point_of_contact_name: null,
     point_of_contact_number: null,
+    currency:''
   };
   zoom_adcarry_from: any = 20;
   zoom_adcarry_to: any = 20;
@@ -184,6 +185,7 @@ export class AdEditComponent implements OnInit {
     custome_date: null,
     custome_time: null,
     category_ids: null,
+    currency:''
   };
 
   /* new sender ad object */
@@ -401,7 +403,7 @@ export class AdEditComponent implements OnInit {
   imageIndex: number = 0;
   images = [];
   showImages = [];
-  adImageBaseUrl = "https://pacsend.app/public/uploads/adds/";
+  adImageBaseUrl = "https://pacsend.tech/public/uploads/adds/";
   filesAmount;
   allowImg = ["image/jpeg", "image/png", "image/jpg", "image/bmp"];
   countryShortName = 'PK';
@@ -429,6 +431,7 @@ export class AdEditComponent implements OnInit {
     private sharedService: SharedService
   ) {
     this.getCategoriesType('');
+    this.getCurrencyType();
   }
 
   ngOnDestroy() {
@@ -812,6 +815,7 @@ export class AdEditComponent implements OnInit {
       customCategories: [],
       carrier_from_location: [],
       carrier_to_location: [],
+      currency : ''
     });
   }
 
@@ -1145,6 +1149,7 @@ export class AdEditComponent implements OnInit {
     formData.append("custom_date", this.senderAd.custom_date_to);
     formData.append("custom_time", this.senderAd.custom_time_to);
     formData.append("payment", this.senderAd.payment);
+    formData.append("currency", this.senderAd.currency);
     formData.append("user_id", localStorage.getItem("userId"));
     formData.append("category_ids", this.catIds);
     formData.append(
@@ -1312,6 +1317,7 @@ export class AdEditComponent implements OnInit {
         carrier_from_location: this.carriarAd.carrier_from_location,
         carrier_to_location: this.carriarAd.carrier_to_location,
         title: this.carriarAd.title,
+        currency:this.carriarAd.currency
       });
 
       let obj = {
@@ -1420,6 +1426,14 @@ export class AdEditComponent implements OnInit {
           }
         });
       }
+      });
+    });
+  }
+  getCurrencyType(){
+    this.settingService.getCurrencys().subscribe((data: any[]) => {
+      this.currencys = [];
+      data["data"].forEach(element => {
+        this.currencys.push(element.title)
       });
     });
   }
@@ -2159,6 +2173,7 @@ export class AdEditComponent implements OnInit {
       custome_date: null,
       custome_time: null,
       category_ids: null,
+      currency:''
     };
     this.senderAd = {
       types: null,
@@ -2191,6 +2206,7 @@ export class AdEditComponent implements OnInit {
       receiverName: null,
       receivernumber: null,
       terms: false,
+      currency:''
     };
     this.travellingTypes.forEach((element, index) => {
       this.travelTypeSelect[index] = false;
@@ -2413,14 +2429,14 @@ export class AdEditComponent implements OnInit {
           this.onClickPriority(3);
         }
 
-        // let adImages = `https://pacsend.app/public/uploads/adds/${product['data'].ad_image}`;
+        // let adImages = `https://pacsend.tech/public/uploads/adds/${product['data'].ad_image}`;
         if (product.adGallery) {
           let images = {
             imageName: "",
           };
           product.adGallery.forEach((img) => {
             if (img.image) {
-              let adImages = `https://pacsend.app/public/uploads/adds/${img.image}`;
+              let adImages = `https://pacsend.tech/public/uploads/adds/${img.image}`;
               images.imageName = img.image;
               this.uploadedImagesSender.push(images);
               this.showImages.push(adImages);

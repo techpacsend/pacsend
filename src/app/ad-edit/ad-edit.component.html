@@ -181,7 +181,7 @@
         }">
         <div class="row">
           <div class="col-3 text-center col-md-2 p-r-0 p-l-21">
-            <img src="https://pacsend.app/public/uploads/traveling/{{
+            <img src="https://pacsend.tech/public/uploads/traveling/{{
                 travellingType.image
               }}" class="width-100" />
           </div>
@@ -356,8 +356,11 @@
         upon reaching the destination.
       </p>
       <div class="form-group">
-        <input style="border: solid 2px #e1e7ec !important" [(ngModel)]="senderAd.payment" #paymentCarrier
-          class="form-control form-custom-control" name="MobileNumber" type="number" placeholder="Amount in Aed" />
+        <select style="width: 85px;" [(ngModel)]="senderAd.currency" class="form-control" id="currency" name="currency">
+          <option *ngFor="let currency of currencys" [ngValue]="currency">{{currency}}</option>
+        </select>
+        <input style="width: calc(100% - 85px);top: -38px;display: block;position: relative;left: 85px;" style="border: solid 2px #e1e7ec !important" [(ngModel)]="senderAd.payment" #paymentCarrier
+          class="form-control form-custom-control" name="MobileNumber" type="number" placeholder="Amount" />
       </div>
 
       <div class="modal-footer text-center p-0">
@@ -614,7 +617,7 @@
             " (click)="getcarrygetTravellingType(travellingType.id)">
             <div class="row">
               <div class="col-3 text-center col-md-2 p-r-0 p-l-21">
-                <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                <img src="https://pacsend.tech/public/uploads/travelingBy/{{
                     travellingType.image
                   }}" class="width-100" />
               </div>
@@ -647,7 +650,10 @@
             package upon reaching the destination.
           </p>
           <div class="form-group">
-            <input #amount [(ngModel)]="carriarAd.payment" class="form-control form-custom-control" name="MobileNumber"
+            <select style="width: 85px;" [(ngModel)]="carriarAd.currency" class="form-control" id="currency" name="currency">
+                <option *ngFor="let currency of currencys" [ngValue]="currency">{{currency}}</option>
+            </select>
+            <input style="width: calc(100% - 85px);top: -38px;display: block;position: relative;left: 85px;" #amount [(ngModel)]="carriarAd.payment" class="form-control form-custom-control" name="MobileNumber"
               type="number" placeholder="Amount Per Kg" />
           </div>
 

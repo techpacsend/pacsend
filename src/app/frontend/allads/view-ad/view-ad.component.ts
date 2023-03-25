@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ViewAdComponent implements OnInit, AfterViewInit {
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   buttondisable:boolean = false;
   myStatus = false;
   reports: any;
@@ -31,7 +31,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
   cancelAccepted: any;
   imageIndex: number=0;
   hideLCP: boolean;
-  imageBaseUrl = 'https://pacsend.app/public/uploads/users/';
+  imageBaseUrl = 'https://pacsend.tech/public/uploads/users/';
   pickUpAlert: boolean;
   deliveryAlert: boolean;
   notificationMessage: any;
@@ -151,6 +151,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
   NotificationsArray: any[];
   wishliststatus: any;
   totalAmount: number;
+  currency: any;
 
   googleAdsImage: string;
   googleAdsScript: (SafeHtml | any);
@@ -481,6 +482,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
         this.is_deliver = this.adData['is_deliver']
         this.wishliststatus = this.adData['wishlist']
         this.totalAmount = +this.adData['weight'] * +this.adData['payment']
+        this.currency = this.adData['currency'];
         this.fback = this.adData['avgFeedBack'];
         const offererIndex = this.adData.offerer_data;
         let index = offererIndex.length;
@@ -836,8 +838,11 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
 
   }
 
-
   postSenderConnect() {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (user && (user.is_verified == 2 || user.is_verified == 0)) {
+      return false;
+    }
     var btnname = document.getElementById("button1");
     if (this.btntext == "Chat") {
       localStorage.setItem('ChatAdId', this.adData.ad_id);
@@ -1123,6 +1128,7 @@ export class ViewAdComponent implements OnInit, AfterViewInit {
     else if (this.FeedbackForm.controls['rating5'].value == true) {
       this.FeedbackForm.controls['rating'].setValue(5);
     }
+    
     this.notificationMessage = 'You have been rated with ' + this.ratingValue + ' Stars & ' + "'"+ this.FeedbackForm.controls['review'].value + "'" + ' comment, by ' + user.fname + ' ' + user.lname + ' for ad ' + this.adData.ad_title + ' on ' + todayDate;
     let ad_type = 1;
     this.dataService.Feedbacks(this.adID, this.FeedbackForm.controls['review'].value, this.ratingValue, this.offererid, ad_type).subscribe(res => {

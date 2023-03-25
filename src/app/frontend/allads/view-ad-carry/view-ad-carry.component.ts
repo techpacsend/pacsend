@@ -23,7 +23,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ViewAdCarryComponent implements OnInit, AfterViewInit {
 
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   @ViewChild("feedback", { static: true }) feedback: ElementRef;
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
   buttondisable:boolean = false;
@@ -33,7 +33,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
   ratingSubmit: boolean = false;
   forUserDetails: any;
   hideLCP: boolean;
-  imageBaseUrl = 'https://pacsend.app/public/uploads/users/';
+  imageBaseUrl = 'https://pacsend.tech/public/uploads/users/';
   notificationMessage: any;
 
   GetWishlList() {
@@ -1151,6 +1151,7 @@ export class ViewAdCarryComponent implements OnInit, AfterViewInit {
     else if (this.FeedbackForm.controls['rating5'].value == true) {
       this.FeedbackForm.controls['rating'].setValue(5);
     }
+    
     this.notificationMessage = 'You have been rated with ' + this.ratingValue + ' Stars & ' + "'" +this.FeedbackForm.controls['review'].value + "'  comment, by" + user.fname + ' ' + user.lname + ' for ad ' + this.adData.title + '. Please confirm Pickup.' + ' on ' + todayDate;
     this.dataService.Feedbacks(this.adID, this.FeedbackForm.controls['review'].value, this.ratingValue, this.user_id, 2).subscribe(res => {
       this.loader.stop();

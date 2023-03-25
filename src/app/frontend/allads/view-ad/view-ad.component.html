@@ -46,7 +46,7 @@
       </div>
       <div *ngIf="hideLCP" class="mt-3 col-12 d-flex justify-content-center align-items-center">
         <img *ngIf="googleAdsImage != undefined" class="w-100" [src]="
-            'https://pacsend.app/public/uploads/slots/' + googleAdsImage
+            'https://pacsend.tech/public/uploads/slots/' + googleAdsImage
               | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -227,8 +227,8 @@
 
               <div class="col-8 col-md-10 text-left m-t-10">
                 
-                <span *ngFor="let item of travellingTypes; let i = index" class="sender-inner-ad-desc">{{ item.type_name}} ,{{ travellingTypes.length - 1 == i ? "" : abc }}
-                </span>
+                <!-- <span *ngFor="let item of travellingTypes; let i = index" class="sender-inner-ad-desc">{{ item.type_name}} ,{{ travellingTypes.length - 1 == i ? "" : abc }} </span> -->
+                <span *ngFor="let item of travellingTypes; let i = index" class="sender-inner-ad-desc">{{ item.type_name}} , </span>
               </div>
 
               <div class="col-4 col-md-2 text-left m-t-10">
@@ -272,7 +272,7 @@
                 </h6>
               </div>
               <div class="col-4 col-md-10 text-left m-t-10">
-                <h6 class="sender-inner-ad-desc">{{ totalAmount }}&nbsp;AED</h6>
+                <h6 class="sender-inner-ad-desc">{{ totalAmount }}&nbsp;{{currency}}</h6>
               </div>
 
               <div class="col-4 col-md-2 text-left m-t-10">
@@ -336,7 +336,7 @@
           </div>
           <div *ngIf="hideLCP" class="col-12 mt-3">
             <img *ngIf="googleAdsImageSenderAdRight != undefined" class="w-100" [src]="
-                'https://pacsend.app/public/uploads/slots/' +
+                'https://pacsend.tech/public/uploads/slots/' +
                   googleAdsImageSenderAdRight | byPassSecurityUrl
               " />
             <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>

@@ -60,7 +60,7 @@
           align-items-center
         ">
         <img *ngIf="googleAdsImageCarrierTop != undefined" class="w-100" [src]="
-            'https://pacsend.app/public/uploads/slots/' +
+            'https://pacsend.tech/public/uploads/slots/' +
               googleAdsImageCarrierTop | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -273,7 +273,7 @@
               </div>
               <div class="col-8 col-md-10 text-left m-t-10">
                 <h6 class="colorBlack line-height-30 font-16">
-                  <img style="max-width: 25px" src="https://pacsend.app/public/uploads/travelingBy/{{
+                  <img style="max-width: 25px" src="https://pacsend.tech/public/uploads/travelingBy/{{
                       adData?.traveling_by_image
                     }}" alt="" />
                   <span class="sender-inner-ad-desc ml-1">{{
@@ -287,7 +287,7 @@
               </div>
               <div class="col-8 col-md-10 text-left m-t-10">
                 <h6 class="sender-inner-ad-desc">
-                  {{ (+adData?.payment).toFixed(0) }} AED
+                  {{ (+adData?.payment).toFixed(0) }} {{adData.currency}}
                 </h6>
               </div>
             </div>
@@ -382,7 +382,7 @@
               <ngx-shimmer-loading *ngIf="googleAdsImage != undefined && !hideLCP"  [shape]="'rect'" [width]="'400px'" [height]="'300px'">
               </ngx-shimmer-loading>
               <img *ngIf="googleAdsImage != undefined && hideLCP" class="w-100" [src]="
-                  'https://pacsend.app/public/uploads/slots/' + googleAdsImage
+                  'https://pacsend.tech/public/uploads/slots/' + googleAdsImage
                     | byPassSecurityUrl
                 " />
               <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>

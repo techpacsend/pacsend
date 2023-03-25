@@ -92,7 +92,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 text-center">
     <img style="margin-top:10px; height:70px; width:90px"
-       [src]="'https://pacsend.app/public/uploads/setting/logo%20resize-01.png'"
+       [src]="'https://pacsend.tech/public/uploads/setting/logo%20resize-01.png'"
        alt="Logo"
        class="img-responsive filter-greey-img-1"
        id="change-image"
@@ -435,7 +435,7 @@
                           "
                         >
                           <img
-                            src="https://pacsend.app/public/uploads/travelingBy/{{
+                            src="https://pacsend.tech/public/uploads/travelingBy/{{
                               item.traveling_by_image
                             }}"
                             height="20"
@@ -494,7 +494,7 @@
                   >
                     <img
                       class="rounded-circle mt-2"
-                      src="https://pacsend.app/public/uploads/users/{{
+                      src="https://pacsend.tech/public/uploads/users/{{
                         item.user_image
                       }}"
                     />
@@ -817,7 +817,7 @@
                         <h5 class="font-12 font-600 color-figma-gray">
                           Willing to pay
                         </h5>
-                        <h5 class="font-14 font-700">{{ item.payment }} AED</h5>
+                        <h5 class="font-14 font-700">{{ item.payment }} {{ item.currency }}</h5>
                       </div>
                     </div>
                   </div>
@@ -840,7 +840,7 @@
                             "
                           >
                             <img
-                              src="https://pacsend.app/public/uploads/traveling/{{
+                              src="https://pacsend.tech/public/uploads/traveling/{{
                                 item.traveling_by_image
                               }}"
                               height="20"
@@ -876,7 +876,7 @@
                     "
                     [ngStyle]="{
                       'background-image':
-                        'url(https://pacsend.app/public/uploads/adds/' +
+                        'url(https://pacsend.tech/public/uploads/adds/' +
                         item.image +
                         ')'
                     }"

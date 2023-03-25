@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ALlSenderAdService {
 
-    readonly allSenderAds = "https://pacsend.app/webservices/api/v1/ads/sender?client_key=GeroO1JYhwlXo5fEQm5rHuG3ZX5Hj4gNc35odwYq";
+    readonly allSenderAds = "https://pacsend.tech/webservices/api/v1/ads/sender?client_key=GeroO1JYhwlXo5fEQm5rHuG3ZX5Hj4gNc35odwYq";
 
   constructor(private httpClient: HttpClient) { }
 

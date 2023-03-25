@@ -46,7 +46,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   @ViewChild("scrollMe", { static: false }) private scrollMe: ElementRef;
   @ViewChild("scrollBottom", { static: true }) private scrollBottom: ElementRef;
 
-  mrcURL: string = "https://pacsend.app";
+  mrcURL: string = "https://pacsend.tech";
   buttondisable:boolean = false;
 
   ChatForm: FormGroup;
@@ -145,9 +145,9 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   msgType: any;
   modalReference1: any;
   isMobileScreen = false;
-  imageBaseUrl = "https://pacsend.app/public/uploads/users/";
-  tagImgUrl = "https://pacsend.app/public/uploads/category/";
-  adBaseImgUrl = "https://pacsend.app/public/uploads/adds/";
+  imageBaseUrl = "https://pacsend.tech/public/uploads/users/";
+  tagImgUrl = "https://pacsend.tech/public/uploads/category/";
+  adBaseImgUrl = "https://pacsend.tech/public/uploads/adds/";
   selectedSenderIndex: any;
   selectedCarrierIndex: any;
   private geoCoder;
@@ -277,7 +277,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   chatPicOpen(chatpicopend, pic) {
-    this.imageOPen = "https://pacsend.app/public/uploads/chat/" + pic;
+    this.imageOPen = "https://pacsend.tech/public/uploads/chat/" + pic;
     this.chatPicOpend = true;
     this.modalReference = this.modalService.open(chatpicopend, {
       ariaLabelledBy: "modal-basic-title",

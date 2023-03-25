@@ -109,7 +109,7 @@
                       cursor: pointer;
                       /* margin-right: -18px; */
                     " *ngFor="let item of filterData?.traveling_types">
-                    <img src="https://pacsend.app/public/uploads/traveling/{{
+                    <img src="https://pacsend.tech/public/uploads/traveling/{{
                         item.image
                       }}" class="width-100" style="max-height: 28px; width: 35px" />
                     <h5 class="font-12 font-600 color-figma-gray m-t-5">
@@ -123,7 +123,7 @@
                       cursor: pointer;
                       /* margin-right: -1px; */
                     " *ngFor="let item of filterData?.traveling_by">
-                    <img src="https://pacsend.app/public/uploads/travelingBy/{{
+                    <img src="https://pacsend.tech/public/uploads/travelingBy/{{
                         item.image
                       }}" class="width-100" style="max-height: 28px; width: 35px" />
                     <h5 class="font-12 font-600 color-figma-gray m-t-5">
@@ -137,8 +137,7 @@
               <div class="row">
                 <div class="col-12 text-left m-t-10">
                   <label class="display-block font-600 color-figma-gray m-b-0 font-14">Cost
-                    <span class="pull-right colorBlack font-14 font-600 aed-color">{{ filter.payment }}
-                      AED</span></label>
+                    <span class="pull-right colorBlack font-14 font-600 aed-color">{{ filter.payment }}</span></label>
                   <div class="chrome">
                     <input type="range" style="
                         width: 100% !important;
@@ -208,7 +207,7 @@
         <div class="card-body p-0">
           <div class="row p-10" *ngIf="mapclickdetails">
             <div class="col-md-2 col-2 p-r-0">
-              <img src="https://pacsend.app/public/uploads/users/{{
+              <img src="https://pacsend.tech/public/uploads/users/{{
                   mapclickdetails.image
                 }}" class="width-100" />
             </div>
@@ -447,7 +446,7 @@
       </button>
     </div>
     <div class="modal-body text-center pt-0 pb-0 verify-card-mob-responsive">
-      <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-100" />
+      <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-50" />
       <p class="font-16 color-figma-photo text-center mt-2 mb-2 color-figma-photo-mob">
         <!-- Your data has been sent successfully for verification. -->
         Your documents will be checked and account will be verified shortly.
@@ -509,7 +508,7 @@
             </div>
             <div class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">                    
               <small class="mr-lg-2">Willing to Pay</small>
-              <span>{{ singleAd?.payment }} AED</span>
+              <span>{{ singleAd?.payment }} {{ singleAd?.currency }}</span>
             </div>            
           </div>
           <div class="TitleBar text-left pt-4 pb-4 pl-3">
@@ -551,7 +550,7 @@
                   </div>                   
                   <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">                  
                     <label>Willing to Pay</label>
-                    <span>{{ singleAd?.traveling_type }} AED</span>
+                    <span>{{ singleAd?.traveling_type }} {{ singleAd?.currency }}</span>
                 </div>
                 </div>
               </div>
@@ -613,7 +612,7 @@
             </div>
             <div class="pt-3 PayBox flex-md-row flex-column align-items-center justify-content-start d-none d-md-block">                    
               <small class="mr-lg-2">Willing to Charge</small>
-              <span>{{ singleAd?.payment }} AED</span>
+              <span>{{ singleAd?.payment }} {{ singleAd?.currency }}</span>
             </div>
           </div>
           <div class="TitleBar text-left pt-4 pb-4 pl-3">
@@ -663,7 +662,7 @@
                   </div> 
                   <div class="InfoBox d-flex flex-column text-left col-6 col-md-12 d-block d-md-none">                  
                       <label>Willing to Charge</label>
-                      <span>{{ singleAd?.payment }} AED</span>
+                      <span>{{ singleAd?.payment }} {{ singleAd?.currency }}</span>
                   </div>                 
                 </div>
               </div>

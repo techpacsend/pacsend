@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
 
   @ViewChild(NgxStarsComponent, { static: false }) starsComponent: NgxStarsComponent;
 
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   modalReference: any
   changePasswordForm;
   userEdit: any = {}
@@ -62,8 +62,8 @@ export class UserProfileComponent implements OnInit {
   city_id: any;
   profile_image: File;
   page: number = 1;
-  tagImgUrl = "https://pacsend.app/public/uploads/category/";
-  adBaseImgUrl = 'https://pacsend.app/public/uploads/adds/';
+  tagImgUrl = "https://pacsend.tech/public/uploads/category/";
+  adBaseImgUrl = 'https://pacsend.tech/public/uploads/adds/';
 
   constructor(private dataService: MyAdService,
      private signService: SettingService,
@@ -209,10 +209,10 @@ export class UserProfileComponent implements OnInit {
       this.userDetails = x.userData;
       window.scrollTo(0, 30);
       if (x.userData.custom_profile_photo) {
-        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.custom_profile_photo;
+        this.avatar_image = "https://pacsend.tech/public/uploads/users/" + x.userData.custom_profile_photo;
        }
       else if (this.userDetails.image != null) {
-        this.avatar_image = "https://pacsend.app/public/uploads/users/" + x.userData.image;
+        this.avatar_image = "https://pacsend.tech/public/uploads/users/" + x.userData.image;
 
       } else {
         this.avatar_image = "../../../assets/default.jpg"
@@ -348,7 +348,7 @@ export class UserProfileComponent implements OnInit {
         if (res) {
           this.loader.stop();
           if (res.userData.custom_profile_photo) {
-            this.avatar_image = "https://pacsend.app/public/uploads/users/" + res.userData.custom_profile_photo;
+            this.avatar_image = "https://pacsend.tech/public/uploads/users/" + res.userData.custom_profile_photo;
             this.sharedService.onProfileImageSet(res.userData.custom_profile_photo);
           }
           this.alertService.Success(res.status);

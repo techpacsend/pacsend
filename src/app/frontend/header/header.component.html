@@ -244,7 +244,7 @@
     <div class="row cursor" (click)="verifyProfile(verifyProfileStepOne)">
       <div class="col-md-12">
         <span class="font-14 font-500 color-white">
-          <p class="mt-2 text-center">Please Verify Your Account First!!</p>
+          <p class="mt-2 text-center">Click Here to verify your account first !!!</p>
         </span>
       </div>
     </div>
@@ -490,7 +490,7 @@
               <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'56px'" [height]="'56px'">
               </ngx-shimmer-loading>
 
-              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.app/public/uploads/traveling/{{
+              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.tech/public/uploads/traveling/{{
                   travellingType.image
                 }}" class="width-100 " />
             </div>
@@ -804,7 +804,7 @@
       <p class="color-new-figma">How much you will charge per KG?</p>
       <div class="form-group">
         <input style="border: solid 2px #e1e7ec !important" #paymentCarrier class="form-control form-custom-control"
-          name="MobileNumber" min="0" type="number" placeholder="Amount in Aed" />
+          name="MobileNumber" min="0" type="number" placeholder="Amount" />
       </div>
     </div>
     <div class="modal-footer text-center">
@@ -852,9 +852,14 @@
     </div>
     <div class="modal-body p-0 pl-5 pr-5 p-l-r-10px">
       <p class="color-new-figma">How much are you willing to charge ?</p>
+      <select style="width: 85px;" [(ngModel)]="senderAd.currency" class="form-control" id="currency" name="currency">
+        <option *ngFor="let currency of currencys" [ngValue]="currency">{{currency}}</option>
+      </select>
 
-      <input #payment2 class="form-control input-border-grey" [(ngModel)]="senderAd.payment" name="MobileNumber"
-        type="number" min="0" placeholder="Amount in AED" />
+      <input style="width: calc(100% - 85px);top: -38px;display: block;position: relative;left: 85px;" #payment2 class="form-control input-border-grey" [(ngModel)]="senderAd.payment" name="MobileNumber"
+        type="number" min="0" placeholder="Amount" />
+
+
     </div>
 
     <div class="modal-footer text-center p-0">
@@ -921,7 +926,7 @@
       <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'circle'" [width]="'404px'" [height]="'406px'">
       </ngx-shimmer-loading>
 
-      <img *ngIf="!aboutPacsendLCP" src="../assets/verificationSuccessful.webp" class="width-100 sucess-img-mob-v2" />
+      <img *ngIf="!aboutPacsendLCP" src="../assets/verificationSuccessful.webp" class="width-50 sucess-img-mob-v2" />
       <p class="color-new-figma">
         Your data has been posted successfully. We will notify you once your ad is approved by our quality team.
         Meantime sit back and relax.
@@ -1246,7 +1251,7 @@
               <ngx-shimmer-loading *ngIf="aboutPacsendLCP" [shape]="'rect'" [width]="'56px'" [height]="'56px'">
               </ngx-shimmer-loading>
 
-              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.app/public/uploads/travelingBy/{{
+              <img *ngIf="!aboutPacsendLCP" src="https://pacsend.tech/public/uploads/travelingBy/{{
                   travellingType.image
                 }}" class="width-100" />
             </div>
@@ -1296,7 +1301,10 @@
     <div class="modal-body pt-0 pb-0 payment-mob-v">
       <p class="color-new-figma">How much you will charge per KG?</p>
       <div class="form-group">
-        <input #amount class="form-control form-custom-control" name="MobileNumber" type="number"
+        <select style="width: 85px;" [(ngModel)]="carriarAd.currency" class="form-control" id="currency" name="currency">
+          <option *ngFor="let currency of currencys" [ngValue]="currency">{{currency}}</option>
+        </select>
+        <input style="width: calc(100% - 85px);top: -38px;display: block;position: relative;left: 85px;" #amount class="form-control form-custom-control" name="MobileNumber" type="number"
           placeholder="Amount Per Kg" min="0" />
       </div>
 
@@ -1361,7 +1369,7 @@
       </ngx-shimmer-loading>
 
       <img *ngIf="!aboutPacsendLCP" src="../assets/verificationSuccessful.webp"
-        class="width-100 sucess-img-mob-v sucess-img-mob-v2" />
+        class="width-50 sucess-img-mob-v sucess-img-mob-v2" />
       <p class="color-new-figma">
         Your data has been posted successfully. We will notify you once your ad is approved by our quality team.
         Meantime sit back and relax.
@@ -1765,7 +1773,7 @@
     <ng-template #verifyProfileStepOne let-modal>
       <div class="ad-left position-absolute top-0 right-44">
         <img *ngIf="googleAdsImageVerifyRight != undefined" class="w-100" [src]="
-            'https://pacsend.app/public/uploads/slots/' +
+            'https://pacsend.tech/public/uploads/slots/' +
               googleAdsImageVerifyRight | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -1773,7 +1781,7 @@
 
       <div class="ad-right position-absolute top-0 left-44">
         <img *ngIf="googleAdsImageVerifyRight != undefined" class="w-100" [src]="
-            'https://pacsend.app/public/uploads/slots/' +
+            'https://pacsend.tech/public/uploads/slots/' +
               googleAdsImageVerifyRight | byPassSecurityUrl
           " />
         <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
@@ -1953,7 +1961,7 @@
           </button>
         </div>
         <div class="modal-body text-center pt-0 pb-0 verify-card-mob-responsive pl-3 pr-3">
-          <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-100" />
+          <img src="../../../assets/verificationSuccessful.png" class="img-responsive w-50" />
           <p class="font-16 color-figma-photo text-center mt-2 mb-2 color-figma-photo-mob">
             <!-- Your data has been sent successfully for verification. -->
             Your documents will be checked and account will be verified shortly.

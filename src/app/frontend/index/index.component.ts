@@ -89,7 +89,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
   aboutPacsendLCP:boolean=true;
   HowContent:boolean=true;
-  mrcURL: string = 'https://pacsend.app';
+  mrcURL: string = 'https://pacsend.tech';
   // code for how to use tabs
   tab1: boolean = true;
   tab2: boolean = false;
@@ -379,8 +379,8 @@ export class IndexComponent implements OnInit, AfterViewInit {
   alladsData: boolean;
   active_tab:any = 'all';
   googleAdsImageSenderAdRight: string;
-  baseImageUrl = 'https://pacsend.app/public/uploads/users/';
-  settingImageUrl = 'https://pacsend.app/public/uploads/setting/';
+  baseImageUrl = 'https://pacsend.tech/public/uploads/users/';
+  settingImageUrl = 'https://pacsend.tech/public/uploads/setting/';
 
 
   constructor(private dataServicePri: PrivacyPolicyService,private dataServiceTerm: TermsAndConditionService,private dataServiceFaq: FaqsService,private dataService: IndexService, private mapsAPILoader: MapsAPILoader, private spinner: NgxSpinnerService,
@@ -491,7 +491,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
       if (user.image == null) {
         this.avatar_image = "http://searchpng.com/wp-content/uploads/2019/02/Profile-PNG-Icon.png"
       } else {
-        this.avatar_image = 'https://pacsend.app/public/uploads/users/' + user.image;
+        this.avatar_image = 'https://pacsend.tech/public/uploads/users/' + user.image;
       }
     }
 

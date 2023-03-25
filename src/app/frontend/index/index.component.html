@@ -18,7 +18,7 @@
   <div class="row">
     <div class="mx-auto my-auto">
       <img *ngIf="googleAdsImageHomeTop != undefined" class="w-100 index-ads-banner" data-sizes="auto"
-        data-src="'https://pacsend.app/public/uploads/slots/' + {{googleAdsImageHomeTop | byPassSecurityUrl}} " />
+        data-src="'https://pacsend.tech/public/uploads/slots/' + {{googleAdsImageHomeTop | byPassSecurityUrl}} " />
       <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
     </div>
   </div>
@@ -31,7 +31,7 @@
         <span style="margin-right: 11px;" aria-hidden="true">&times;</span>
       </button>
       <img *ngIf="googleAdsImagePopupSlot != undefined" data-sizes="auto"
-        data-src="'https://pacsend.app/public/uploads/slots/'+{{ googleAdsImagePopupSlot | byPassSecurityUrl}}"
+        data-src="'https://pacsend.tech/public/uploads/slots/'+{{ googleAdsImagePopupSlot | byPassSecurityUrl}}"
         class="lazyload w-100" />
       <div *ngIf="googleAdsScript != undefined" [innerHTML]="googleAdsScript | byPassSecurityScript"></div>
     </div>
@@ -135,10 +135,10 @@
           "></div>
         <div class="col-12 mx-0 px-0 col-md-12 text-center">
           <!-- <img src="../../../assets/Facebook-Cover-min.webp" class="mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" /> -->
-          <img data-sizes="auto" data-src="https://pacsend.app/public/uploads/about/{{aboutimage}}"
+          <img data-sizes="auto" data-src="https://pacsend.tech/public/uploads/about/{{aboutimage}}"
             class="lazyload mt-5 width-100 mob-view-strech-img-hide" width="570" height="217" />
 
-          <img data-sizes="auto" data-src="https://pacsend.app/public/uploads/about/{{aboutimage}}"
+          <img data-sizes="auto" data-src="https://pacsend.tech/public/uploads/about/{{aboutimage}}"
             class="lazyload mt-5 width-100 mob-view-strech-img-show" />
         </div>
       </div>
@@ -984,7 +984,7 @@
             </button>
           </div>
           <div class="modal-body text-center">
-            <img data-sizes="auto" data-src="../../../assets/verificationSuccessful.png" class="lazyload width-100" />
+            <img data-sizes="auto" data-src="../../../assets/verificationSuccessful.png" class="lazyload width-50" />
             <p class="m-b-10 m-t-20">
               <!-- Your data has been sent successfully for verification. -->
               Your documents will be checked and account will be verified shortly.
