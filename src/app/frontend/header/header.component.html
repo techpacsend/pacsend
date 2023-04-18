@@ -504,8 +504,9 @@
                   color: #929fb1 !important;
                 " class="mb-0 font-14 font-500">
                 <!-- Books, Laptops, clothes etc -->
-                {{
-                travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }},
+                <!-- {{
+                travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }}, -->
+                {{travellingType.description}}
               </p>
             </div>
           </div>
@@ -1256,13 +1257,12 @@
                 }}" class="width-100" />
             </div>
             <div class="col-9 col-md-10 text-left">
-              <a #travelling class="mb-0 font-16 font-700 colorBlack">{{
-                travellingType.title
-                }}</a>
+              <a #travelling class="mb-0 font-16 font-700 colorBlack">{{travellingType.title}}</a>
               <p class="mb-0 font-14 color-new-figma">
                 <!-- Books, Laptops, clothes etc -->
-                {{
-                travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }},
+                <!-- {{
+                travellingType.description ? travellingType.description : "Books, Laptops, clothes etc" }} -->
+                {{travellingType.description}}
               </p>
             </div>
           </div>

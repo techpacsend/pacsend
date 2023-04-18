@@ -418,7 +418,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   googleAdsImageVerifyLeft: string;
   googleAdsImageVerifyRight: string;
   googleAdsScript: (SafeHtml | any);
-  uploadedImagesSender: any[];
+  uploadedImagesSender: any = [];
   travellingTypes2: any;
   travelType2: any;
   public intervalStart;
@@ -1212,8 +1212,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.senderAd.title == '' ||
       this.senderAd.categoryIds.length <= 0 ||
       this.senderAd.weight == '' ||
-      this.senderAd.weight <= '0' ||
-     !this.senderAd.image.length
+      this.senderAd.weight <= '0'
+    //    ||
+    //  !this.senderAd.image.length
     ) {
       this.SettingService.Error('Please fill all the fields!')
     } else {
@@ -1517,9 +1518,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     formData.append("point_of_contact_name", this.senderAd.receiverName);
     formData.append("point_of_contact_number", this.senderAd.receivernumber);
+
     const leng = this.uploadedImagesSender.length;
-    for (var i = 0; i < leng; i++) {
-      formData.append("imageName[]", this.uploadedImagesSender[i].imageName);
+    if(leng > 0 ){
+      for (var i = 0; i < leng; i++) {
+        formData.append("imageName[]", this.uploadedImagesSender[i].imageName);
+      }
+    }else{
+      formData.append("imageName[]", 'no_image.png');
     }
 
     if (!this.clicked) {
